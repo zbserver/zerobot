@@ -1,6 +1,6 @@
 <?php
 define('host',['Ourcoincash','ourcoincash.xyz','']);
-define('version','1.0.1');
+define('version','1.0.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -34,6 +34,9 @@ print " ".line();
 Faucet:
 while(true){
     $r = get(web."/faucet");
+    if(preg_match("/Daily limit reached/",$r)){
+        echo Error("Daily limit reached").n;die;
+    }
     if(preg_match("/firewall/",$r)){
         $s = get(web."/firewall");
         $sitekey= Ambil($r,'data-sitekey="','">',1);
