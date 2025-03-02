@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.7",
+app_version = "1.0.0",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -28,7 +28,7 @@ define("pc","\033[107m\033[1;36m");
 define("rr","\r                                         \r");
 define("r","\r");
 define("n","\n");
-define("line",p." ".str_repeat("─",55).n);
+define("line",p." ".str_repeat("─",50).n);
 define("panah",k." › ");
 define("w",m);
 define("w2",k);
@@ -36,7 +36,6 @@ define("w3",o);
 define("cpm",["","√","+","-","!"]);
 define("senttofp","sent to FP");
 define("ApiError","Error | 0 ".n);
-define("App","App/App.php");
 define("Server","https://raw.githubusercontent.com/zbserver/server/main/");
 define("Data","Data/");
 Function TimeZone(){$api = json_decode(file_get_contents("http://ip-api.com/json"),1);if($api){$tz = $api["timezone"];date_default_timezone_set($tz);return $api["country"];}else{date_default_timezone_set("UTC");return "UTC";}}
@@ -72,9 +71,7 @@ Function reward($hasil,$left,$coin){return pesan(0,cpm[1]).p.$hasil.w2."|".p.$le
 Function rewardX($hasil,$left,$coin){return pesan(0,cpm[1]).p.$hasil.w2."|".p.$left.w2."|".p.strtoupper($coin).w2."|".p."Apikey: ".o.Api_Bal().n;}
 Function load(){
     print rr;
-    $colors = [
-		"\033[48;5;64m",  
-	];
+    $colors = ["\033[48;5;24m"];
 	$text = "  Bypass ...   ";
 	$textLength = strlen($text);
 	for ($i = 1; $i <= $textLength; $i++) {
@@ -136,18 +133,18 @@ Function ban(){
     echo h ." ┌─┐┌─┐┬─┐┌─┐┌┐ ┌─┐┌┬┐".n;
     echo k ." ┌─┘├› ├┬┘│o│├┴┐│o│ o  [.".p.app_version.k."]".n;
     echo o ." └─┘└─┘┴└─└─┘└─┘└─┘ ┴ ".n;
-    echo a ." Script  ".panah.a.host[0].a."[v.".version."]".n;
+    echo a ." Script  ".panah.a.host[0]." [".version."]".n;
     echo a ." Telegram".panah.a.$tele.n;
     echo p ." ".line();
 }
 Function tim($tmr){
     date_default_timezone_set("UTC");
     $panah = [
-        p.w."❯".p."❯❯❯❯",
+        /*p.w."❯".p."❯❯❯❯",
         p."❯".w."❯".p."❯❯❯",
         p."❯❯".w."❯".p."❯❯",
         p."❯❯❯".w."❯".p."❯",
-        p."❯❯❯❯".w."❯"
+        p."❯❯❯❯".w."❯"*/
     ];
     $rand = rand(1,5);
     $timr = (time()+$tmr)+$rand;
@@ -204,7 +201,7 @@ Function anti_bot($source){
     if(preg_match("/multibot/",api_url)){return antibotMul($source);}	
 }
 Function antibotMul($source){
-    $delay= 2;
+    $delay= 4;
     $main = explode('"',explode('<img src="',explode('Bot links',$source)[1])[1])[0];
 	$antiBot["main"] = $main;
 	$src = explode('rel=\"',$source);
@@ -229,7 +226,7 @@ Function antibotMul($source){
     }
 }
 Function antibotXev($source){
-    $delay = 2;
+    $delay = 4;
     a:
     $bot1=explode('\"',explode('rel=\"',$source)[1])[0];
     $bot2=explode('\"',explode('rel=\"',$source)[2])[0];
