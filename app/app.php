@@ -2,7 +2,6 @@
 const
 app_version = "1.0.7",
 Telegram    ="t.me/official_zerobot";
-
 define("a","\033[1;30m");
 define("d","\033[0m");
 define("m","\033[1;31m");
@@ -135,7 +134,7 @@ Function ban(){
     $tele = Telegram;
     cl();
     echo h ." ┌─┐┌─┐┬─┐┌─┐┌┐ ┌─┐┌┬┐".n;
-    echo k ." ┌─┘├› ├┬┘│o│├┴┐│o│ o ".n;
+    echo k ." ┌─┘├› ├┬┘│o│├┴┐│o│ o  v.".app_version.n;
     echo o ." └─┘└─┘┴└─└─┘└─┘└─┘ ┴ ".n;
     echo a ." Script  ".panah.a.host[0].a."[v.".version."]".n;
     echo a ." Telegram".panah.a.$tele.n;
