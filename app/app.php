@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.0",
+app_version = "1.0.1",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -29,7 +29,7 @@ define("rr","\r                                         \r");
 define("r","\r");
 define("n","\n");
 define("line",p." ".str_repeat("─",50).n);
-define("panah",k." › ");
+define("panah",m." › ");
 define("w",m);
 define("w2",k);
 define("w3",o);
@@ -50,7 +50,7 @@ Function multi($wallet){$tambah = readline(" ".w3."Input ".$wallet." :".p);$save
 Function get($url){return curl($url,h());}
 Function post($url,$data){return curl($url,h(),$data);}
 Function postt($url,$data, $ua){return curl($url, $data, $ua)[1]; }
-Function line(){return p.str_repeat('─',55).n;}
+Function line(){return a.str_repeat('─',55).n;}
 Function FirCF($r){(preg_match('/Cloudflare/',$r) || preg_match('/Just a moment.../',$r))? $data['cf']=true:$data['cf']=false;return $data;}
 Function getUserAgent(){
 	$userAgentArray[] = "Mozilla/5.0 (Linux; Android 11; Pixel C Build/RQ1A.210205.004) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.90 Safari/537.36 GNews/2021022310";
@@ -80,7 +80,7 @@ Function load(){
 		$bgColor = $colors[$i % count($colors)];
 		$coloredText = substr($text, 0, $i);
 		$remainingText = substr($text, $i);
-		echo "     " . $bgColor . $coloredText . "\033[0m" . $remainingText . r;//" {$percent}% ".r;
+		echo "     " . $bgColor . $coloredText . "\033[0m" . $remainingText . r;
 		flush();
 	}
     print rr;
@@ -130,11 +130,12 @@ Function Menu_Api(){
 Function ban(){
     $tele = Telegram;
     cl();
-    echo h ." ┌─┐┌─┐┬─┐┌─┐┌┐ ┌─┐┌┬┐".n;
-    echo k ." ┌─┘├› ├┬┘│o│├┴┐│o│ o  [.".p.app_version.k."]".n;
-    echo o ." └─┘└─┘┴└─└─┘└─┘└─┘ ┴ ".n;
-    echo a ." Script  ".panah.a.host[0]." [".version."]".n;
-    echo a ." Telegram".panah.a.$tele.n;
+    echo p ." ┌─┐              ┌─┬─┐".n;
+    echo p ."   │     ".o."©2025      ".p."│"  .n;
+    echo p ." ┌─┘┬─┐┌─┐┌─┐┌┐ ┌┬┐ o  ".n;
+    echo p ." │  ├› ├┬┘│o│├┴┐│o│ │  ".n;
+    echo p ." └─┘└─┘┴└─└┴┘└─┘└─┘─┴─ ".n;
+    echo p ." Script".panah.p.host[0].o." | ".p."Version".panah.p.version.n;
     echo p ." ".line();
 }
 Function tim($tmr){
