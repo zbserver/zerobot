@@ -1,6 +1,4 @@
 <?php
-const
-app_required = "1.0.6";
 define('host',['Ourcoincash','ourcoincash.xyz','']);
 define('version','1.0.1');
 define('cok','cookie.'.host[0]);
