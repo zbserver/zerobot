@@ -110,21 +110,6 @@ Function Del(){
     unlink(Data.$co[0]);
     unlink(Data.$co[1]);
 }
-Function CekVer(){
-    $server = $_SERVER["TMP"];
-    if(!$server){
-        $server = $_SERVER["TMPDIR"];}
-    update:
-    if(!file_exists($server."\zerobot\App.php")){
-        system("mkdir ".$server."\zerobot");
-        Download($server);
-    }
-    if(app_version > app_required){
-         Download($server);
-    }else{print p." Latest Version :".app_local;sleep(2);print r;}
-}
-
-
 Function Menu_Api(){
     apikey:
     ban();
