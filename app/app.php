@@ -134,7 +134,7 @@ Function ban(){
     $tele = Telegram;
     cl();
     echo h ." ┌─┐┌─┐┬─┐┌─┐┌┐ ┌─┐┌┬┐".n;
-    echo k ." ┌─┘├› ├┬┘│o│├┴┐│o│ o  v.".app_version.n;
+    echo k ." ┌─┘├› ├┬┘│o│├┴┐│o│ o  [.".p.app_version.k."]".n;
     echo o ." └─┘└─┘┴└─└─┘└─┘└─┘ ┴ ".n;
     echo a ." Script  ".panah.a.host[0].a."[v.".version."]".n;
     echo a ." Telegram".panah.a.$tele.n;
