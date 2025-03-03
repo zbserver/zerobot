@@ -146,15 +146,29 @@ Function CekVer(){
     $lokal = file_get_contents($server."/zerobot/app.php");
     $serv  = file_get_contents("https://raw.githubusercontent.com/zbserver/zerobot/refs/heads/main/app/app.php");
     $lokal = Ambil($lokal,'app_version = "','"',1);
-    $ser  = Ambil($serv,'app_version = "','"',1);
+    $ser   = Ambil($serv ,'app_version = "','"',1);
 
     if($lokal < $ser ){
         unlink($server.'/zerobot/app.php');
         file_put_contents($server."/zerobot/app.php",file_get_contents($serv));
-        Echo " ".p."Update found".panah.p.$ser.n;
+        $colors = ["\033[48;5;24m" ];
+        $text = "Download Script...";
+        $textLength = strlen($text);
+
+        for ($i = 1; $i <= $textLength; $i++) {
+            usleep(150000);  // Delay 150.000 mikrodetik = 0.15 detik
+            $percent = round(($i / $textLength) * 100); 
+            $bgColor = $colors[$i % count($colors)];
+            $coloredText = substr($text, 0, $i);
+            $remainingText = substr($text, $i);
+            echo " ".$bgColor . $coloredText . "\033[0m" . $remainingText . " {$percent}% \r";
+            flush();
+        }
+        Echo " ".p."Update found".panah.p.$ser;sleep(2);echo r;
         Echo " ".p."please re run ".k."php server.php".n;
         die;
     }
+    echo " ".p."Update not Found";sleep(2);echo r;
 }
 Function tim($tmr){
     date_default_timezone_set("UTC");
