@@ -150,7 +150,10 @@ Function CekVer(){
 
     if($lokal < $serv ){
         unlink($server.'/zerobot/app.php');
-        DownloadSc($server);
+        file_put_contents($server."/zerobot/app/php",$serv);
+        Echo " ".p."Update found".panah.p.$serv.n;
+        Echo " ".p."please re run ".k."php server.php".n;
+        die;
     }
 }
 Function tim($tmr){
