@@ -138,6 +138,21 @@ Function ban(){
     echo p ." Script".panah.p.host[0].o." | ".p."Version".panah.p.version.n;
     echo p ." ".line();
 }
+Function CekVer(){
+    $server = $_SERVER["TMP"];
+    if(!$server){
+        $server = $_SERVER["TMPDIR"];
+    }
+    $lokal = file_get_contents($server."/zerobot/app.php");
+    $serv  = file_get_contents("https://raw.githubusercontent.com/zbserver/zerobot/refs/heads/main/app/app.php");
+    $lokal = Ambil($lokal,'app_version = "','"',1);
+    $serv  = Ambil($serv,'app_version = "','"',1);
+
+    if($lokal < $serv ){
+        unlink($server.'/zerobot/app.php');
+        DownloadSc($server);
+    }
+}
 Function tim($tmr){
     date_default_timezone_set("UTC");
     $panah = [
