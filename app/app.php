@@ -146,12 +146,12 @@ Function CekVer(){
     $lokal = file_get_contents($server."/zerobot/app.php");
     $serv  = file_get_contents("https://raw.githubusercontent.com/zbserver/zerobot/refs/heads/main/app/app.php");
     $lokal = Ambil($lokal,'app_version = "','"',1);
-    $serv  = Ambil($serv,'app_version = "','"',1);
+    $ser  = Ambil($serv,'app_version = "','"',1);
 
-    if($lokal < $serv ){
+    if($lokal < $ser ){
         unlink($server.'/zerobot/app.php');
-        file_put_contents($server."/zerobot/app.php",$serv);
-        Echo " ".p."Update found".panah.p.$serv.n;
+        file_put_contents($server."/zerobot/app.php",file_get_contents($serv));
+        Echo " ".p."Update found".panah.p.$ser.n;
         Echo " ".p."please re run ".k."php server.php".n;
         die;
     }
