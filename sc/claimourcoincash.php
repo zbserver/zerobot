@@ -53,8 +53,9 @@ while(true){
         $tok = Ambil($r,'name="token" value="','">',1);
         $email= Ambil($r,'name="wallet" class="form-control" value="','"',1);
         $ca  = Ambil($r,'name="captcha"><option value="','">',1);
-        if($ca){$data ="csrf_token_name=$c_t&token=$tok&captcha=$ca&g-recaptcha-response=$cap&wallet=".urlencode($email);
-        }else{  $data ="csrf_token_name=$c_t&token=$tok&wallet=".urlencode($email);}
+        if(!$ca){$data ="csrf_token_name=$c_t&token=$tok&wallet=".urlencode($email);5
+            
+        }else{  $data ="csrf_token_name=$c_t&token=$tok&captcha=$ca&g-recaptcha-response=$cap&wallet=".urlencode($email);}
         $post = post(web."/faucet/verify/$coin",$data);
         $hasil= Ambil($post,"html: '",strtoupper($coin)." has been sent to your FaucetPay account!'",1);
         if(preg_match("/Success!'/",$post)){
