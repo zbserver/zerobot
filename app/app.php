@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.0",
+app_version = "1.0.1",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -98,9 +98,7 @@ Function bps_anbot(){
     sleep($delay);
     print rr;
 }
-Function cl(){
-    system("clear");
-}
+Function cl(){system("clear");}
 Function Del(){
     $co=["cookie.txt",cok];
     unlink(Data.$co[0]);
@@ -173,11 +171,11 @@ Function CekVer(){
 Function tim($tmr){
     date_default_timezone_set("UTC");
     $panah = [
-        /*p.w."❯".p."❯❯❯❯",
+        p.w."❯".p."❯❯❯❯",
         p."❯".w."❯".p."❯❯❯",
         p."❯❯".w."❯".p."❯❯",
         p."❯❯❯".w."❯".p."❯",
-        p."❯❯❯❯".w."❯"*/
+        p."❯❯❯❯".w."❯"
     ];
     $rand = rand(1,5);
     $timr = (time()+$tmr)+$rand;
@@ -228,7 +226,7 @@ Function anti_bot($source){
     if(preg_match("/multibot/",api_url)){return antibotMul($source);}	
 }
 Function antibotMul($source){
-    $delay= 4;
+    $delay= 1;
     $main = explode('"',explode('<img src="',explode('Bot links',$source)[1])[1])[0];
 	$antiBot["main"] = $main;
 	$src = explode('rel=\"',$source);
@@ -253,7 +251,7 @@ Function antibotMul($source){
     }
 }
 Function antibotXev($source){
-    $delay = 4;
+    $delay = 1;
     a:
     $bot1=explode('\"',explode('rel=\"',$source)[1])[0];
     $bot2=explode('\"',explode('rel=\"',$source)[2])[0];
