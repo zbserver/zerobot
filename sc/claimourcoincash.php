@@ -47,20 +47,24 @@ while(true){
             $res = Riwayat([$coin=>3],$res);
             echo Error(w2."Daily claim limit ").w2.strtoupper($coin).p.n;continue;
         }
-        $cap=Captcha($r, web."/claim.html");
-        if(!$cap){continue;}
+        
         $c_t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
         $tok = Ambil($r,'name="token" value="','">',1);
         $email= Ambil($r,'name="wallet" class="form-control" value="','"',1);
         $ca  = Ambil($r,'name="captcha"><option value="','">',1);
-        if(!$ca){$data ="csrf_token_name=$c_t&token=$tok&wallet=".urlencode($email);5
+        if(!$ca){$data ="csrf_token_name=$c_t&token=$tok&wallet=".urlencode($email);
             
-        }else{  $data ="csrf_token_name=$c_t&token=$tok&captcha=$ca&g-recaptcha-response=$cap&wallet=".urlencode($email);}
+        }else{
+            $cap=Captcha($r, web."/claim.html");
+            if(!$cap){continue;}
+            $data ="csrf_token_name=$c_t&token=$tok&captcha=$ca&g-recaptcha-response=$cap&wallet=".urlencode($email);
+            
+        }
         $post = post(web."/faucet/verify/$coin",$data);
         $hasil= Ambil($post,"html: '",strtoupper($coin)." has been sent to your FaucetPay account!'",1);
         if(preg_match("/Success!'/",$post)){
             $lf = Ambil($r,'<p class="lh-1 mb-1 font-weight-bold">','</p>',3);
-            efek(rewardX(o.$hasil.p.senttofp,$lf,$coin),5000).n;   
+            efek(rewardX(h.$hasil.p.senttofp,$lf,$coin),5000).n;   
         }
         if(preg_match("/Failed!'/",$post)){
             $hasil= Ambil($post,"html: '",'',1);
@@ -73,4 +77,3 @@ while(true){
         en:
     }
 }
-    
