@@ -34,7 +34,7 @@ define("w",m);
 define("w2",k);
 define("w3",o);
 define("cpm",["","√","+","-","!"]);
-define("senttofp","sent to FP");
+define("senttofp",p."sent to FP");
 define("ApiError","Error | 0 ".n);
 define("Server","https://raw.githubusercontent.com/zbserver/server/main/");
 define("Data","Data/");
@@ -67,8 +67,8 @@ Function success($hasil){return pesan(0,cpm[1])."Reward ".panah.p.$hasil;}
 Function bal($hasil){return pesan(0,cpm[2])."Balance".panah.p.$hasil;}
 Function cekapi(){return pesan(0,cpm[3])."Apikey ".panah.p.Api_Bal();}
 Function Error($hasil){return pesan(0,cpm[4]).$hasil.n;}
-Function reward($hasil,$left,$coin){return pesan(0,cpm[1]).p.$hasil.w2."|".p.$left.w2."|".p.strtoupper($coin).w2."|".n;}
-Function rewardX($hasil,$left,$coin){return pesan(0,cpm[1]).p.$hasil.w2."|".p.$left.w2."|".p.strtoupper($coin).w2."|".p."Apikey: ".o.Api_Bal().n;}
+Function reward($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." | ".p.$left.o." | ".p.strtoupper($coin).n;}
+Function rewardX($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." | ".p.$left.o." | ".p.strtoupper($coin).o."|".p."Apikey: ".h.Api_Bal().n;}
 Function load(){
     print rr;
     $colors = ["\033[48;5;24m"];
@@ -130,11 +130,11 @@ Function Menu_Api(){
 Function ban(){
     $tele = Telegram;
     cl();
-    echo p ." ┌─┐              ┌─┬─┐".n;
-    echo p ."   │     ".o."©2025      ".p."│"  .n;
-    echo p ." ┌─┘┬─┐┌─┐┌─┐┌┐ ┌┬┐ o  ".n;
-    echo p ." │  ├› ├┬┘│o│├┴┐│o│ │  ".n;
-    echo p ." └─┘└─┘┴└─└┴┘└─┘└─┘─┴─ ".n;
+    echo p ." ┌──┐              ┌─┬─┐".n;
+    echo p ."    │     ".o."©2025      ".p."│"  .n;
+    echo p ." ┌──┘┬─┐┌─┐┌─┐┌┐ ┌┬┐ o  ".n;
+    echo p ." │   ├› ├┬┘│o│├┴┐│o│ │  ".n;
+    echo p ." └──┘└─┘┴└─└┴┘└─┘└─┘─┴─ ".n;
     echo p ." Script".panah.p.host[0].o." | ".p."Version".panah.p.version.n;
     echo p ." ".line();
 }
@@ -165,10 +165,10 @@ Function CekVer(){
             flush();
         }
         Echo " ".p."Update found".panah.p.$ser;sleep(2);echo r;
-        Echo " ".p."please re run ".k."php server.php".n;
+        Echo " ".p."please re run ".o."[".p."php server.php".o."]".n;
         die;
     }
-    echo " ".p."Update not Found";sleep(2);echo r;
+    echo n.n.n.n.n.n.n.n.n.n.n.n.n.n." ".p."Update not Found";sleep(2);echo r;
 }
 Function tim($tmr){
     date_default_timezone_set("UTC");
@@ -201,13 +201,7 @@ Function RecaptchaV3($anchor){
         if($res){return $res;}
     }
 }
-Function Api_Bal(){
-	$r = json_decode(file_get_contents(api_url."/res.php?action=userinfo&key=".apikey),1);
-    if(!$r["balance"]){
-        print ApiError;
-    }
-    return $r["balance"];
-}
+Function Api_Bal(){$r = json_decode(file_get_contents(api_url."/res.php?action=userinfo&key=".apikey),1);if(!$r["balance"]){print ApiError;}return $r["balance"];}
 Function Captcha($source,$pageurl){
     $delay = 5;
     $sitekey= Ambil($source,'data-sitekey="','">',1);
@@ -295,25 +289,13 @@ Function Pesan($data=null,$isi){
         return w3." [".p.$isi.str_repeat(" ",$lenstr).w3."]".panah.p;
     }
 }
-Function Menu($no, $menu){
-    return print w3." [".p.$no.w3."] ".p.$menu.n;
-}
-Function Select($nomor){
-    return print " Input : ";
-}
+Function Menu($no, $menu){return print w3." [".p.$no.w3."] ".p.$menu.n;}
+Function Select($nomor){return print " Input : ";}
 Function Riwayat($newdata,$data=0){
     if(!$data){$data = [];}
     return array_merge($data,$newdata);
 }
-Function SaveCokUa(){
-    cl();
-    ban();
-    if(!file_exists(cok)){
-        Print p." cookie :".n;
-        Save(cok);
-    }
-    if(!file_exists(uag)){
-        Print p." useragent :".n;
-        Save(uag);
-    }
+Function SaveCokUa(){cl();ban();
+    if(!file_exists(cok)){ Print p." cookie :".n;Save(cok);}
+    if(!file_exists(uag)){ Print p." useragent :".n;Save(uag);}
 }
