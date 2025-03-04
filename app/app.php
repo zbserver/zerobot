@@ -162,7 +162,7 @@ Function CekVer(){
             echo " ".$bgColor . $coloredText . "\033[0m" . $remainingText . " {$percent}% \r";
             flush();
         }
-        Echo " ".p."Update found".panah.p.$ser;sleep(2);echo n.n;
+        Echo " ".p."Update found".panah.p.$ser;sleep(2);echo r;
         Echo " ".p."please re run ".o."[".p."php server.php".o."]".n;
         die;
     }
@@ -226,7 +226,7 @@ Function anti_bot($source){
     if(preg_match("/multibot/",api_url)){return antibotMul($source);}	
 }
 Function antibotMul($source){
-    $delay= 1;
+    $delay= 4;
     $main = explode('"',explode('<img src="',explode('Bot links',$source)[1])[1])[0];
 	$antiBot["main"] = $main;
 	$src = explode('rel=\"',$source);
@@ -251,7 +251,7 @@ Function antibotMul($source){
     }
 }
 Function antibotXev($source){
-    $delay = 1;
+    $delay = 4;
     a:
     $bot1=explode('\"',explode('rel=\"',$source)[1])[0];
     $bot2=explode('\"',explode('rel=\"',$source)[2])[0];
