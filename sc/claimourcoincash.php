@@ -58,14 +58,14 @@ while(true){
         $hasil= Ambil($post,"html: '",strtoupper($coin)." has been sent to your FaucetPay account!'",1);
         if(preg_match("/Success!'/",$post)){
             $lf = Ambil($r,'<p class="lh-1 mb-1 font-weight-bold">','</p>',3);
-            efek(rewardX(o.$hasil.p.senttofp,$lf,$coin),15000).n;   
+            efek(rewardX(o.$hasil.p.senttofp,$lf,$coin),5000).n;   
         }
         if(preg_match("/Failed!'/",$post)){
             $hasil= Ambil($post,"html: '",'',1);
             echo Error($hasil);   
         }
         if(preg_match("/Sufficient fund/",$post)){
-            echo Error("Sufficient funds.")."|".w2.strtoupper($coin).p."|".n;continue;
+            echo Error("Sufficient funds.").o."|".p.strtoupper($coin).o."|".n;continue;
             $res = Riwayat([$coin=>1],$res);
         }
         en:
