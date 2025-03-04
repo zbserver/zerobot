@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.1",
+app_version = "1.0.2",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -162,7 +162,7 @@ Function CekVer(){
             echo " ".$bgColor . $coloredText . "\033[0m" . $remainingText . " {$percent}% \r";
             flush();
         }
-        Echo " ".p."Update found".panah.p.$ser;sleep(2);echo r;
+        Echo " ".p."Update found".panah.p.$ser;sleep(2);echo n.n;
         Echo " ".p."please re run ".o."[".p."php server.php".o."]".n;
         die;
     }
