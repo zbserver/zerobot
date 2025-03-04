@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.2",
+app_version = "1.0.3",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -104,6 +104,15 @@ Function Del(){
     unlink(Data.$co[0]);
     unlink(Data.$co[1]);
 }
+Function Del_App(){
+    $server = $_SERVER["TMP"];
+    if(!$server){
+        $server = $_SERVER["TMPDIR"];
+        
+    }
+    unlink($server."/zerobot/app.php");
+    echo " ".p."Delete Done Please re run ".o."[ ".p."php server.php".o." ]".n;die;
+}
 Function Menu_Api(){
     apikey:
     ban();
@@ -119,6 +128,8 @@ Function Menu_Api(){
         define("api_url","http://api.multibot.in");
         Save("Apikey");
         define("apikey",file_get_contents(Data."/Apikey"));
+    }elseif($pilih == 3){
+        Del_App();
     }else{
         print k." Bad Number".n;sleep(3);goto apikey;}
     if(!file_exists(Data."Apikey")){
