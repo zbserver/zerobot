@@ -61,9 +61,9 @@ while(true){
         if(preg_match("/title: 'Good job!'/",$post)){
             $r = balance(); 
             $hasil = Ambil($post,"text: '","has been added to your balance",1);
-            Efek(success($hasil).n.bal($r["b"]).n.cekapi().n,10000);
+            Efek(success($hasil).n.bal($r["b"]).n.cekapi().n,5000);
             print " ".p.line();
-            tim(10);
+            tim(5);
         }
     }
 }
