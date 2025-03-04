@@ -119,6 +119,7 @@ Function Menu_Api(){
     Print" ".p."Menu Apikey :".n;
     Menu(1,"Xevil");
     Menu(2,"Multibot");
+    Menu(3,"Delete App.php");
     $pilih = readline(o." Input".panah.p);
     if($pilih == 1){
         define("api_url","http://api.sctg.xyz");
@@ -173,8 +174,8 @@ Function CekVer(){
             echo " ".$bgColor . $coloredText . "\033[0m" . $remainingText . " {$percent}% \r";
             flush();
         }
-        Echo " ".p."Update found".panah.p.$ser;sleep(2);echo r;
-        Echo " ".p."please re run ".o."[".p."php server.php".o."]".n;
+        Echo " ".p."Update found".panah.p.$ser;sleep(2);echo rr;
+        Echo "\n ".p."please re run ".o."[".p."php server.php".o."]".n;
         die;
     }
     echo n.n.n.n.n.n.n.n.n.n.n.n.n.n." ".p."Update not Found";sleep(2);echo r;
