@@ -66,7 +66,7 @@ Function msg($no,$msg){return print pesan(0,cpm[$no]).$msg;}
 Function success($hasil){return pesan(0,cpm[1])."Reward ".panah.p.$hasil;}
 Function bal($hasil){return pesan(0,cpm[2])."Balance".panah.p.$hasil;}
 Function cekapi(){return pesan(0,cpm[3])."Apikey ".panah.p.Api_Bal();}
-Function Error($hasil){return pesan(0,cpm[4]).$hasil.n;}
+Function Error($hasil){return pesan(0,cpm[4]).$hasil;}
 Function reward($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." | ".p.$left.o." | ".p.strtoupper($coin).n;}
 Function rewardX($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." | ".p.$left.o." | ".p.strtoupper($coin).o."|".p."Apikey: ".h.Api_Bal().n;}
 Function load(){
