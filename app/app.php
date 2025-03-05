@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.4",
+app_version = "1.0.5",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -62,8 +62,8 @@ Function success($hasil){return pesan(0,cpm[1])."Reward ".panah.p.$hasil;}
 Function bal($hasil){return pesan(0,cpm[2])."Balance".panah.p.$hasil;}
 Function cekapi(){return pesan(0,cpm[3])."Apikey ".panah.p.Api_Bal();}
 Function Error($hasil){return pesan(0,cpm[4]).$hasil;}
-Function reward($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).n;}
-Function rewardX($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).o." │ ".p."Apikey: ".h.Api_Bal().n;}
+Function reward($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).n;echo " ".line();}
+Function rewardX($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).o." │ ".p."Apikey: ".h.Api_Bal().n;echo " ".line();}
 Function load(){
     print rr;
     $colors = ["\033[48;5;24m"];
