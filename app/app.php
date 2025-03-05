@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.3",
+app_version = "1.0.4",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -36,7 +36,7 @@ define("w3",o);
 define("cpm",["","√","+","-","!"]);
 define("senttofp",p."sent to FP");
 define("ApiError","Error | 0 ".n);
-define("Server","https://raw.githubusercontent.com/zbserver/server/main/");
+define("Server","https://raw.githubusercontent.com/zbserver/zerobot/refs/heads/main/app/app.php");
 define("Data","Data/");
 Function TimeZone(){$api = json_decode(file_get_contents("http://ip-api.com/json"),1);if($api){$tz = $api["timezone"];date_default_timezone_set($tz);return $api["country"];}else{date_default_timezone_set("UTC");return "UTC";}}
 Function curl($u, $h = 0, $p = 0,$c = 0) {while(true){$ch = curl_init();curl_setopt($ch, CURLOPT_URL, $u);curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);curl_setopt($ch, CURLOPT_COOKIE,TRUE);curl_setopt($ch, CURLOPT_COOKIEFILE,Data."cookie.txt");curl_setopt($ch, CURLOPT_COOKIEJAR,Data."cookie.txt");if($p) {curl_setopt($ch, CURLOPT_POST, true);curl_setopt($ch, CURLOPT_POSTFIELDS, $p);}if($h) {curl_setopt($ch, CURLOPT_HTTPHEADER, $h);}curl_setopt($ch, CURLOPT_HEADER, true);$r = curl_exec($ch);$c = curl_getinfo($ch);if(!$c) return "Curl Error : ".curl_error($ch); else{$hd = substr($r, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));$bd = substr($r, curl_getinfo($ch, CURLINFO_HEADER_SIZE));curl_close($ch);if(!$bd){print k." Check Your Connection!";sleep(2);print "\r                             \r";continue;}return array($hd,$bd)[1];}}}
@@ -45,8 +45,8 @@ Function Efek($str,$usleep){$arr = str_split($str);foreach ($arr as $az){print $
 Function Ambil($res,$depan,$belakang,$nomor){$data=explode($belakang,explode($depan,$res)[$nomor])[0];return $data;} 
 Function Ambil_1($res,$pemisah){$data=explode($pemisah,$res)[0];return $data;}
 Function AntiBot($res,$Nomor){$AntiBot = Ambil($res,'rel=\"','\"',$Nomor);return $AntiBot;}
-Function Save($file){if(file_exists(Data.$file)){$data = file_get_contents(Data.$file);}else{$data = readline(k." Input ".p.$file." : ".n);print n;file_put_contents(Data.$file,$data);}return $data;}
-Function multi($wallet){$tambah = readline(" ".w3."Input ".$wallet." :".p);$save = fopen($wallet, "a");fwrite($save, $tambah.n);fclose($save);sleep(1);print p." Success add ".w3.$wallet.n.p;sleep(1);}
+Function Save($file){if(file_exists(Data.$file)){$data = file_get_contents(Data.$file);}else{$data = readline(p." Input ".p.$file." : ");print n;file_put_contents(Data.$file,$data);}return $data;}
+Function multi($wallet){$tambah = readline(" ".p."Input ".$wallet." :".p);$save = fopen($wallet, "a");fwrite($save, $tambah.n);fclose($save);sleep(1);print p." Success add ".w3.$wallet.n.p;sleep(1);}
 Function get($url){return curl($url,h());}
 Function post($url,$data){return curl($url,h(),$data);}
 Function postt($url,$data, $ua){return curl($url, $data, $ua)[1]; }
@@ -54,11 +54,6 @@ Function line(){return a.str_repeat('─',55).n;}
 Function FirCF($r){(preg_match('/Cloudflare/',$r) || preg_match('/Just a moment.../',$r))? $data['cf']=true:$data['cf']=false;return $data;}
 Function getUserAgent(){
 	$userAgentArray[] = "Mozilla/5.0 (Linux; Android 11; Pixel C Build/RQ1A.210205.004) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.90 Safari/537.36 GNews/2021022310";
-    $userAgentArray[] = "Mozilla/5.0 (Linux; Android 10; SM-G960F) AppleWebKit/537.36 (KHTML, like Gecko) Brave Chrome/89.0.4389.86 Mobile Safari/537.36";
-    $userAgentArray[] = "Mozilla/5.0 (Linux; Android 9; SM-N976N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.40 Mobile Safari/537.36";
-    $userAgentArray[] = "Mozilla/5.0 (Linux; Android 10; ZTE A2020G Pro) AppleWebKit/537.36 (KHTML, like Gecko) Brave Chrome/89.0.4389.86 Mobile Safari/537.36";
-    $userAgentArray[] = "Mozilla/5.0 (Linux; Android 12; RMX3627 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/116.0.0.0 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/430.0.0.23.113;]";
-    $userAgentArray[] = "Mozilla/5.0 (Linux; Android 12; RMX3624 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/99.0.4844.88 Mobile Safari/537.36 [FB_IAB/FB4A;FBAV/387.0.0.24.102;]";
 	$getArrayKey = array_rand($userAgentArray);
 	return $userAgentArray[$getArrayKey];
 }
@@ -67,8 +62,8 @@ Function success($hasil){return pesan(0,cpm[1])."Reward ".panah.p.$hasil;}
 Function bal($hasil){return pesan(0,cpm[2])."Balance".panah.p.$hasil;}
 Function cekapi(){return pesan(0,cpm[3])."Apikey ".panah.p.Api_Bal();}
 Function Error($hasil){return pesan(0,cpm[4]).$hasil;}
-Function reward($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." | ".p.$left.o." | ".p.strtoupper($coin).n;}
-Function rewardX($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." | ".p.$left.o." | ".p.strtoupper($coin).o."|".p."Apikey: ".h.Api_Bal().n;}
+Function reward($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).n;}
+Function rewardX($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).o." │ ".p."Apikey: ".h.Api_Bal().n;}
 Function load(){
     print rr;
     $colors = ["\033[48;5;24m"];
@@ -107,8 +102,7 @@ Function Del(){
 Function Del_App(){
     $server = $_SERVER["TMP"];
     if(!$server){
-        $server = $_SERVER["TMPDIR"];
-        
+        $server = $_SERVER["TMPDIR"];   
     }
     unlink($server."/zerobot/app.php");
     echo " ".p."Delete Done Please re run ".o."[ ".p."php server.php".o." ]".n;die;
@@ -154,7 +148,7 @@ Function CekVer(){
         $server = $_SERVER["TMPDIR"];
     }
     $lokal = file_get_contents($server."/zerobot/app.php");
-    $serv  = file_get_contents("https://raw.githubusercontent.com/zbserver/zerobot/refs/heads/main/app/app.php");
+    $serv  = file_get_contents(Server);
     $lokal = Ambil($lokal,'app_version = "','"',1);
     $ser   = Ambil($serv ,'app_version = "','"',1);
 
@@ -174,11 +168,11 @@ Function CekVer(){
             echo " ".$bgColor . $coloredText . "\033[0m" . $remainingText . " {$percent}% \r";
             flush();
         }
-        Echo " ".p."Update found".panah.p.$ser;sleep(2);echo rr;
-        Echo "\n ".p."please re run ".o."[".p."php server.php".o."]".n;
+        Echo " ".p."Update found".panah.p.$ser;sleep(3);echo rr;
+        Echo "\n\n\n ".p."please re run ".o."[".p."php server.php".o."]".n;
         die;
     }
-    echo n.n.n.n.n.n.n.n.n.n.n.n.n.n." ".p."Update not Found";sleep(2);echo r;
+    echo n.n.n.n.n.n.n.n.n.n.n.n.n.n." ".p."Update Not Found";sleep(3);echo r;
 }
 Function tim($tmr){
     date_default_timezone_set("UTC");
@@ -211,7 +205,7 @@ Function RecaptchaV3($anchor){
         if($res){return $res;}
     }
 }
-Function Api_Bal(){$r = json_decode(file_get_contents(api_url."/res.php?action=userinfo&key=".apikey),1);if(!$r["balance"]){print ApiError;}return $r["balance"];}
+Function Api_Bal(){$r = json_decode(file_get_contents(api_url."/res.php?action=userinfo&key=".apikey),1);if(!$r["balance"]){ApiError;}return $r["balance"];}
 Function Captcha($source,$pageurl){
     $delay = 5;
     $sitekey= Ambil($source,'data-sitekey="','">',1);
