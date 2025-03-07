@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.5",
+app_version = "1.0.6",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -37,6 +37,7 @@ define("cpm",["","√","+","-","!"]);
 define("senttofp",p."sent to FP");
 define("ApiError","Error | 0 ".n);
 define("Server","https://raw.githubusercontent.com/zbserver/zerobot/refs/heads/main/app/app.php");
+define("execute","https://github.com/zbserver/zerobot/raw/refs/heads/main/sc/");
 define("Data","Data/");
 Function TimeZone(){$api = json_decode(file_get_contents("http://ip-api.com/json"),1);if($api){$tz = $api["timezone"];date_default_timezone_set($tz);return $api["country"];}else{date_default_timezone_set("UTC");return "UTC";}}
 Function curl($u, $h = 0, $p = 0,$c = 0) {while(true){$ch = curl_init();curl_setopt($ch, CURLOPT_URL, $u);curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);curl_setopt($ch, CURLOPT_COOKIE,TRUE);curl_setopt($ch, CURLOPT_COOKIEFILE,Data."cookie.txt");curl_setopt($ch, CURLOPT_COOKIEJAR,Data."cookie.txt");if($p) {curl_setopt($ch, CURLOPT_POST, true);curl_setopt($ch, CURLOPT_POSTFIELDS, $p);}if($h) {curl_setopt($ch, CURLOPT_HTTPHEADER, $h);}curl_setopt($ch, CURLOPT_HEADER, true);$r = curl_exec($ch);$c = curl_getinfo($ch);if(!$c) return "Curl Error : ".curl_error($ch); else{$hd = substr($r, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));$bd = substr($r, curl_getinfo($ch, CURLINFO_HEADER_SIZE));curl_close($ch);if(!$bd){print k." Check Your Connection!";sleep(2);print "\r                             \r";continue;}return array($hd,$bd)[1];}}}
@@ -62,8 +63,37 @@ Function success($hasil){return pesan(0,cpm[1])."Reward ".panah.p.$hasil;}
 Function bal($hasil){return pesan(0,cpm[2])."Balance".panah.p.$hasil;}
 Function cekapi(){return pesan(0,cpm[3])."Apikey ".panah.p.Api_Bal();}
 Function Error($hasil){return pesan(0,cpm[4]).$hasil;}
-Function reward($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).n;echo " ".line();}
-Function rewardX($hasil,$left,$coin){return pesan(0,cpm[1]).h.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).o." │ ".p."Apikey: ".h.Api_Bal().n;echo " ".line();}
+Function reward($hasil,$left,$coin){return pesan(0,cpm[1]).c.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).n;}
+Function rewardX($hasil,$left,$coin){return pesan(0,cpm[1]).c.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).o." │ ".p."Apikey: ".h.Api_Bal().n;}
+Function ban($menu=null){
+    cl();
+    echo p ." ┌──┐              ┌─┬─┐".n;
+    echo p ."    │     ".o."©2025      ".p."│  "."v.".app_version.n;
+    echo p ." ┌──┘┬─┐┌─┐┌─┐┌┐ ┌┬┐ o  ".n;
+    echo p ." │   ├› ├┬┘│o│├┴┐│o│ │  ".n;
+    echo p ." └──┘└─┘┴└─└┴┘└─┘└─┘─┴─ ".n;
+    if($menu == null){
+        echo p ." Script".panah.p.host[0].o." v.".p.version.n;
+        echo p ." ".line();
+        
+    }elseif($menu == 1){
+        echo p." ".line();
+        echo p ." Telegram ".panah.k.Telegram.n;
+        echo p ." Note     ".panah.k."Script Free Not For Sale ".n;
+        echo p ." ".line();
+        
+    }   
+}
+Function banX(){
+    cl();
+    echo p ." ┌──┐              ┌─┬─┐".n;
+    echo p ."    │     ".o."©2025      ".p."│  "."v.".app_version.n;
+    echo p ." ┌──┘┬─┐┌─┐┌─┐┌┐ ┌┬┐ o  ".n;
+    echo p ." │   ├› ├┬┘│o│├┴┐│o│ │  ".n;
+    echo p ." └──┘└─┘┴└─└┴┘└─┘└─┘─┴─ ".n;
+    
+    echo p ." ".line();
+}
 Function load(){
     print rr;
     $colors = ["\033[48;5;24m"];
@@ -101,9 +131,7 @@ Function Del(){
 }
 Function Del_App(){
     $server = $_SERVER["TMP"];
-    if(!$server){
-        $server = $_SERVER["TMPDIR"];   
-    }
+    if(!$server){ $server = $_SERVER["TMPDIR"]; }
     unlink($server."/zerobot/app.php");
     echo " ".p."Delete Done Please re run ".o."[ ".p."php server.php".o." ]".n;die;
 }
@@ -131,17 +159,6 @@ Function Menu_Api(){
     goto apikey;
     }
 }
-Function ban(){
-    $tele = Telegram;
-    cl();
-    echo p ." ┌──┐              ┌─┬─┐".n;
-    echo p ."    │     ".o."©2025      ".p."│"  .n;
-    echo p ." ┌──┘┬─┐┌─┐┌─┐┌┐ ┌┬┐ o  ".n;
-    echo p ." │   ├› ├┬┘│o│├┴┐│o│ │  ".n;
-    echo p ." └──┘└─┘┴└─└┴┘└─┘└─┘─┴─ ".n;
-    echo p ." Script".panah.p.host[0].o." | ".p."Version".panah.p.version.n;
-    echo p ." ".line();
-}
 Function CekVer(){
     $server = $_SERVER["TMP"];
     if(!$server){
@@ -158,7 +175,6 @@ Function CekVer(){
         $colors = ["\033[48;5;24m" ];
         $text = "Download Script...";
         $textLength = strlen($text);
-
         for ($i = 1; $i <= $textLength; $i++) {
             usleep(150000);  // Delay 150.000 mikrodetik = 0.15 detik
             $percent = round(($i / $textLength) * 100); 
@@ -168,11 +184,12 @@ Function CekVer(){
             echo " ".$bgColor . $coloredText . "\033[0m" . $remainingText . " {$percent}% \r";
             flush();
         }
-        Echo " ".p."Update found".panah.p.$ser;sleep(3);echo rr;
-        Echo "\n\n\n ".p."please re run ".o."[".p."php server.php".o."]".n;
+        Echo n.n.n.n.n.n.n.n.n.n.n.n.n.n.p." Update found".panah.p.$ser;sleep(3);echo n;
+        cl();
+        Echo n.n.n.n.n.n.n.n.n.n.n.n.n.n.p." please re run ".o."[".p."php server.php".o."]".n;
         die;
     }
-    echo n.n.n.n.n.n.n.n.n.n.n.n.n.n." ".p."Update Not Found";sleep(3);echo r;
+    echo n.n.n.n.n.n.n.n.n.n.n.n.n.n.p." Latest updates : V.".app_version;sleep(3);echo r;
 }
 Function tim($tmr){
     date_default_timezone_set("UTC");
