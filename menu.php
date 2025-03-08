@@ -1,4 +1,4 @@
-<?php
+
 Function MenuX(){
         Menu:
         ban(1);
