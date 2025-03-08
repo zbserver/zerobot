@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.7",
+app_version = "1.0.8",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
