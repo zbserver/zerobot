@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.6",
+app_version = "1.0.7",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -189,7 +189,7 @@ Function CekVer(){
         Echo n.n.n.n.n.n.n.n.n.n.n.n.n.n.p." please re run ".o."[".p."php server.php".o."]".n;
         die;
     }
-    echo n.n.n.n.n.n.n.n.n.n.n.n.n.n.p." Latest updates : V.".app_version;sleep(3);echo r;
+    echo n.n.n.n.n.n.n.n.n.n.n.n.n.n.p." Latest updates : v.".app_version;sleep(3);echo r;
 }
 Function tim($tmr){
     date_default_timezone_set("UTC");
