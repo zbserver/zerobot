@@ -1,10 +1,5 @@
 <?php
 Function MenuX(){
-    $server = $_SERVER["TMP"];
-    if(!$server){
-        $server = $_SERVER["TMPDIR"];
-    }
-    if(file_exists($server."/zerobot/app.php")){
         Menu:
         ban(1);
         Echo p." Menu zerobot ".n;
@@ -22,8 +17,5 @@ Function MenuX(){
             echo P." Not Found ".n;
             goto Menu;
         }
-    }else{
-		echo p." File app.php not found!";
-	}     
 }
 MenuX();
