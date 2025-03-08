@@ -84,16 +84,6 @@ Function ban($menu=null){
         
     }   
 }
-Function banX(){
-    cl();
-    echo p ." ┌──┐              ┌─┬─┐".n;
-    echo p ."    │     ".o."©2025      ".p."│  "."v.".app_version.n;
-    echo p ." ┌──┘┬─┐┌─┐┌─┐┌┐ ┌┬┐ o  ".n;
-    echo p ." │   ├› ├┬┘│o│├┴┐│o│ │  ".n;
-    echo p ." └──┘└─┘┴└─└┴┘└─┘└─┘─┴─ ".n;
-    
-    echo p ." ".line();
-}
 Function load(){
     print rr;
     $colors = ["\033[48;5;24m"];
@@ -141,7 +131,6 @@ Function Menu_Api(){
     Print" ".p."Menu Apikey :".n;
     Menu(1,"Xevil");
     Menu(2,"Multibot");
-    Menu(3,"Delete App.php");
     $pilih = readline(o." Input".panah.p);
     if($pilih == 1){
         define("api_url","http://api.sctg.xyz");
@@ -151,8 +140,6 @@ Function Menu_Api(){
         define("api_url","http://api.multibot.in");
         Save("Apikey");
         define("apikey",file_get_contents(Data."/Apikey"));
-    }elseif($pilih == 3){
-        Del_App();
     }else{
         print k." Bad Number".n;sleep(3);goto apikey;}
     if(!file_exists(Data."Apikey")){
@@ -304,22 +291,27 @@ Function OpenSC($filename){
     unlink($server."/zerobot/tmp.tmp");
 }
 Function MenuX(){
-        Menu:
-        ban(1);
-        Echo p." Menu zerobot ".n;
-        Menu(1,"Allfaucet");
-        Menu(2,"Claimourcoincash");
-        Menu(3,"Ourcoincash");
-        $pilih = readline(o." Input".panah.p);
-        if($pilih == 1){
+    $server = $_SERVER["TMP"];
+    if(!$server){ $server = $_SERVER["TMPDIR"]; }
+    if(!is_dir("Data")){
+        system("mkdir Data");
+    }
+    Menu:
+    ban(1);
+    Echo p." Menu zerobot ".n;
+    Menu(1,"Allfaucet");
+    Menu(2,"Claimourcoincash");
+    Menu(3,"Ourcoincash");
+    $pilih = readline(o." Input".panah.p);
+    if($pilih == 1){
           eval(OpenSC("allfaucet.php"));
-        }elseif($pilih == 2){
+    }elseif($pilih == 2){
             eval(OpenSC("claimourcoincash.php"));
-        }elseif($pilih == 3){
+    }elseif($pilih == 3){
             eval(OpenSC("ourcoincash.php"));
-        }else{
+    }else{
             echo P." Not Found ".n;
             goto Menu;
-        }
+    }
 }
 MenuX();
