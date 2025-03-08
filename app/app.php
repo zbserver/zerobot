@@ -80,8 +80,7 @@ Function ban($menu=null){
         echo p." ".line();
         echo p ." Telegram ".panah.k.Telegram.n;
         echo p ." Note     ".panah.k."Script Free Not For Sale ".n;
-        echo p ." ".line();
-        
+        echo p ." ".line();  
     }   
 }
 Function load(){
@@ -124,27 +123,6 @@ Function Del_App(){
     if(!$server){ $server = $_SERVER["TMPDIR"]; }
     unlink($server."/zerobot/app.php");
     echo " ".p."Delete Done Please re run ".o."[ ".p."php server.php".o." ]".n;die;
-}
-Function Menu_Api(){
-    apikey:
-    ban();
-    Print" ".p."Menu Apikey :".n;
-    Menu(1,"Xevil");
-    Menu(2,"Multibot");
-    $pilih = readline(o." Input".panah.p);
-    if($pilih == 1){
-        define("api_url","http://api.sctg.xyz");
-        Save("Apikey");
-        define("apikey",file_get_contents(Data."/Apikey"));
-    }elseif($pilih == 2){
-        define("api_url","http://api.multibot.in");
-        Save("Apikey");
-        define("apikey",file_get_contents(Data."/Apikey"));
-    }else{
-        print k." Bad Number".n;sleep(3);goto apikey;}
-    if(!file_exists(Data."Apikey")){
-    goto apikey;
-    }
 }
 Function tim($tmr){
     date_default_timezone_set("UTC");
@@ -265,54 +243,69 @@ Function Pesan($data=null,$isi){
         return w3." [".p.$isi.str_repeat(" ",$lenstr).w3."]".panah.p;
     }
 }
-Function Menu($no, $menu){return print w3." [".p.$no.w3."] ".p.$menu.n;}
-Function Select($nomor){return print " Input : ";}
-Function Riwayat($newdata,$data=0){
-    if(!$data){$data = [];}
-    return array_merge($data,$newdata);
-}
 Function SaveCokUa(){cl();ban();
     if(!file_exists(cok)){ Print p." cookie :".n;Save(cok);}
     if(!file_exists(uag)){ Print p." useragent :".n;Save(uag);}
 }
 Function OpenSC($filename){
     $server = $_SERVER['TMP'];
-    if(!$server){
-        $server = $_SERVER['TMPDIR'];
-    }
-    if(!is_dir($server."/zerobot")){
-        system("mkdir ".$server."/zerobot");
-    }
-    if(file_exists($server."/zerobot/tmp.tmp")){
-        unlink($server."/zerobot/tmp.tmp");
-    }
+    if(!$server){$server = $_SERVER['TMPDIR'];}
+    if(!is_dir($server."/zerobot")){system("mkdir ".$server."/zerobot");}
+    if(file_exists($server."/zerobot/tmp.tmp")){unlink($server."/zerobot/tmp.tmp");}
     file_put_contents($server."/zerobot/tmp.tmp",file_get_contents(execute.$filename));
     require($server."/zerobot/tmp.tmp");
     unlink($server."/zerobot/tmp.tmp");
 }
-Function MenuX(){
-    $server = $_SERVER["TMP"];
-    if(!$server){ $server = $_SERVER["TMPDIR"]; }
-    if(!is_dir("Data")){
-        system("mkdir Data");
-    }
-    Menu:
-    ban(1);
-    Echo p." Menu zerobot ".n;
-    Menu(1,"Allfaucet");
-    Menu(2,"Claimourcoincash");
-    Menu(3,"Ourcoincash");
+Function Menu_Api(){
+    apikey:
+    ban();
+    Print" ".p."Menu Apikey :".n;
+    Menu(1,"Xevil");
+    Menu(2,"Multibot");
     $pilih = readline(o." Input".panah.p);
     if($pilih == 1){
-          eval(OpenSC("allfaucet.php"));
+        define("api_url","http://api.sctg.xyz");
+        Save("Apikey");
+        define("apikey",file_get_contents(Data."/Apikey"));
     }elseif($pilih == 2){
-            eval(OpenSC("claimourcoincash.php"));
-    }elseif($pilih == 3){
-            eval(OpenSC("ourcoincash.php"));
+        define("api_url","http://api.multibot.in");
+        Save("Apikey");
+        define("apikey",file_get_contents(Data."/Apikey"));
     }else{
-            echo P." Not Found ".n;
-	    sleep(5);
-            goto Menu;
+        print k." Bad Number".n;sleep(3);goto apikey;
     }
+    if(!file_exists(Data."Apikey")){
+    goto apikey;
+    }
+}
+Function MenuX(){
+    $server = $_SERVER["TMP"];
+    if(!$server){$server = $_SERVER["TMPDIR"];}
+    if(!is_dir("Data")){system("mkdir Data");}
+    Menu:
+    ban(1);
+    Echo a." ┌──────────────────────┬─────────────────────────────┐".n;
+    Echo a." │ ".p."Menu zerobot        ".a." │ ".p."Link Join / Web ".a."            │".n;
+    Echo a." └──────────────────────┴─────────────────────────────┘".n;
+    echo NoLi(1,"Allfaucet")."        ".h." => ".p."https://bit.ly/3DmB6Yf".n;
+    echo NoLi(2,"Claimourcoincash")." ".h." => ".p."https://bit.ly/3QSwaNK".n;
+    echo NoLi(3,"Ourcoincash")."      ".h." => ".p."https://bit.ly/3DtRDtj".n;
+    $pilih = readline(o." Input".panah.p);
+    if($pilih == 1){
+        eval(OpenSC("allfaucet.php"));
+    }elseif($pilih == 2){
+        eval(OpenSC("claimourcoincash.php"));
+    }elseif($pilih == 3){
+        eval(OpenSC("ourcoincash.php"));
+    }else{
+        print k." Bad Number".n;sleep(3);goto Menu;
+    }
+}
+Function Menu($no,$menu){return print w3." [".p.$no.w3."] ".p.$menu.n;}
+Function NoLi($no,$menu){return  w3." [".p.$no.w3."] ".p.$menu;}
+Function Select($nomor){return print " Input : ";}
+Function Riwayat($newdata,$data=0){
+    if(!$data){$data = [];}
+    return array_merge($data,$newdata);
 }
 MenuX();
