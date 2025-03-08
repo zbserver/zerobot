@@ -311,6 +311,7 @@ Function MenuX(){
             eval(OpenSC("ourcoincash.php"));
     }else{
             echo P." Not Found ".n;
+	    sleep(5);
             goto Menu;
     }
 }
