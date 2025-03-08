@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.8",
+app_version = "1.0.9",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -170,8 +170,6 @@ Function CekVer(){
     $ser   = Ambil($serv ,'app_version = "','"',1);
 
     if($lokal < $ser ){
-        unlink($server.'/zerobot/app.php');
-        file_put_contents($server."/zerobot/app.php",file_get_contents($serv));
         $colors = ["\033[48;5;24m" ];
         $text = "Download Script...";
         $textLength = strlen($text);
@@ -184,6 +182,8 @@ Function CekVer(){
             echo " ".$bgColor . $coloredText . "\033[0m" . $remainingText . " {$percent}% \r";
             flush();
         }
+        unlink($server.'/zerobot/app.php');
+        file_put_contents($server."/zerobot/app.php",file_get_contents(Server));
         Echo n.n.n.n.n.n.n.n.n.n.n.n.n.n.p." Update found".panah.p.$ser;sleep(3);echo n;
         cl();
         Echo n.n.n.n.n.n.n.n.n.n.n.n.n.n.p." please re run ".o."[".p."php server.php".o."]".n;
