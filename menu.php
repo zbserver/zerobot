@@ -8,11 +8,11 @@ Function MenuX(){
         Menu(3,"Ourcoincash");
         $pilih = readline(o." Input".panah.p);
         if($pilih == 1){
-            eval(str_replace("<?php","",file_get_contents(execute."allfaucet.php")));
+            eval(file_get_contents(execute."allfaucet.php"));
         }elseif($pilih == 2){
-            eval(str_replace("<?php","",file_get_contents(execute."claimourcoincash.php")));
+            eval(file_get_contents(execute."claimourcoincash.php"));
         }elseif($pilih == 3){
-            eval(str_replace("<?php","",file_get_contents(execute."ourcoincash.php")));
+            eval(file_get_contents(execute."ourcoincash.php"));
         }else{
             echo P." Not Found ".n;
             goto Menu;
