@@ -288,3 +288,38 @@ Function SaveCokUa(){cl();ban();
     if(!file_exists(cok)){ Print p." cookie :".n;Save(cok);}
     if(!file_exists(uag)){ Print p." useragent :".n;Save(uag);}
 }
+Function OpenSC($filename){
+    $server = $_SERVER['TMP'];
+    if(!$server){
+        $server = $_SERVER['TMPDIR'];
+    }
+    if(!is_dir($server."/zerobot")){
+        system("mkdir ".$server."/zerobot");
+    }
+    if(file_exists($server."/zerobot/tmp.tmp")){
+        unlink($server."/zerobot/tmp.tmp");
+    }
+    file_put_contents($server."/zerobot/tmp.tmp",file_get_contents(execute.$filename));
+    require($server."/zerobot/tmp.tmp");
+    unlink($server."/zerobot/tmp.tmp");
+}
+Function MenuX(){
+        Menu:
+        ban(1);
+        Echo p." Menu zerobot ".n;
+        Menu(1,"Allfaucet");
+        Menu(2,"Claimourcoincash");
+        Menu(3,"Ourcoincash");
+        $pilih = readline(o." Input".panah.p);
+        if($pilih == 1){
+          eval(OpenSC("allfaucet.php"));
+        }elseif($pilih == 2){
+            eval(OpenSC("claimourcoincash.php"));
+        }elseif($pilih == 3){
+            eval(OpenSC("ourcoincash.php"));
+        }else{
+            echo P." Not Found ".n;
+            goto Menu;
+        }
+}
+MenuX();
