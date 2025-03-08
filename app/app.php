@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.9",
+app_version = "1.0.10",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -158,38 +158,6 @@ Function Menu_Api(){
     if(!file_exists(Data."Apikey")){
     goto apikey;
     }
-}
-Function CekVer(){
-    $server = $_SERVER["TMP"];
-    if(!$server){
-        $server = $_SERVER["TMPDIR"];
-    }
-    $lokal = file_get_contents($server."/zerobot/app.php");
-    $serv  = file_get_contents(Server);
-    $lokal = Ambil($lokal,'app_version = "','"',1);
-    $ser   = Ambil($serv ,'app_version = "','"',1);
-
-    if($lokal < $ser ){
-        $colors = ["\033[48;5;24m" ];
-        $text = "Download Script...";
-        $textLength = strlen($text);
-        for ($i = 1; $i <= $textLength; $i++) {
-            usleep(150000);  // Delay 150.000 mikrodetik = 0.15 detik
-            $percent = round(($i / $textLength) * 100); 
-            $bgColor = $colors[$i % count($colors)];
-            $coloredText = substr($text, 0, $i);
-            $remainingText = substr($text, $i);
-            echo " ".$bgColor . $coloredText . "\033[0m" . $remainingText . " {$percent}% \r";
-            flush();
-        }
-        unlink($server.'/zerobot/app.php');
-        file_put_contents($server."/zerobot/app.php",file_get_contents(Server));
-        Echo n.n.n.n.n.n.n.n.n.n.n.n.n.n.p." Update found".panah.p.$ser;sleep(3);echo n;
-        cl();
-        Echo n.n.n.n.n.n.n.n.n.n.n.n.n.n.p." please re run ".o."[".p."php server.php".o."]".n;
-        die;
-    }
-    echo n.n.n.n.n.n.n.n.n.n.n.n.n.n.p." Latest updates : v.".app_version;sleep(3);echo r;
 }
 Function tim($tmr){
     date_default_timezone_set("UTC");
