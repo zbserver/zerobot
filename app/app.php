@@ -290,7 +290,8 @@ Function MenuX(){
     echo NoLi(1,"Allfaucet")."        ".h." => ".p."https://bit.ly/3DmB6Yf".n;
     echo NoLi(2,"Claimourcoincash")." ".h." => ".p."https://bit.ly/3QSwaNK".n;
     echo NoLi(3,"Ourcoincash")."      ".h." => ".p."https://bit.ly/3DtRDtj".n;
-    echo NoLi(4,"Nevcoin")."          ".h." => ".p."https://bit.ly/4kBaraD".n;
+    echo NoLi(4,"Claimlite")."        ".h." => ".p."https://bit.ly/43voCYQ".n;
+    echo NoLi(5,"Nevcoin")."          ".h." => ".p."https://bit.ly/4kBaraD".n;
 
     $pilih = readline(o." Input".panah.p);
     if($pilih == 1){
@@ -300,6 +301,8 @@ Function MenuX(){
     }elseif($pilih == 3){
         eval(OpenSC("ourcoincash.php"));
     }elseif($pilih == 4){
+        eval(OpenSC("claimlite.php"));
+    }elseif($pilih == 5){
         eval(OpenSC("nevcoin.php"));
     }else{
         print k." Bad Number".n;sleep(3);goto Menu;
