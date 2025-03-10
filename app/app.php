@@ -292,6 +292,7 @@ Function MenuX(){
     echo NoLi(3,"Ourcoincash")."      ".h." => ".p."https://bit.ly/3DtRDtj".n;
     echo NoLi(4,"Claimlite")."        ".h." => ".p."https://bit.ly/43voCYQ".n;
     echo NoLi(5,"Nevcoin")."          ".h." => ".p."https://bit.ly/4kBaraD".n;
+    echo NoLi(6,"Litecoinline")."     ".h." => ".p."https://bit.ly/3Ffweol".n;
 
     $pilih = readline(o." Input".panah.p);
     if($pilih == 1){
@@ -304,6 +305,8 @@ Function MenuX(){
         eval(OpenSC("claimlite.php"));
     }elseif($pilih == 5){
         eval(OpenSC("nevcoin.php"));
+    }elseif($pilih == 6){
+        eval(OpenSC("litecoinline.php"));
     }else{
         print k." Bad Number".n;sleep(3);goto Menu;
     }
