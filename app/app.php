@@ -58,7 +58,7 @@ Function getUserAgent(){
 	$getArrayKey = array_rand($userAgentArray);
 	return $userAgentArray[$getArrayKey];
 }
-Function msg($no,$msg){return print pesan(0,cpm[$no]).$msg;}
+Function msg($no,$msg){return pesan(0,cpm[$no]).p.$msg;}
 Function success($hasil){return pesan(0,cpm[1])."Reward ".panah.p.$hasil;}
 Function bal($hasil){return pesan(0,cpm[2])."Balance".panah.p.$hasil;}
 Function cekapi(){return pesan(0,cpm[3])."Apikey ".panah.p.Api_Bal();}
@@ -290,6 +290,8 @@ Function MenuX(){
     echo NoLi(1,"Allfaucet")."        ".h." => ".p."https://bit.ly/3DmB6Yf".n;
     echo NoLi(2,"Claimourcoincash")." ".h." => ".p."https://bit.ly/3QSwaNK".n;
     echo NoLi(3,"Ourcoincash")."      ".h." => ".p."https://bit.ly/3DtRDtj".n;
+    echo NoLi(4,"Nevcoin")."          ".h." => ".p."https://bit.ly/4kBaraD".n;
+
     $pilih = readline(o." Input".panah.p);
     if($pilih == 1){
         eval(OpenSC("allfaucet.php"));
@@ -297,6 +299,8 @@ Function MenuX(){
         eval(OpenSC("claimourcoincash.php"));
     }elseif($pilih == 3){
         eval(OpenSC("ourcoincash.php"));
+    }elseif($pilih == 4){
+        eval(OpenSC("nevcoin.php"));
     }else{
         print k." Bad Number".n;sleep(3);goto Menu;
     }
