@@ -32,7 +32,7 @@ print " ".line();
 while(true){
     $r = get(web."/ptc");
     $id = Ambil($r,"/ptc/view/","'",1);
-    if($id == 0){echo Error("Ads Not Available").n;sleep(3);die;}
+    if($ads == 0){echo Error("Ads Not Available").n;sleep(3);die;}
     if($id){
         $ads = get(web."/ptc/view/$id");
         $c_t= Ambil($ads,'hidden" name="csrf_token_name" value="','">',1);
