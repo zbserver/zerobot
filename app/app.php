@@ -159,7 +159,7 @@ Function Api_Bal(){$r = json_decode(file_get_contents(api_url."/res.php?action=u
 Function Captcha($source,$pageurl){
     $delay = 5;
     $sitekey= Ambil($source,'data-sitekey="','">',1);
-    if(!$sitekey){print pesan(0,cpm[4]).p."Sitekey Error ";sleep(2);print r;goto Err;}
+    if(!$sitekey){print Error("Sitekey Error!");sleep(2);print r;goto Err;}
     if(preg_match("/h-captcha/"   ,$source)){$r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=hcaptcha&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
     if(preg_match("/g-recaptcha/" ,$source)){$r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=userrecaptcha&googlekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
     if(preg_match("/cf-turnstile/",$source)){$r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=turnstile&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
@@ -284,15 +284,15 @@ Function MenuX(){
     if(!is_dir("Data")){system("mkdir Data");}
     Menu:
     ban(1);
-    Echo a." ┌──────────────────────┬─────────────────────────────┐".n;
-    Echo a." │ ".p."Menu zerobot        ".a." │ ".p."Link Join / Web ".a."            │".n;
-    Echo a." └──────────────────────┴─────────────────────────────┘".n;
-    echo NoLi(1,"Allfaucet")."        ".h." => ".p."https://bit.ly/3DmB6Yf".n;
-    echo NoLi(2,"Claimourcoincash")." ".h." => ".p."https://bit.ly/3QSwaNK".n;
-    echo NoLi(3,"Ourcoincash")."      ".h." => ".p."https://bit.ly/3DtRDtj".n;
-    echo NoLi(4,"Claimlite")."        ".h." => ".p."https://bit.ly/43voCYQ".n;
-    echo NoLi(5,"Nevcoin")."          ".h." => ".p."https://bit.ly/4kBaraD".n;
-    echo NoLi(6,"Litecoinline")."     ".h." => ".p."https://bit.ly/3Ffweol".n;
+    Echo a." ┌──────────────────────┬──────────────────────────────┐".n;
+    Echo a." │ ".p."Menu zerobot         ".a."│".p." Api ".a."│ ".p."Link Join / Web ".a."       │".n;
+    Echo a." └──────────────────────┴──────────────────────────────┘".n;
+    echo NoLi(1,"Allfaucet")."          │ Yes │ https://bit.ly/3DmB6Yf".n;
+    echo NoLi(2,"Claimourcoincash")."   │ Yes │ https://bit.ly/3QSwaNK".n;
+    echo NoLi(3,"Ourcoincash")."        │ Yes │ https://bit.ly/3DtRDtj".n;
+    echo NoLi(4,"Claimlite")."          │ ".m."No".p."  │ https://bit.ly/43voCYQ".n;
+    echo NoLi(5,"Nevcoin")."            │ Yes │ https://bit.ly/4kBaraD".n;
+    echo NoLi(6,"Litecoinline")."       │ Yes │ https://bit.ly/3Ffweol".n;
 
     $pilih = readline(o." Input".panah.p);
     if($pilih == 1){
