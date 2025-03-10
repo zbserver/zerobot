@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.10",
+app_version = "1.0.11",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -65,22 +65,26 @@ Function cekapi(){return pesan(0,cpm[3])."Apikey ".panah.p.Api_Bal();}
 Function Error($hasil){return pesan(0,cpm[4]).$hasil;}
 Function reward($hasil,$left,$coin){return pesan(0,cpm[1]).c.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).n;}
 Function rewardX($hasil,$left,$coin){return pesan(0,cpm[1]).c.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).o." │ ".p."Apikey: ".h.Api_Bal().n;}
+Function ipApi(){$r = json_decode(file_get_contents("http://ip-api.com/json"));if($r->status == "success")return $r;}
 Function ban($menu=null){
+    $api =ipApi();
     cl();
-    echo p ." ┌──┐              ┌─┬─┐".n;
-    echo p ."    │     ".o."©2025      ".p."│  "."v.".app_version.n;
-    echo p ." ┌──┘┬─┐┌─┐┌─┐┌┐ ┌┬┐ o  ".n;
-    echo p ." │   ├› ├┬┘│o│├┴┐│o│ │  ".n;
+    if($api){
+        date_default_timezone_set($api->timezone);
+        echo str_pad($api->city.', '.$api->regionName.', '.$api->country, 55, " ", STR_PAD_BOTH).n;
+    }
+    echo " ".line();
+    echo p ." ┌──┐              ┌─┬─┐".a." Version: ".app_version.n;
+    echo p ."    │     ".o."©2025      ".p."│  ".a." Server : ".h."ON".n;
+    echo p ." ┌──┘┬─┐┌─┐┌─┐┌┐ ┌┬┐ o  ".a." Tele   : ".Telegram.n;
+    echo p ." │   ├› ├┬┘│o│├┴┐│o│ │  ".a." Note   : Free Not For Sale ".n;
     echo p ." └──┘└─┘┴└─└┴┘└─┘└─┘─┴─ ".n;
     if($menu == null){
-        echo p ." Script".panah.p.host[0].o." v.".p.version.n;
+        echo p ." Script : ".h.host[0].p." [".h."Ver: ".version.p."]".n;
         echo p ." ".line();
         
     }elseif($menu == 1){
-        echo p." ".line();
-        echo p ." Telegram ".panah.k.Telegram.n;
-        echo p ." Note     ".panah.k."Script Free Not For Sale ".n;
-        echo p ." ".line();  
+          
     }   
 }
 Function load(){
@@ -284,15 +288,15 @@ Function MenuX(){
     if(!is_dir("Data")){system("mkdir Data");}
     Menu:
     ban(1);
-    Echo a." ┌──────────────────────┬──────────────────────────────┐".n;
+    Echo a." ┌──────────────────────┬─────┬────────────────────────┐".n;
     Echo a." │ ".p."Menu zerobot         ".a."│".p." Api ".a."│ ".p."Link Join / Web ".a."       │".n;
-    Echo a." └──────────────────────┴──────────────────────────────┘".n;
-    echo NoLi(1,"Allfaucet")."          │ Yes │ https://bit.ly/3DmB6Yf".n;
-    echo NoLi(2,"Claimourcoincash")."   │ Yes │ https://bit.ly/3QSwaNK".n;
-    echo NoLi(3,"Ourcoincash")."        │ Yes │ https://bit.ly/3DtRDtj".n;
-    echo NoLi(4,"Claimlite")."          │ ".m."No".p."  │ https://bit.ly/43voCYQ".n;
-    echo NoLi(5,"Nevcoin")."            │ Yes │ https://bit.ly/4kBaraD".n;
-    echo NoLi(6,"Litecoinline")."       │ Yes │ https://bit.ly/3Ffweol".n;
+    Echo a." └──────────────────────┴─────┴────────────────────────┘".n;
+    echo NoLi(1,"Allfaucet")."          │ Yes │ bit.ly/3DmB6Yf".n;
+    echo NoLi(2,"Claimourcoincash")."   │ Yes │ bit.ly/3QSwaNK".n;
+    echo NoLi(3,"Ourcoincash")."        │ Yes │ bit.ly/3DtRDtj".n;
+    echo NoLi(4,"Claimlite")."          │ ".m."No".p."  │ bit.ly/43voCYQ".n;
+    echo NoLi(5,"Nevcoin")."            │ Yes │ bit.ly/4kBaraD".n;
+    echo NoLi(6,"Litecoinline")."       │ Yes │ bit.ly/3Ffweol".n;
 
     $pilih = readline(o." Input".panah.p);
     if($pilih == 1){
