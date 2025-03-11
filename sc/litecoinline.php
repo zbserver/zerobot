@@ -4,6 +4,7 @@ define('version','1.0.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
+include("app.php");
 Function h(){
     $h[] = "Host: ".host[1];
     $h[] = "cookie: ".file_get_contents(Data.cok);
@@ -27,12 +28,13 @@ echo cekapi().n;
 echo " ".line();
 $r  = get(web."/ptc");
 $ads= Ambil($r,'<p class="lh-1 mb-1 font-weight-bold">','</p>',1);
-echo msg(1,"Ads available").p."(".k.$ads.p.")".n;
+echo msg(1,"Ads available ").p."(".k.$ads.p.")".n;
 print " ".line();
 while(true){
     $r = get(web."/ptc");
     $id = Ambil($r,"/ptc/view/","'",1);
-    if($ads == 0){echo Error("Ads Not Available").n;sleep(3);die;}
+    $adx = Ambil($r,'<p class="lh-1 mb-1 font-weight-bold">','</p>',1);
+    if($adx == 0){echo Error("Ads Not Available").n;sleep(3);die;}
     if($id){
         $ads = get(web."/ptc/view/$id");
         $c_t= Ambil($ads,'hidden" name="csrf_token_name" value="','">',1);
@@ -48,7 +50,7 @@ while(true){
        if($post){
            $r = Balance();
            echo bal($r['b']).o." | ".p."reward ".panah.p.$hasil." token".n;
-           echo cekapi().n;
+           echo cekapi().o." | ".p."Ads Available (".k.($adx - 1).p.")".n;
            echo " ".line();
        }
    }
