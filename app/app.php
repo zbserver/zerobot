@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.11",
+app_version = "1.0.12",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -29,10 +29,10 @@ define("rr","\r                                         \r");
 define("r","\r");
 define("n","\n");
 define("line",p." ".str_repeat("─",50).n);
-define("panah",m." › ");
-define("w",m);
+define("panah",k." › ");
+define("w",k);
 define("w2",k);
-define("w3",o);
+define("w3",k);
 define("cpm",["","√","+","-","!"]);
 define("senttofp",p."sent to FP");
 define("ApiError","Error | 0 ".n);
@@ -46,18 +46,14 @@ Function Efek($str,$usleep){$arr = str_split($str);foreach ($arr as $az){print $
 Function Ambil($res,$depan,$belakang,$nomor){$data=explode($belakang,explode($depan,$res)[$nomor])[0];return $data;} 
 Function Ambil_1($res,$pemisah){$data=explode($pemisah,$res)[0];return $data;}
 Function AntiBot($res,$Nomor){$AntiBot = Ambil($res,'rel=\"','\"',$Nomor);return $AntiBot;}
-Function Save($file){if(file_exists(Data.$file)){$data = file_get_contents(Data.$file);}else{$data = readline(p." Input ".p.$file." : ");print n;file_put_contents(Data.$file,$data);}return $data;}
+Function Save($file){if(file_exists(Data.$file)){$data = file_get_contents(Data.$file);}else{$data = readline(w3." Input ".p.$file." : ");print n;file_put_contents(Data.$file,$data);}return $data;}
 Function multi($wallet){$tambah = readline(" ".p."Input ".$wallet." :".p);$save = fopen($wallet, "a");fwrite($save, $tambah.n);fclose($save);sleep(1);print p." Success add ".w3.$wallet.n.p;sleep(1);}
 Function get($url){return curl($url,h());}
 Function post($url,$data){return curl($url,h(),$data);}
 Function postt($url,$data, $ua){return curl($url, $data, $ua)[1]; }
-Function line(){return a.str_repeat('─',55).n;}
+Function line(){return a.str_repeat('─',57).n;}
 Function FirCF($r){(preg_match('/Cloudflare/',$r) || preg_match('/Just a moment.../',$r))? $data['cf']=true:$data['cf']=false;return $data;}
-Function getUserAgent(){
-	$userAgentArray[] = "Mozilla/5.0 (Linux; Android 11; Pixel C Build/RQ1A.210205.004) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.90 Safari/537.36 GNews/2021022310";
-	$getArrayKey = array_rand($userAgentArray);
-	return $userAgentArray[$getArrayKey];
-}
+Function getUserAgent(){$userAgentArray[] = "Mozilla/5.0 (Linux; Android 11; Pixel C Build/RQ1A.210205.004) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.90 Safari/537.36 GNews/2021022310";$getArrayKey = array_rand($userAgentArray);return $userAgentArray[$getArrayKey];}
 Function msg($no,$msg){return pesan(0,cpm[$no]).p.$msg;}
 Function success($hasil){return pesan(0,cpm[1])."Reward ".panah.p.$hasil;}
 Function bal($hasil){return pesan(0,cpm[2])."Balance".panah.p.$hasil;}
@@ -66,26 +62,88 @@ Function Error($hasil){return pesan(0,cpm[4]).$hasil;}
 Function reward($hasil,$left,$coin){return pesan(0,cpm[1]).c.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).n;}
 Function rewardX($hasil,$left,$coin){return pesan(0,cpm[1]).c.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).o." │ ".p."Apikey: ".h.Api_Bal().n;}
 Function ipApi(){$r = json_decode(file_get_contents("http://ip-api.com/json"));if($r->status == "success")return $r;}
+
+Function res_api($id){$delay=5;while(true){load();$r = json_decode(file_get_contents(api_url."/res.php?key=".apikey."&action=get&id=".$id."&json=1"),1);$status = $r["status"];if($r["request"] == "CAPCHA_NOT_READY"){print rr;load();sleep($delay);print rr;continue;}if($status == 1){print rr;print bps_cap();return $r["request"];}return 0;}}
+Function anti_bot($source){if(preg_match("/sctg/",api_url)){return antibotXev($source);}if(preg_match("/multibot/",api_url)){return antibotMul($source);}}
+Function Api_Bal(){$r = json_decode(file_get_contents(api_url."/res.php?action=userinfo&key=".apikey),1);if(!$r["balance"]){ApiError;}return $r["balance"];}
+
+
 Function ban($menu=null){
     $api =ipApi();
     cl();
     if($api){
-        date_default_timezone_set($api->timezone);
         echo str_pad($api->city.', '.$api->regionName.', '.$api->country, 55, " ", STR_PAD_BOTH).n;
     }
-    echo " ".line();
-    echo p ." ┌──┐              ┌─┬─┐".a." Version: ".app_version.n;
-    echo p ."    │     ".o."©2025      ".p."│  ".a." Server : ".h."ON".n;
-    echo p ." ┌──┘┬─┐┌─┐┌─┐┌┐ ┌┬┐ o  ".a." Tele   : ".Telegram.n;
-    echo p ." │   ├› ├┬┘│o│├┴┐│o│ │  ".a." Note   : Free Not For Sale ".n;
-    echo p ." └──┘└─┘┴└─└┴┘└─┘└─┘─┴─ ".n;
+    echo a ." ┌────────────────────────┬───────────────────────────────┐".n;
+    echo a ." │".p." ┌──┐              ┌─┬─┐".a."│ Version: ".a.app_version.a."               │".n;
+    echo a ." │".p."    │     ".p."©2025      ".p."│  ".a."│ Server : ".h."ON".a."                   │".n;
+    echo a ." │".p." ┌──┘┬─┐┌─┐┌─┐┌┐ ┌┬┐ o  ".a."│ Tele   : ".a.Telegram.a."│".n;
+    echo a ." │".p." │   ├› ├┬┘│o│├┴┐│o│ │  ".a."│ Note   : ".a."Free Not For Sale ".a."   │".n;
+    echo a ." │".p." └──┘└─┘┴└─└┴┘└─┘└─┘─┴─ ".a."│                               │".n;
+    echo a ." └────────────────────────┴───────────────────────────────┘".n;
     if($menu == null){
-        echo p ." Script : ".h.host[0].p." [".h."Ver: ".version.p."]".n;
+        echo p ."  Script : ".h.host[0].p." [".h."Ver: ".version.p."]".n;
         echo p ." ".line();
-        
-    }elseif($menu == 1){
-          
-    }   
+    }elseif($menu == 1){}   
+}
+Function Menu_Api(){
+    apikey:
+    ban();
+    echo a." ┌──────────────────────────────┐".n;
+    echo a." │  ".a."Menu zerobot                ".a."│".n;
+    echo a." ├──────────────────────────────┤".n;
+    echo a." │".NoLi(1,"Xevil").a."                    │".n;
+    echo a." │".NoLi(2,"Multibot").a."                 │".n;
+    echo a." └──────────────────────────────┘".n;
+    $pilih = readline(w3." Input".panah.p);
+    if($pilih == 1){
+        define("api_url","http://api.sctg.xyz");
+        Save("Apikey");
+        define("apikey",file_get_contents(Data."/Apikey"));
+    }elseif($pilih == 2){
+        define("api_url","http://api.multibot.in");
+        Save("Apikey");
+        define("apikey",file_get_contents(Data."/Apikey"));
+    }else{
+        print k." Bad Number".n;sleep(3);goto apikey;
+    }
+    if(!file_exists(Data."Apikey")){
+    goto apikey;
+    }
+}
+Function MenuX(){
+    $server = $_SERVER["TMP"];
+    if(!$server){$server = $_SERVER["TMPDIR"];}
+    if(!is_dir("Data")){system("mkdir Data");}
+    Menu:
+    ban(1);
+    echo a." ┌────────────────────────┬─────┬────────────────────────┐".n;
+    echo a." │  ".a."Menu zerobot          ".a."│".a." Api ".a."│ ".a."Link Join / Web ".a."       │".n;
+    echo a." ├────────────────────────┼─────┼────────────────────────┤".n;
+    echo a." │".NoLi(1,"Allfaucet")."          ".a."│".p." Yes ".a."│".p." bit.ly/3DmB6Yf".a."         │".n;
+    echo a." │".NoLi(2,"Claimourcoincash")."   ".a."│".p." Yes ".a."│".p." bit.ly/3QSwaNK".a."         │".n;
+    echo a." │".NoLi(3,"Ourcoincash")."        ".a."│".p." Yes ".a."│".p." bit.ly/3DtRDtj".a."         │".n;
+    echo a." │".NoLi(4,"Claimlite")."          ".a."│".w3." No  ".a."│".p." bit.ly/43voCYQ".a."         │".n;
+    echo a." │".NoLi(5,"Nevcoin")."            ".a."│".p." Yes ".a."│".p." bit.ly/4kBaraD".a."         │".n;
+    echo a." │".NoLi(6,"Litecoinline")."       ".a."│".p." Yes ".a."│".p." bit.ly/3Ffweol".a."         │".n;
+    echo a." └────────────────────────┴─────┴────────────────────────┘".p.n;
+
+    $pilih = readline(w3." Input".panah.p);
+    if($pilih == 1){
+        eval(OpenSC("allfaucet.php"));
+    }elseif($pilih == 2){
+        eval(OpenSC("claimourcoincash.php"));
+    }elseif($pilih == 3){
+        eval(OpenSC("ourcoincash.php"));
+    }elseif($pilih == 4){
+        eval(OpenSC("claimlite.php"));
+    }elseif($pilih == 5){
+        eval(OpenSC("nevcoin.php"));
+    }elseif($pilih == 6){
+        eval(OpenSC("litecoinline.php"));
+    }else{
+        print k." Bad Number".n;sleep(3);goto Menu;
+    }
 }
 Function load(){
     print rr;
@@ -130,20 +188,14 @@ Function Del_App(){
 }
 Function tim($tmr){
     date_default_timezone_set("UTC");
-    $panah = [
-        p.w."❯".p."❯❯❯❯",
-        p."❯".w."❯".p."❯❯❯",
-        p."❯❯".w."❯".p."❯❯",
-        p."❯❯❯".w."❯".p."❯",
-        p."❯❯❯❯".w."❯"
-    ];
+    $panah = [p.w."❯".p."❯❯❯❯",p."❯".w."❯".p."❯❯❯",p."❯❯".w."❯".p."❯❯",p."❯❯❯".w."❯".p."❯",p."❯❯❯❯".w."❯"];
     $rand = rand(1,5);
     $timr = (time()+$tmr)+$rand;
     while(true):
         foreach($panah as $pan){
             print r;$res=$timr-time();
             if($res < 1){print rr;break;}
-            print p."  Countdown".o." [ ".p.date('H',$res).":".p.date('i',$res).":".p.date('s',$res).o." ] $pan\r";usleep(200000);
+            print p."  Countdown".h." [ ".p.date('H',$res).":".p.date('i',$res).":".p.date('s',$res).h." ] $pan\r";usleep(200000);
         }if($res < 1){print rr;break;}
     endwhile;  
 }
@@ -159,9 +211,7 @@ Function RecaptchaV3($anchor){
         if($res){return $res;}
     }
 }
-Function Api_Bal(){$r = json_decode(file_get_contents(api_url."/res.php?action=userinfo&key=".apikey),1);if(!$r["balance"]){ApiError;}return $r["balance"];}
 Function Captcha($source,$pageurl){
-    $delay = 5;
     $sitekey= Ambil($source,'data-sitekey="','">',1);
     if(!$sitekey){print Error("Sitekey Error!");sleep(2);print r;goto Err;}
     if(preg_match("/h-captcha/"   ,$source)){$r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=hcaptcha&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
@@ -169,21 +219,20 @@ Function Captcha($source,$pageurl){
     if(preg_match("/cf-turnstile/",$source)){$r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=turnstile&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
     if(preg_match("/authkong/"    ,$source)){$r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=authkong&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
     $status = $r["status"];
-        if($status == 0){ApiError;return 0;}
-        $id = $r["request"];
-        while(true){
-            load();
-            $r = json_decode(file_get_contents(api_url."/res.php?key=".apikey."&action=get&id=".$id."&json=1"),1);
-            $status = $r["status"];
-            if($r["request"] == "CAPCHA_NOT_READY"){print rr;load();sleep($delay);print rr;continue;}
-            if($status == 1){print rr;print bps_cap();return $r["request"];}
-            return 0;
-        }
+    if($status == 0){ApiError;return 0;}
+    $id = $r["request"];
+    res_api($id);  
     Err:
 }
-Function anti_bot($source){
-    if(preg_match("/sctg/"    ,api_url)){return antibotXev($source);}
-    if(preg_match("/multibot/",api_url)){return antibotMul($source);}	
+Function Turnstile($source,$pageurl){
+    $sitekey = Ambil($source,'data-sitekey="','">',1);
+    if(!$sitekey){print Error("Sitekey Error!");sleep(2);print r;goto Err;}
+    $r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=turnstile&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);
+    $status = $r["status"];
+    if($status == 0){ApiError;return 0;}
+    $id = $r["request"];
+    res_api($id);  
+    Err:
 }
 Function antibotMul($source){
     $delay= 4;
@@ -259,61 +308,6 @@ Function OpenSC($filename){
     file_put_contents($server."/zerobot/tmp.tmp",file_get_contents(execute.$filename));
     require($server."/zerobot/tmp.tmp");
     unlink($server."/zerobot/tmp.tmp");
-}
-Function Menu_Api(){
-    apikey:
-    ban();
-    Print" ".p."Menu Apikey :".n;
-    Menu(1,"Xevil");
-    Menu(2,"Multibot");
-    $pilih = readline(o." Input".panah.p);
-    if($pilih == 1){
-        define("api_url","http://api.sctg.xyz");
-        Save("Apikey");
-        define("apikey",file_get_contents(Data."/Apikey"));
-    }elseif($pilih == 2){
-        define("api_url","http://api.multibot.in");
-        Save("Apikey");
-        define("apikey",file_get_contents(Data."/Apikey"));
-    }else{
-        print k." Bad Number".n;sleep(3);goto apikey;
-    }
-    if(!file_exists(Data."Apikey")){
-    goto apikey;
-    }
-}
-Function MenuX(){
-    $server = $_SERVER["TMP"];
-    if(!$server){$server = $_SERVER["TMPDIR"];}
-    if(!is_dir("Data")){system("mkdir Data");}
-    Menu:
-    ban(1);
-    Echo a." ┌──────────────────────┬─────┬────────────────────────┐".n;
-    Echo a." │ ".p."Menu zerobot         ".a."│".p." Api ".a."│ ".p."Link Join / Web ".a."       │".n;
-    Echo a." └──────────────────────┴─────┴────────────────────────┘".n;
-    echo NoLi(1,"Allfaucet")."          │ Yes │ bit.ly/3DmB6Yf".n;
-    echo NoLi(2,"Claimourcoincash")."   │ Yes │ bit.ly/3QSwaNK".n;
-    echo NoLi(3,"Ourcoincash")."        │ Yes │ bit.ly/3DtRDtj".n;
-    echo NoLi(4,"Claimlite")."          │ ".m."No".p."  │ bit.ly/43voCYQ".n;
-    echo NoLi(5,"Nevcoin")."            │ Yes │ bit.ly/4kBaraD".n;
-    echo NoLi(6,"Litecoinline")."       │ Yes │ bit.ly/3Ffweol".n;
-
-    $pilih = readline(o." Input".panah.p);
-    if($pilih == 1){
-        eval(OpenSC("allfaucet.php"));
-    }elseif($pilih == 2){
-        eval(OpenSC("claimourcoincash.php"));
-    }elseif($pilih == 3){
-        eval(OpenSC("ourcoincash.php"));
-    }elseif($pilih == 4){
-        eval(OpenSC("claimlite.php"));
-    }elseif($pilih == 5){
-        eval(OpenSC("nevcoin.php"));
-    }elseif($pilih == 6){
-        eval(OpenSC("litecoinline.php"));
-    }else{
-        print k." Bad Number".n;sleep(3);goto Menu;
-    }
 }
 Function Menu($no,$menu){return print w3." [".p.$no.w3."] ".p.$menu.n;}
 Function NoLi($no,$menu){return  w3." [".p.$no.w3."] ".p.$menu;}
