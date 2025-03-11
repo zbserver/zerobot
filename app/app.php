@@ -90,7 +90,7 @@ Function Menu_Api(){
     apikey:
     ban();
     echo a." ┌──────────────────────────────┐".n;
-    echo a." │  ".a."Menu zerobot                ".a."│".n;
+    echo a." │  ".a."Menu Apikey                 ".a."│".n;
     echo a." ├──────────────────────────────┤".n;
     echo a." │".NoLi(1,"Xevil").a."                    │".n;
     echo a." │".NoLi(2,"Multibot").a."                 │".n;
