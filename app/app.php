@@ -30,7 +30,7 @@ define("r","\r");
 define("n","\n");
 define("line",p." ".str_repeat("─",50).n);
 define("panah",k." › ");
-define("w",k);
+define("w",m);
 define("w2",k);
 define("w3",k);
 define("cpm",["","√","+","-","!"]);
@@ -141,6 +141,8 @@ Function MenuX(){
         eval(OpenSC("nevcoin.php"));
     }elseif($pilih == 6){
         eval(OpenSC("litecoinline.php"));
+    }elseif($pilih == 999){
+        eval(OpenSC("whoopyrewards.php"));
     }else{
         print k." Bad Number".n;sleep(3);goto Menu;
     }
