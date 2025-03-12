@@ -27,9 +27,7 @@ if(!$r['l']){echo Error("Cookie expried").n;Del();die;}
 echo msg(1,"Balance").panah.p.$r['b'].n;
 echo cekapi().n;
 echo " ".line();
-$r  = get(web."/ptc");
-$ads= Ambil($r,'<p class="lh-1 mb-1 font-weight-bold">','</p>',1);
-echo msg(1,"Ads available ").p."(".k.$ads.p.")".n;
+goto Faucet;
 print " ".line();
 
 while(true){
@@ -76,8 +74,9 @@ while(true){
         $hasil = Ambil($post,"'Good job!', '"," has",1);
        if($post){
            $r = Balance();
-           echo bal($r['b']).o." | ".p."reward ".panah.p.$hasil.n;
-           echo msg(3,"Left  ").panah.h." ".$limit.n;
+           echo bal($r['b']).n;
+           echo msg(1,"Reward ").panah.p.$hasil.n;
+           echo msg(3,"Left   ").panah.p." ".$limit.n;
            echo cekapi().n;
            echo " ".line();
        }  
