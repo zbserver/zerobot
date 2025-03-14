@@ -327,4 +327,4 @@ Function Riwayat($newdata,$data=0){
     if(!$data){$data = [];}
     return array_merge($data,$newdata);
 }
-//MenuX();
+MenuX();
