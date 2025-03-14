@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.14",
+app_version = "1.0.15",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -219,9 +219,9 @@ Function RecaptchaV3($anchor){
 Function Captcha($source,$pageurl){
 
     if(preg_match('/data-sitekey="/',$source)){
-        $sitekey= Ambil($source,'data-sitekey="','">',1);
+        $sitekey= Ambil($source,'data-sitekey="','"',1);
     }elseif(preg_match("/data-sitekey='/",$source)){
-        $sitekey= Ambil($source,"data-sitekey='","'>",1);
+        $sitekey= Ambil($source,"data-sitekey='","'",1);
     }else{
         echo Error("sitekey Error");sleep(2);echo r;
     }
