@@ -144,7 +144,7 @@ Function MenuX(){
     }elseif($pilih == 999){
         eval(OpenSC("whoopyrewards.php"));
     }elseif($pilih == 1000){
-        eval(OpenSC("eyefaucet.php"));
+        eval(OpenSC("freetrxsu.php"));
     }
     else{
         print k." Bad Number".n;sleep(3);goto Menu;
