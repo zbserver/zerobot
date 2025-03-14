@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.13",
+app_version = "1.0.14",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -143,7 +143,10 @@ Function MenuX(){
         eval(OpenSC("litecoinline.php"));
     }elseif($pilih == 999){
         eval(OpenSC("whoopyrewards.php"));
-    }else{
+    }elseif($pilih == 1000){
+        eval(OpenSC("eyefaucet.php"));
+    }
+    else{
         print k." Bad Number".n;sleep(3);goto Menu;
     }
 }
@@ -214,8 +217,14 @@ Function RecaptchaV3($anchor){
     }
 }
 Function Captcha($source,$pageurl){
-    $sitekey= Ambil($source,'data-sitekey="','">',1);
-    if(!$sitekey){print Error("Sitekey Error!");sleep(2);print r;goto Err;}
+
+    if(preg_match('/data-sitekey="/',$source)){
+        $sitekey= Ambil($source,'data-sitekey="','">',1);
+    }elseif(preg_match("/data-sitekey='/",$source)){
+        $sitekey= Ambil($source,"data-sitekey='","'>",1);
+    }else{
+        echo Error("sitekey Error");sleep(2);echo r;
+    }
     if(preg_match("/h-captcha/"   ,$source)){$r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=hcaptcha&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
     if(preg_match("/g-recaptcha/" ,$source)){$r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=userrecaptcha&googlekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
     if(preg_match("/cf-turnstile/",$source)){$r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=turnstile&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
@@ -318,4 +327,4 @@ Function Riwayat($newdata,$data=0){
     if(!$data){$data = [];}
     return array_merge($data,$newdata);
 }
-MenuX();
+//MenuX();
