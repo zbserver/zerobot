@@ -19,7 +19,7 @@ Function Balance(){
     return ["l"=>$lg,"b"=>$b];
 }
 Menu_Api();
-//SaveCokUa();
+SaveCokUa();
 ban();
 $r = Balance();
 if(!$r['l'] == "Logout"){echo Error("Cookie expried").n;Del();die;}
