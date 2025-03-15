@@ -68,7 +68,6 @@ if($pilih == 1){
 Function claim($coin){
     $Email=file_get_contents(Data."Email");
     $r   = get(web."/faucet/currency/$coin");
-    print $r;die;
     $tim = Ambil($r,"var wait = "," - 1;",1);
     if($tim){tim($tim);goto en;}
     if(preg_match('/Daily claim limit/',$r)){echo msg(4,"Daily claim limit.").p."[".hm.strtoupper($coin).p."]".n;die;}
