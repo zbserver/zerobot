@@ -1,6 +1,6 @@
 <?php
 define('host',['hofaucet','hofaucet.xyz','/?r=800']);
-define('version','1.0.0');
+define('version','1.0.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -14,6 +14,7 @@ Function h(){
 }
 Menu_Api();
 save("Email");
+$Email=file_get_contents(Data."Email");
 get(web.host[2]);
 cl();
 ban();
@@ -67,6 +68,7 @@ if($pilih == 1){
 Function claim($coin){
     $Email=file_get_contents(Data."Email");
     $r   = get(web."/faucet/currency/$coin");
+    print $r;die;
     $tim = Ambil($r,"var wait = "," - 1;",1);
     if($tim){tim($tim);goto en;}
     if(preg_match('/Daily claim limit/',$r)){echo msg(4,"Daily claim limit.").p."[".hm.strtoupper($coin).p."]".n;die;}
