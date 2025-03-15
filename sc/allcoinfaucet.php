@@ -26,8 +26,8 @@ while(true){
     $r = get(web.host[2]);
     $l = Ambil($r,'1 minutes.<br />',' daily claims left.</p>',1);
     if($l == 0){echo Error("Daily claim limit").n;die;}
-    $wt= Ambil($r,'<p class="alert alert-info">You have to wait ',' minutes</p>',1);
-    if($wt){tim($wt);goto en;}
+    //$wt= Ambil($r,'<p class="alert alert-info">You have to wait ',' minutes</p>',);
+   // if($wt){tim($wt);goto en;}
     $t = Ambil($r,'<input type="text" name="','"',1);
     $c = Hcap($r,web.host[2]);
     if(!$c){goto en;}
@@ -37,5 +37,6 @@ while(true){
     if(preg_match("/satoshi was sent/",$p)){
         echo msg(1,"Reward").k." : ".hm.$h.p." sent FP".k." │ ".p."apikey : ".hm.Api_Bal().k." │ ".hm.$l.p." left".n;
     }
+    tim(60);
 en:
 }
