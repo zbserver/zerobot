@@ -4,6 +4,7 @@ define('version','1.0.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
+include("app.php");
 Function h(){
     $h[] = "Host: ".host[1];
     $h[] = "Referer: ".web.host[2];
@@ -14,7 +15,6 @@ Function h(){
 }
 Menu_Api();
 save("Email");
-$Email=file_get_contents(Data."Email");
 get(web.host[2]);
 cl();
 ban();
@@ -65,7 +65,8 @@ if($pilih == 1){
 }else{
     echo msg(4,"Bad Number");sleep(3);echo r; goto Awal;
 }
-Function claim($coin){global $Email;
+Function claim($coin){
+    $Email=file_get_contents(Data."Email");
     $r   = get(web."/faucet/currency/$coin");
     $tim = Ambil($r,"var wait = "," - 1;",1);
     if($tim){tim($tim);goto en;}
@@ -75,7 +76,6 @@ Function claim($coin){global $Email;
     $csrf = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
     $t = Ambil($r,'name="token" value="','">',1);
     $d = "csrf_token_name=$csrf&token=$t&captcha=hcaptcha&cf-turnstile-response=$cap&wallet=".urlencode($Email);
-    print $d;die;
     $p = post(web."/faucet/verify/$coin",$d);
     $hs = Ambil($p ,"'Good job!', '","has been sent to your FaucetPay account!', 'success'",1);
     if(preg_match("/Good job/",$p)){
