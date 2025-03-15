@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.14",
+app_version = "1.0.16",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -128,6 +128,7 @@ Function MenuX(){
     echo a." │".NoLi(6,"Litecoinline")."       ".a."│".p." Yes ".a."│".p." bit.ly/3Ffweol".a."         │".n;
     echo a." │".NoLi(7,"Freetrxsu")."          ".a."│".p." Yes ".a."│".p."               ".a."         │".n;
     echo a." │".NoLi(8,"Hofaucet")."           ".a."│".p." Yes ".a."│".p."               ".a."         │".n;
+    echo a." │".NoLi(9,"Allcoinfaucet")."      ".a."│".p." Yes ".a."│".p."               ".a."         │".n;
     echo a." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(w3." Input".panah.p);
@@ -149,6 +150,8 @@ Function MenuX(){
         eval(OpenSC("freetrxsu.php"));
     }elseif($pilih == 8){
         eval(OpenSC("hofaucet.php"));
+    }elseif($pilih == 9){
+        eval(OpenSC("allcoinfaucet.php"));
     }else{
         print k." Bad Number".n;sleep(3);goto Menu;
     }
@@ -231,6 +234,21 @@ Function Captcha($source,$pageurl){
     if(preg_match("/g-recaptcha/" ,$source)){$r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=userrecaptcha&googlekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
     if(preg_match("/cf-turnstile/",$source)){$r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=turnstile&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
     if(preg_match("/authkong/"    ,$source)){$r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=authkong&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);}
+    $status = $r["status"];
+    if($status == 0){ApiError;return 0;}
+    $id = $r["request"];
+    return res_api($id);  
+    Err:
+}
+Function Hcap($source,$pageurl){
+    if(preg_match('/data-sitekey="/',$source)){
+        $sitekey= Ambil($source,'data-sitekey="','"',1);
+    }elseif(preg_match("/data-sitekey='/",$source)){
+        $sitekey= Ambil($source,"data-sitekey='","'",1);
+    }else{
+        echo Error("sitekey Error");sleep(2);echo r;
+    }
+    $r = json_decode(file_get_contents(api_url."/in.php?key=".apikey."&method=hcaptcha&sitekey=".$sitekey."&pageurl=".$pageurl."&json=1"),1);
     $status = $r["status"];
     if($status == 0){ApiError;return 0;}
     $id = $r["request"];
