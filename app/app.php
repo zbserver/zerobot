@@ -72,7 +72,7 @@ Function ban($menu=null){
     $api =ipApi();
     cl();
     if($api){
-        echo str_pad($api->city.', '.$api->regionName.', '.$api->country, 55, " ", STR_PAD_BOTH).n;
+        echo str_pad($api->city.', '.$api->regionName.', '.$api->country, 57, " ", STR_PAD_BOTH).n;
     }
     echo a ." ┌────────────────────────┬───────────────────────────────┐".n;
     echo a ." │".p." ┌──┐              ┌─┬─┐".a."│ Version: ".a.app_version.a."               │".n;
@@ -127,6 +127,7 @@ Function MenuX(){
     echo a." │".NoLi(5,"Nevcoin")."            ".a."│".p." Yes ".a."│".p." bit.ly/4kBaraD".a."         │".n;
     echo a." │".NoLi(6,"Litecoinline")."       ".a."│".p." Yes ".a."│".p." bit.ly/3Ffweol".a."         │".n;
     echo a." │".NoLi(7,"Freetrxsu")."          ".a."│".p." Yes ".a."│".p."               ".a."         │".n;
+    echo a." │".NoLi(8,"Hofaucet")."           ".a."│".p." Yes ".a."│".p."               ".a."         │".n;
     echo a." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(w3." Input".panah.p);
@@ -146,8 +147,9 @@ Function MenuX(){
         eval(OpenSC("whoopyrewards.php"));
     }elseif($pilih == 7){
         eval(OpenSC("freetrxsu.php"));
-    }
-    else{
+    }elseif($pilih == 8){
+        eval(OpenSC("hofaucet.php"));
+    }else{
         print k." Bad Number".n;sleep(3);goto Menu;
     }
 }
