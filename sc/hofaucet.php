@@ -75,6 +75,7 @@ Function claim($coin){global $Email;
     $csrf = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
     $t = Ambil($r,'name="token" value="','">',1);
     $d = "csrf_token_name=$csrf&token=$t&captcha=hcaptcha&cf-turnstile-response=$cap&wallet=".urlencode($Email);
+    print $d;die;
     $p = post(web."/faucet/verify/$coin",$d);
     $hs = Ambil($p ,"'Good job!', '","has been sent to your FaucetPay account!', 'success'",1);
     if(preg_match("/Good job/",$p)){
