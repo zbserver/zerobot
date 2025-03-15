@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.15",
+app_version = "1.0.14",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -126,6 +126,7 @@ Function MenuX(){
     echo a." │".NoLi(4,"Claimlite")."          ".a."│".w3." No  ".a."│".p." bit.ly/43voCYQ".a."         │".n;
     echo a." │".NoLi(5,"Nevcoin")."            ".a."│".p." Yes ".a."│".p." bit.ly/4kBaraD".a."         │".n;
     echo a." │".NoLi(6,"Litecoinline")."       ".a."│".p." Yes ".a."│".p." bit.ly/3Ffweol".a."         │".n;
+    echo a." │".NoLi(7,"Freetrxsu")."          ".a."│".p." Yes ".a."│".p."               ".a."         │".n;
     echo a." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(w3." Input".panah.p);
@@ -143,7 +144,7 @@ Function MenuX(){
         eval(OpenSC("litecoinline.php"));
     }elseif($pilih == 999){
         eval(OpenSC("whoopyrewards.php"));
-    }elseif($pilih == 1000){
+    }elseif($pilih == 7){
         eval(OpenSC("freetrxsu.php"));
     }
     else{
@@ -217,7 +218,6 @@ Function RecaptchaV3($anchor){
     }
 }
 Function Captcha($source,$pageurl){
-
     if(preg_match('/data-sitekey="/',$source)){
         $sitekey= Ambil($source,'data-sitekey="','"',1);
     }elseif(preg_match("/data-sitekey='/",$source)){
