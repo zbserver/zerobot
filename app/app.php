@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.25",
+app_version = "1.0.26",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -136,6 +136,7 @@ Function Del(){
 }
 Function Del_Cok(){
     if(!is_dir(Data.host[0])){unlink(Data.host[0]."/cookie.txt");}
+    if(!is_dir(Data.host[0])){system("mkdir ".Data.host[0]);}
 }
 Function Del_App(){
     $server = $_SERVER["TMP"];
