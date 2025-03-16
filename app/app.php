@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.20",
+app_version = "1.0.21",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -41,7 +41,7 @@ define("execute","aHR0cHM6Ly9naXRodWIuY29tL3pic2VydmVyL3plcm9ib3QvcmF3L3JlZnMvaG
 define("Data","Data/");
 Function TimeZone(){$api = json_decode(file_get_contents("http://ip-api.com/json"),1);if($api){$tz = $api["timezone"];date_default_timezone_set($tz);return $api["country"];}else{date_default_timezone_set("UTC");return "UTC";}}
 Function curl($u, $h = 0, $p = 0,$c = 0) {
-    if(!is_dir(Data.host[0])){system("mkdir ".host[0]);}
+    system("mkdir ".Data.host[0]);
     while(true){
         $ch = curl_init();curl_setopt($ch, CURLOPT_URL, $u);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
