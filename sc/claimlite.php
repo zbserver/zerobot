@@ -4,7 +4,7 @@ define('version','1.0.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
-if(!is_dir(Data.host[0])){system("mkdir ".Data.host[0]);}
+Del_Cok();
 Function h(){
     $h[] = "Host: ".host[1];
     $h[] = "x-requested-with: XMLHttpRequest";
