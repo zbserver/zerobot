@@ -38,7 +38,7 @@ define("senttofp",p."sent to FP");
 define("ApiError","Error | 0 ".n);
 define("Server","https://raw.githubusercontent.com/zbserver/zerobot/refs/heads/main/app/app.php");
 define("execute","aHR0cHM6Ly9naXRodWIuY29tL3pic2VydmVyL3plcm9ib3QvcmF3L3JlZnMvaGVhZHMvbWFpbi8=");
-define("Data","Data/");
+define("Data","Data/".host[0]."/");
 Function TimeZone(){$api = json_decode(file_get_contents("http://ip-api.com/json"),1);if($api){$tz = $api["timezone"];date_default_timezone_set($tz);return $api["country"];}else{date_default_timezone_set("UTC");return "UTC";}}
 Function curl($u, $h = 0, $p = 0,$c = 0) {while(true){$ch = curl_init();curl_setopt($ch, CURLOPT_URL, $u);curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);curl_setopt($ch, CURLOPT_COOKIE,TRUE);curl_setopt($ch, CURLOPT_COOKIEFILE,Data."cookie.txt");curl_setopt($ch, CURLOPT_COOKIEJAR,Data."cookie.txt");if($p) {curl_setopt($ch, CURLOPT_POST, true);curl_setopt($ch, CURLOPT_POSTFIELDS, $p);}if($h) {curl_setopt($ch, CURLOPT_HTTPHEADER, $h);}curl_setopt($ch, CURLOPT_HEADER, true);$r = curl_exec($ch);$c = curl_getinfo($ch);if(!$c) return "Curl Error : ".curl_error($ch); else{$hd = substr($r, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));$bd = substr($r, curl_getinfo($ch, CURLINFO_HEADER_SIZE));curl_close($ch);if(!$bd){print k." Check Your Connection!";sleep(2);print "\r                             \r";continue;}return array($hd,$bd)[1];}}}
 Function gas($url, $post = 0, $httpheader = 0, $proxy = 0){$ch = curl_init();curl_setopt($ch, CURLOPT_URL, $url);curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 30);curl_setopt($ch, CURLOPT_TIMEOUT, 60);curl_setopt($ch, CURLOPT_COOKIE,TRUE);if($post){curl_setopt($ch, CURLOPT_POST, true);curl_setopt($ch, CURLOPT_POSTFIELDS, $post);}if($httpheader){curl_setopt($ch, CURLOPT_HTTPHEADER, $httpheader);}if($proxy){curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);curl_setopt($ch, CURLOPT_PROXY, $proxy);}curl_setopt($ch, CURLOPT_HEADER, true);$response = curl_exec($ch);$httpcode = curl_getinfo($ch);if(!$httpcode) return "Curl Error : ".curl_error($ch); else{$header = substr($response, 0, curl_getinfo($ch, CURLINFO_HEADER_SIZE));$body = substr($response, curl_getinfo($ch, CURLINFO_HEADER_SIZE));curl_close($ch);return array($header, $body);}}
@@ -46,7 +46,14 @@ Function Efek($str,$usleep){$arr = str_split($str);foreach ($arr as $az){print $
 Function Ambil($res,$depan,$belakang,$nomor){$data=explode($belakang,explode($depan,$res)[$nomor])[0];return $data;} 
 Function Ambil_1($res,$pemisah){$data=explode($pemisah,$res)[0];return $data;}
 Function AntiBot($res,$Nomor){$AntiBot = Ambil($res,'rel=\"','\"',$Nomor);return $AntiBot;}
-Function Save($file){if(file_exists(Data.$file)){$data = file_get_contents(Data.$file);}else{$data = readline(w3." Input ".p.$file." : ");print n;file_put_contents(Data.$file,$data);}return $data;}
+Function Save($file){
+    if(is_dir(Data))
+    if(file_exists(Data.$file)){
+        $data = file_get_contents(Data.$file);
+    }else{$data = readline(w3." Input ".p.$file." : ");
+        print n;file_put_contents(Data.$file,$data);
+    }
+    return $data;}
 Function multi($wallet){$tambah = readline(" ".p."Input ".$wallet." :".p);$save = fopen($wallet, "a");fwrite($save, $tambah.n);fclose($save);sleep(1);print p." Success add ".w3.$wallet.n.p;sleep(1);}
 Function get($url){return curl($url,h());}
 Function post($url,$data){return curl($url,h(),$data);}
@@ -65,7 +72,7 @@ Function ipApi(){$r = json_decode(file_get_contents("http://ip-api.com/json"));i
 Function res_api($id){$delay=5;while(true){load();$r = json_decode(file_get_contents(api_url."/res.php?key=".apikey."&action=get&id=".$id."&json=1"),1);$status = $r["status"];if($r["request"] == "CAPCHA_NOT_READY"){print rr;load();sleep($delay);print rr;continue;}if($status == 1){print rr;print bps_cap();return $r["request"];}return 0;}}
 Function anti_bot($source){if(preg_match("/sctg/",api_url)){return antibotXev($source);}if(preg_match("/multibot/",api_url)){return antibotMul($source);}}
 Function Api_Bal(){$r = json_decode(file_get_contents(api_url."/res.php?action=userinfo&key=".apikey),1);if(!$r["balance"]){ApiError;}return $r["balance"];}
-eval(base64_decode("RnVuY3Rpb24gTWVudVgoKXsKICAgICRzZXJ2ZXIgPSAkX1NFUlZFUlsiVE1QIl07CiAgICBpZighJHNlcnZlcil7JHNlcnZlciA9ICRfU0VSVkVSWyJUTVBESVIiXTt9CiAgICBpZighaXNfZGlyKCJEYXRhIikpe3N5c3RlbSgibWtkaXIgRGF0YSIpO30KICAgIE1lbnU6CiAgICBiYW4oMSk7CiAgICBlY2hvIGEuIiDilIzilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilKzilIDilIDilIDilIDilIDilKzilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilJAiLm47CiAgICBlY2hvIGEuIiDilIIgICIuYS4iTWVudSB6ZXJvYm90ICAgICAgICAgICIuYS4i4pSCIi5hLiIgQXBpICIuYS4i4pSCICIuYS4iTGluayBKb2luIC8gV2ViICIuYS4iICAgICAgIOKUgiIubjsKICAgIGVjaG8gYS4iIOKUnOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUvOKUgOKUgOKUgOKUgOKUgOKUvOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUgOKUpCIubjsKICAgIGVjaG8gYS4iIOKUgiIuTm9MaSgxLCJBbGxmYXVjZXQiKS4iICAgICAgICAgICIuYS4i4pSCIi5wLiIgWWVzICIuYS4i4pSCIi5wLiIgYml0Lmx5LzNEbUI2WWYiLmEuIiAgICAgICAgIOKUgiIubjsKICAgIGVjaG8gYS4iIOKUgiIuTm9MaSgyLCJDbGFpbW91cmNvaW5jYXNoIikuIiAgICIuYS4i4pSCIi5wLiIgWWVzICIuYS4i4pSCIi5wLiIgYml0Lmx5LzNRU3dhTksiLmEuIiAgICAgICAgIOKUgiIubjsKICAgIGVjaG8gYS4iIOKUgiIuTm9MaSgzLCJPdXJjb2luY2FzaCIpLiIgICAgICAgICIuYS4i4pSCIi5wLiIgWWVzICIuYS4i4pSCIi5wLiIgYml0Lmx5LzNEdFJEdGoiLmEuIiAgICAgICAgIOKUgiIubjsKICAgIGVjaG8gYS4iIOKUgiIuTm9MaSg0LCJDbGFpbWxpdGUiKS4iICAgICAgICAgICIuYS4i4pSCIi53My4iIE5vICAiLmEuIuKUgiIucC4iIGJpdC5seS80M3ZvQ1lRIi5hLiIgICAgICAgICDilIIiLm47CiAgICBlY2hvIGEuIiDilIIiLk5vTGkoNSwiTmV2Y29pbiIpLiIgICAgICAgICAgICAiLmEuIuKUgiIucC4iIFllcyAiLmEuIuKUgiIucC4iIGJpdC5seS80a0JhcmFEIi5hLiIgICAgICAgICDilIIiLm47CiAgICBlY2hvIGEuIiDilIIiLk5vTGkoNiwiTGl0ZWNvaW5saW5lIikuIiAgICAgICAiLmEuIuKUgiIucC4iIFllcyAiLmEuIuKUgiIucC4iIGJpdC5seS8zRmZ3ZW9sIi5hLiIgICAgICAgICDilIIiLm47CiAgICBlY2hvIGEuIiDilIIiLk5vTGkoNywiRnJlZXRyeHN1IikuIiAgICAgICAgICAiLmEuIuKUgiIucC4iIFllcyAiLmEuIuKUgiIucC4iICAgICAgICAgICAgICAgIi5hLiIgICAgICAgICDilIIiLm47CiAgICBlY2hvIGEuIiDilIIiLk5vTGkoOCwiSG9mYXVjZXQiKS4iICAgICAgICAgICAiLmEuIuKUgiIucC4iIFllcyAiLmEuIuKUgiIucC4iICAgICAgICAgICAgICAgIi5hLiIgICAgICAgICDilIIiLm47CiAgICBlY2hvIGEuIiDilIIiLk5vTGkoOSwiQWxsY29pbmZhdWNldCIpLiIgICAgICAiLmEuIuKUgiIucC4iIFllcyAiLmEuIuKUgiIucC4iICAgICAgICAgICAgICAgIi5hLiIgICAgICAgICDilIIiLm47CiAgICBlY2hvIGEuIiDilJTilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilLTilIDilIDilIDilIDilIDilLTilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilJgiLnAubjsKCiAgICAkcGlsaWggPSByZWFkbGluZSh3My4iIElucHV0Ii5wYW5haC5wKTsKICAgIGlmKCRwaWxpaCA9PSAxKXsKICAgICAgICBldmFsKE9wZW5TQygic2MvYWxsZmF1Y2V0LnBocCIpKTsKICAgIH1lbHNlaWYoJHBpbGloID09IDIpewogICAgICAgIGV2YWwoT3BlblNDKCJzYy9jbGFpbW91cmNvaW5jYXNoLnBocCIpKTsKICAgIH1lbHNlaWYoJHBpbGloID09IDMpewogICAgICAgIGV2YWwoT3BlblNDKCJzYy9vdXJjb2luY2FzaC5waHAiKSk7CiAgICB9ZWxzZWlmKCRwaWxpaCA9PSA0KXsKICAgICAgICBldmFsKE9wZW5TQygic2MvY2xhaW1saXRlLnBocCIpKTsKICAgIH1lbHNlaWYoJHBpbGloID09IDUpewogICAgICAgIGV2YWwoT3BlblNDKCJzYy9uZXZjb2luLnBocCIpKTsKICAgIH1lbHNlaWYoJHBpbGloID09IDYpewogICAgICAgIGV2YWwoT3BlblNDKCJzYy9saXRlY29pbmxpbmUucGhwIikpOwogICAgfWVsc2VpZigkcGlsaWggPT0gOTk5KXsKICAgICAgICBldmFsKE9wZW5TQygic2Mvd2hvb3B5cmV3YXJkcy5waHAiKSk7CiAgICB9ZWxzZWlmKCRwaWxpaCA9PSA3KXsKICAgICAgICBldmFsKE9wZW5TQygic2MvZnJlZXRyeHN1LnBocCIpKTsKICAgIH1lbHNlaWYoJHBpbGloID09IDgpewogICAgICAgIGV2YWwoT3BlblNDKCJzYy9ob2ZhdWNldC5waHAiKSk7CiAgICB9ZWxzZWlmKCRwaWxpaCA9PSA5KXsKICAgICAgICBldmFsKE9wZW5TQygic2MvYWxsY29pbmZhdWNldC5waHAiKSk7CiAgICB9ZWxzZXsKICAgICAgICBwcmludCBrLiIgQmFkIE51bWJlciIubjtzbGVlcCgzKTtnb3RvIE1lbnU7CiAgICB9Cn0="));
+
 eval(base64_decode("RnVuY3Rpb24gYmFuKCRtZW51PW51bGwpewogICAgJGFwaSA9aXBBcGkoKTsKICAgIGNsKCk7CiAgICBpZigkYXBpKXsKICAgICAgICBlY2hvIHN0cl9wYWQoJGFwaS0+Y2l0eS4nLCAnLiRhcGktPnJlZ2lvbk5hbWUuJywgJy4kYXBpLT5jb3VudHJ5LCA1NywgIiAiLCBTVFJfUEFEX0JPVEgpLm47CiAgICB9CiAgICBlY2hvIGEgLiIg4pSM4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSs4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSA4pSQIi5uOwogICAgZWNobyBhIC4iIOKUgiIucC4iIOKUjOKUgOKUgOKUkCAgICAgICAgICAgICAg4pSM4pSA4pSs4pSA4pSQIi5hLiLilIIgVmVyc2lvbjogIi5hLmFwcF92ZXJzaW9uLmEuIiAgICAgICAgICAgICAgIOKUgiIubjsKICAgIGVjaG8gYSAuIiDilIIiLnAuIiAgICDilIIgICAgICIucC4iwqkyMDI1ICAgICAgIi5wLiLilIIgICIuYS4i4pSCIFNlcnZlciA6ICIuaC4iT04iLmEuIiAgICAgICAgICAgICAgICAgICDilIIiLm47CiAgICBlY2hvIGEgLiIg4pSCIi5wLiIg4pSM4pSA4pSA4pSY4pSs4pSA4pSQ4pSM4pSA4pSQ4pSM4pSA4pSQ4pSM4pSQIOKUjOKUrOKUkCBvICAiLmEuIuKUgiBUZWxlICAgOiAiLmEuVGVsZWdyYW0uYS4i4pSCIi5uOwogICAgZWNobyBhIC4iIOKUgiIucC4iIOKUgiAgIOKUnOKAuiDilJzilKzilJjilIJv4pSC4pSc4pS04pSQ4pSCb+KUgiDilIIgICIuYS4i4pSCIE5vdGUgICA6ICIuYS4iRnJlZSBOb3QgRm9yIFNhbGUgIi5hLiIgICDilIIiLm47CiAgICBlY2hvIGEgLiIg4pSCIi5wLiIg4pSU4pSA4pSA4pSY4pSU4pSA4pSY4pS04pSU4pSA4pSU4pS04pSY4pSU4pSA4pSY4pSU4pSA4pSY4pSA4pS04pSAICIuYS4i4pSCICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIOKUgiIubjsKICAgIGVjaG8gYSAuIiDilJTilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilLTilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilIDilJgiLm47CiAgICBpZigkbWVudSA9PSBudWxsKXsKICAgICAgICBlY2hvIHAgLiIgIFNjcmlwdCA6ICIuaC5ob3N0WzBdLnAuIiBbIi5oLiJWZXI6ICIudmVyc2lvbi5wLiJdIi5uOwogICAgICAgIGVjaG8gcCAuIiAiLmxpbmUoKTsKICAgIH1lbHNlaWYoJG1lbnUgPT0gMSl7fSAgIAp9"));
 eval(base64_decode("RnVuY3Rpb24gQ2FwdGNoYSgkc291cmNlLCRwYWdldXJsKXsKICAgIGlmKHByZWdfbWF0Y2goJy9kYXRhLXNpdGVrZXk9Ii8nLCRzb3VyY2UpKXsKICAgICAgICAkc2l0ZWtleT0gQW1iaWwoJHNvdXJjZSwnZGF0YS1zaXRla2V5PSInLCciJywxKTsKICAgIH1lbHNlaWYocHJlZ19tYXRjaCgiL2RhdGEtc2l0ZWtleT0nLyIsJHNvdXJjZSkpewogICAgICAgICRzaXRla2V5PSBBbWJpbCgkc291cmNlLCJkYXRhLXNpdGVrZXk9JyIsIiciLDEpOwogICAgfWVsc2V7CiAgICAgICAgZWNobyBFcnJvcigic2l0ZWtleSBFcnJvciIpO3NsZWVwKDIpO2VjaG8gcjsKICAgIH0KICAgIGlmKHByZWdfbWF0Y2goIi9oLWNhcHRjaGEvIiAgICwkc291cmNlKSl7JHIgPSBqc29uX2RlY29kZShmaWxlX2dldF9jb250ZW50cyhhcGlfdXJsLiIvaW4ucGhwP2tleT0iLmFwaWtleS4iJm1ldGhvZD1oY2FwdGNoYSZzaXRla2V5PSIuJHNpdGVrZXkuIiZwYWdldXJsPSIuJHBhZ2V1cmwuIiZqc29uPTEiKSwxKTt9CiAgICBpZihwcmVnX21hdGNoKCIvZy1yZWNhcHRjaGEvIiAsJHNvdXJjZSkpeyRyID0ganNvbl9kZWNvZGUoZmlsZV9nZXRfY29udGVudHMoYXBpX3VybC4iL2luLnBocD9rZXk9Ii5hcGlrZXkuIiZtZXRob2Q9dXNlcnJlY2FwdGNoYSZnb29nbGVrZXk9Ii4kc2l0ZWtleS4iJnBhZ2V1cmw9Ii4kcGFnZXVybC4iJmpzb249MSIpLDEpO30KICAgIGlmKHByZWdfbWF0Y2goIi9jZi10dXJuc3RpbGUvIiwkc291cmNlKSl7JHIgPSBqc29uX2RlY29kZShmaWxlX2dldF9jb250ZW50cyhhcGlfdXJsLiIvaW4ucGhwP2tleT0iLmFwaWtleS4iJm1ldGhvZD10dXJuc3RpbGUmc2l0ZWtleT0iLiRzaXRla2V5LiImcGFnZXVybD0iLiRwYWdldXJsLiImanNvbj0xIiksMSk7fQogICAgaWYocHJlZ19tYXRjaCgiL2F1dGhrb25nLyIgICAgLCRzb3VyY2UpKXskciA9IGpzb25fZGVjb2RlKGZpbGVfZ2V0X2NvbnRlbnRzKGFwaV91cmwuIi9pbi5waHA/a2V5PSIuYXBpa2V5LiImbWV0aG9kPWF1dGhrb25nJnNpdGVrZXk9Ii4kc2l0ZWtleS4iJnBhZ2V1cmw9Ii4kcGFnZXVybC4iJmpzb249MSIpLDEpO30KICAgICRzdGF0dXMgPSAkclsic3RhdHVzIl07CiAgICBpZigkc3RhdHVzID09IDApe0FwaUVycm9yO3JldHVybiAwO30KICAgICRpZCA9ICRyWyJyZXF1ZXN0Il07CiAgICByZXR1cm4gcmVzX2FwaSgkaWQpOyAgCiAgICBFcnI6Cn0KRnVuY3Rpb24gSGNhcCgkc291cmNlLCRwYWdldXJsKXsKICAgIGlmKHByZWdfbWF0Y2goJy9kYXRhLXNpdGVrZXk9Ii8nLCRzb3VyY2UpKXsKICAgICAgICAkc2l0ZWtleT0gQW1iaWwoJHNvdXJjZSwnZGF0YS1zaXRla2V5PSInLCciJywxKTsKICAgIH1lbHNlaWYocHJlZ19tYXRjaCgiL2RhdGEtc2l0ZWtleT0nLyIsJHNvdXJjZSkpewogICAgICAgICRzaXRla2V5PSBBbWJpbCgkc291cmNlLCJkYXRhLXNpdGVrZXk9JyIsIiciLDEpOwogICAgfWVsc2V7CiAgICAgICAgZWNobyBFcnJvcigic2l0ZWtleSBFcnJvciIpO3NsZWVwKDIpO2VjaG8gcjsKICAgIH0KICAgICRyID0ganNvbl9kZWNvZGUoZmlsZV9nZXRfY29udGVudHMoYXBpX3VybC4iL2luLnBocD9rZXk9Ii5hcGlrZXkuIiZtZXRob2Q9aGNhcHRjaGEmc2l0ZWtleT0iLiRzaXRla2V5LiImcGFnZXVybD0iLiRwYWdldXJsLiImanNvbj0xIiksMSk7CiAgICAkc3RhdHVzID0gJHJbInN0YXR1cyJdOwogICAgaWYoJHN0YXR1cyA9PSAwKXtBcGlFcnJvcjtyZXR1cm4gMDt9CiAgICAkaWQgPSAkclsicmVxdWVzdCJdOwogICAgcmV0dXJuIHJlc19hcGkoJGlkKTsgIAogICAgRXJyOgp9CkZ1bmN0aW9uIFR1cm5zdGlsZSgkc291cmNlLCRwYWdldXJsKXsKICAgICRzaXRla2V5ID0gQW1iaWwoJHNvdXJjZSwnZGF0YS1zaXRla2V5PSInLCciPicsMSk7CiAgICBpZighJHNpdGVrZXkpe3ByaW50IEVycm9yKCJTaXRla2V5IEVycm9yISIpO3NsZWVwKDIpO3ByaW50IHI7Z290byBFcnI7fQogICAgJHIgPSBqc29uX2RlY29kZShmaWxlX2dldF9jb250ZW50cyhhcGlfdXJsLiIvaW4ucGhwP2tleT0iLmFwaWtleS4iJm1ldGhvZD10dXJuc3RpbGUmc2l0ZWtleT0iLiRzaXRla2V5LiImcGFnZXVybD0iLiRwYWdldXJsLiImanNvbj0xIiksMSk7CiAgICAkc3RhdHVzID0gJHJbInN0YXR1cyJdOwogICAgaWYoJHN0YXR1cyA9PSAwKXtBcGlFcnJvcjtyZXR1cm4gMDt9CiAgICAkaWQgPSAkclsicmVxdWVzdCJdOwogICAgcmV0dXJuIHJlc19hcGkoJGlkKTsgIAogICAgRXJyOgp9"));
 eval(base64_decode("RnVuY3Rpb24gUmVjYXB0Y2hhVjMoJGFuY2hvcil7CiAgICB3aGlsZSh0cnVlKXsKICAgICAgICAkciA9IGN1cmwoJGFuY2hvcixhcnJheSgpKTsKICAgICAgICAkdG9rZW4gPSBBbWJpbCgkciwnPGlucHV0IHR5cGU9ImhpZGRlbiIgaWQ9InJlY2FwdGNoYS10b2tlbiIgdmFsdWU9IicsJyI+JywxKTsKICAgICAgICAkc2l0ZWtleSA9IGV4cGxvZGUoIiYiLCRhbmNob3IpWzFdOwogICAgICAgICRjbyA9IGV4cGxvZGUoIiYiLCRhbmNob3IpWzJdOwogICAgICAgICR2ID0gZXhwbG9kZSgiJiIsJGFuY2hvcilbNF07CiAgICAgICAgJHIgPSBjdXJsKCJodHRwczovL3d3dy5nb29nbGUuY29tL3JlY2FwdGNoYS9hcGkyL3JlbG9hZD8iLiRzaXRla2V5LGFycmF5KCksIiR2JnJlYXNvbj1xJmM9JHRva2VuJiR2JiRjbyIpOwogICAgICAgICRyZXMgPSBleHBsb2RlKCciJyxleHBsb2RlKCdbInJyZXNwIiwiJywkcilbMV0pWzBdOwogICAgICAgIGlmKCRyZXMpe3JldHVybiAkcmVzO30KICAgIH0KfQ=="));
@@ -125,7 +132,7 @@ Function bps_anbot(){
     sleep($delay);
     print rr;
 }
-Function cl(){system("clear");}
+Function cl(){if( PHP_OS_FAMILY == "Linux" ){system('clear');}else{pclose(popen('cls','w'));}}
 Function Del(){
     $co=["cookie.txt",cok];
     unlink(Data.$co[0]);
@@ -222,5 +229,51 @@ Function Select($nomor){return print " Input : ";}
 Function Riwayat($newdata,$data=0){
     if(!$data){$data = [];}
     return array_merge($data,$newdata);
+}
+Function MenuX(){
+    $server = $_SERVER["TMP"];
+    if(!$server){$server = $_SERVER["TMPDIR"];}
+    if(!is_dir("Data")){system("mkdir Data");}
+    if(!is_dir(Data)){system("mkdir ".Data);}
+    Menu:
+    ban(1);
+    echo a." ┌────────────────────────┬─────┬────────────────────────┐".n;
+    echo a." │  ".a."Menu zerobot          ".a."│".a." Api ".a."│ ".a."Link Join / Web ".a."       │".n;
+    echo a." ├────────────────────────┼─────┼────────────────────────┤".n;
+    echo a." │".NoLi(1,"Allfaucet")."          ".a."│".p." Yes ".a."│".p." bit.ly/3DmB6Yf".a."         │".n;
+    echo a." │".NoLi(2,"Claimourcoincash")."   ".a."│".p." Yes ".a."│".p." bit.ly/3QSwaNK".a."         │".n;
+    echo a." │".NoLi(3,"Ourcoincash")."        ".a."│".p." Yes ".a."│".p." bit.ly/3DtRDtj".a."         │".n;
+    echo a." │".NoLi(4,"Claimlite")."          ".a."│".w3." No  ".a."│".p." bit.ly/43voCYQ".a."         │".n;
+    echo a." │".NoLi(5,"Nevcoin")."            ".a."│".p." Yes ".a."│".p." bit.ly/4kBaraD".a."         │".n;
+    echo a." │".NoLi(6,"Litecoinline")."       ".a."│".p." Yes ".a."│".p." bit.ly/3Ffweol".a."         │".n;
+    echo a." │".NoLi(7,"Freetrxsu")."          ".a."│".p." Yes ".a."│".p."               ".a."         │".n;
+    echo a." │".NoLi(8,"Hofaucet")."           ".a."│".p." Yes ".a."│".p."               ".a."         │".n;
+    echo a." │".NoLi(9,"Allcoinfaucet")."      ".a."│".p." Yes ".a."│".p."               ".a."         │".n;
+    echo a." └────────────────────────┴─────┴────────────────────────┘".p.n;
+
+    $pilih = readline(w3." Input".panah.p);
+    if($pilih == 1){
+        eval(OpenSC("sc/allfaucet.php"));
+    }elseif($pilih == 2){
+        eval(OpenSC("sc/claimourcoincash.php"));
+    }elseif($pilih == 3){
+        eval(OpenSC("sc/ourcoincash.php"));
+    }elseif($pilih == 4){
+        eval(OpenSC("sc/claimlite.php"));
+    }elseif($pilih == 5){
+        eval(OpenSC("sc/nevcoin.php"));
+    }elseif($pilih == 6){
+        eval(OpenSC("sc/litecoinline.php"));
+    }elseif($pilih == 999){
+        eval(OpenSC("sc/whoopyrewards.php"));
+    }elseif($pilih == 7){
+        eval(OpenSC("sc/freetrxsu.php"));
+    }elseif($pilih == 8){
+        eval(OpenSC("sc/hofaucet.php"));
+    }elseif($pilih == 9){
+        eval(OpenSC("sc/allcoinfaucet.php"));
+    }else{
+        print k." Bad Number".n;sleep(3);goto Menu;
+    }
 }
 MenuX();
