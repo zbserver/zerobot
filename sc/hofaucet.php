@@ -1,10 +1,10 @@
-
 <?php
 define('host',['hofaucet','hofaucet.xyz','/?r=800']);
 define('version','1.0.2');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
+if(!is_dir(Data.host[0])){system("mkdir ".Data.host[0]);}
 Function h(){
     $h[] = "Host: ".host[1];
     $h[] = "Referer: ".web.host[2];
