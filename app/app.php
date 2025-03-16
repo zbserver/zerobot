@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.24",
+app_version = "1.0.25",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -131,9 +131,11 @@ Function bps_anbot(){
 }
 Function cl(){if( PHP_OS_FAMILY == "Linux" ){system('clear');}else{pclose(popen('cls','w'));}}
 Function Del(){
-    $co=["cookie.txt",cok];
-    unlink(Data.$co[0]);
+    $co=[cok];
     unlink(Data.$co[1]);
+}
+Function Del_Cok(){
+    if(!is_dir(Data.host[0])){unlink(Data.host[0]."/cookie.txt");}
 }
 Function Del_App(){
     $server = $_SERVER["TMP"];
