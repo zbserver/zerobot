@@ -1,1 +1,2 @@
-# zerobot v.1.0.24
+# zerobot
+app version  = 1.0.24
