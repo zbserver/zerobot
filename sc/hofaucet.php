@@ -1,6 +1,7 @@
+
 <?php
 define('host',['hofaucet','hofaucet.xyz','/?r=800']);
-define('version','1.0.1');
+define('version','1.0.2');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -19,10 +20,11 @@ get(web.host[2]);
 cl();
 ban();
 $r = get(web.host[2]);
+$cp = ["banana","cherry","grape","'orange","chair","table","bulb","book","car"];
+$c = $cp[rand(0,7)];
 $t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
-$d = "wallet=$Email&csrf_token_name=$t";
+$d = "wallet=$Email&csrf_token_name=$t&captcha_response=$c";
 post(web."/auth/login",$d);
-
 echo msg(1,"Apikey").w3." : ".p.Api_Bal().n;
 echo " ".line();
 Awal:
