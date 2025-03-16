@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.17",
+app_version = "1.0.18",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -47,7 +47,7 @@ Function Ambil($res,$depan,$belakang,$nomor){$data=explode($belakang,explode($de
 Function Ambil_1($res,$pemisah){$data=explode($pemisah,$res)[0];return $data;}
 Function AntiBot($res,$Nomor){$AntiBot = Ambil($res,'rel=\"','\"',$Nomor);return $AntiBot;}
 Function Save($file){
-    if(is_dir(Data))
+    if(!is_dir(Data)){system("mkdir ".Data);}
     if(file_exists(Data.$file)){
         $data = file_get_contents(Data.$file);
     }else{$data = readline(w3." Input ".p.$file." : ");
@@ -234,7 +234,6 @@ Function MenuX(){
     $server = $_SERVER["TMP"];
     if(!$server){$server = $_SERVER["TMPDIR"];}
     if(!is_dir("Data")){system("mkdir Data");}
-    if(!is_dir(Data)){system("mkdir ".Data);}
     Menu:
     ban(1);
     echo a." ┌────────────────────────┬─────┬────────────────────────┐".n;
