@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.0.22",
+app_version = "1.0.23",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -41,7 +41,7 @@ define("execute","aHR0cHM6Ly9naXRodWIuY29tL3pic2VydmVyL3plcm9ib3QvcmF3L3JlZnMvaG
 define("Data","Data/");
 Function TimeZone(){$api = json_decode(file_get_contents("http://ip-api.com/json"),1);if($api){$tz = $api["timezone"];date_default_timezone_set($tz);return $api["country"];}else{date_default_timezone_set("UTC");return "UTC";}}
 Function curl($u, $h = 0, $p = 0,$c = 0) {
-    if(!is_dir(data.host[0])){system("mkdir ".Data.host[0]);}
+    
     while(true){
         $ch = curl_init();curl_setopt($ch, CURLOPT_URL, $u);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -64,7 +64,7 @@ Function Ambil($res,$depan,$belakang,$nomor){$data=explode($belakang,explode($de
 Function Ambil_1($res,$pemisah){$data=explode($pemisah,$res)[0];return $data;}
 Function AntiBot($res,$Nomor){$AntiBot = Ambil($res,'rel=\"','\"',$Nomor);return $AntiBot;}
 Function Save($file){
-    if(!is_dir(Data)){system("mkdir ".Data.host[0]);}
+    if(!is_dir(data.host[0])){system("mkdir ".Data.host[0]);}
     if(file_exists(Data.$file)){
         $data = file_get_contents(Data.$file);
     }else{$data = readline(w3." Input ".p.$file." : ");print n;file_put_contents(Data.$file,$data);
