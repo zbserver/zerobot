@@ -1,6 +1,6 @@
 <?php
 define('host',['Freetrx','freetrx.su','']);
-define('version','1.0.3');
+define('version','1.0.4');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -39,8 +39,7 @@ while(true){
         echo line_tg().msg(3,"Apikey").w3." : ".p.Api_Bal().n;
         echo line_bw();
     }else{
-        $limit = Ambil($p,'<i class="fas fa-exclamation-triangle"></i> ',' Please come back in tomorrow.',1);
-        echo msg(4,$limit).n;die;
+        if(preg_match("/Your daily claim limit/",$p)){echo msg(4,"Daily claim limit").n;die;}
     }
     en:
     time:
