@@ -1,6 +1,6 @@
 <?php
 define('host',['Freetrx','freetrx.su','']);
-define('version','1.0.2');
+define('version','1.0.3');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -31,7 +31,7 @@ while(true){
     $data = "session-token=$tok&address=$Email&antibotlinks=&captcha=recaptcha&g-recaptcha-response=$cap&login=Verify+Captcha";
     $p  = post(web."/?r=TALrypwEaPW5JhDwg6b54KY3PFJrZkagaa",$data);
     $hasil = Ambil($p,'<i class="fas fa-money-bill-wave"></i> ',' <',1);
-    if($hasil){
+    if($p){
         if(preg_match("/Capcha was invalid/",$p)){echo msg(4,"Capcha was invalid!");echo rr;goto en;}
         echo n;
         echo line_at();
