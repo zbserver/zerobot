@@ -1,6 +1,6 @@
 <?php
 define('host',['litecoinline','litecoinline.com','']);
-define('version','1.0.0');
+define('version','1.0.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -23,13 +23,11 @@ SaveCokUa();
 ban();
 $r = Balance();
 if(!$r['l']){echo Error("Cookie expried").n;Del();die;}
-echo msg(1,"Balance").panah.p.$r['b'].n;
-echo cekapi().n;
-echo " ".line();
-$r  = get(web."/ptc");
-$ads= Ambil($r,'<p class="lh-1 mb-1 font-weight-bold">','</p>',1);
-echo msg(1,"Ads available ").p."(".k.$ads.p.")".n;
-print " ".line();
+echo n;
+echo line_at();
+echo line_tg().msg(1,"Balance").panah.p.$r['b'].n;
+echo line_tg().cekapi().n;
+echo line_bw();
 while(true){
     $r = get(web."/ptc");
     $id = Ambil($r,"/ptc/view/","'",1);
@@ -49,9 +47,11 @@ while(true){
         $hasil = Ambil($post,"'Good job!', '"," token",1);
        if($post){
            $r = Balance();
-           echo bal($r['b']).o." | ".p."reward ".panah.p.$hasil." token".n;
-           echo cekapi().o." | ".p."Ads Available (".k.($adx - 1).p.")".n;
-           echo " ".line();
+           echo n;
+           echo line_at();
+           echo line_tg().bal($r['b']).o." | ".p."reward ".panah.p.$hasil." token".n;
+           echo line_tg().cekapi().o." | ".p."Ads Available (".k.($adx - 1).p.")".n;
+           echo line_bw();
        }
    }
 }
