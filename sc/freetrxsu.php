@@ -1,6 +1,6 @@
 <?php
 define('host',['Freetrx','freetrx.su','']);
-define('version','1.0.0');
+define('version','1.0.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -19,8 +19,9 @@ $Email=urlencode(file_get_contents(Data."Email"));
 get(web."/?r=TALrypwEaPW5JhDwg6b54KY3PFJrZkagaa");
 cl();
 ban();
-echo msg(1,"Apikey").w3." : ".p.Api_Bal().n;
-echo " ".line();
+echo line_at();
+echo line_tg().msg(1,"Apikey").w3." : ".p.Api_Bal().n;
+echo line_bw();
 while(true){
     $r =  get(web."/?r=TALrypwEaPW5JhDwg6b54KY3PFJrZkagaa");
     $tok = Ambil($r,'name="session-token" value="','">',1);
@@ -31,9 +32,11 @@ while(true){
     $p  = post(web."/?r=TALrypwEaPW5JhDwg6b54KY3PFJrZkagaa",$data);
     $hasil = Ambil($p,'<i class="fas fa-money-bill-wave"></i> ',' <',1);
     if($hasil){
-        echo msg(1,"Reward").w3." : ".hm.$hasil." Faucetpay.io".n;
-        echo msg(3,"Apikey").w3." : ".p.Api_Bal().n;
-        echo " ".line();
+        echo n;
+        echo line_at();
+        echo line_tg().msg(1,"Reward").w3." : ".p.$hasil." Faucetpay.io".n;
+        echo line_tg().msg(3,"Apikey").w3." : ".p.Api_Bal().n;
+        echo line_bw();
     }else{
         $limit = Ambil($p,'<i class="fas fa-exclamation-triangle"></i> ',' Please come back in tomorrow.',1);
         echo msg(4,$limit).n;die;
