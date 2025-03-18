@@ -1,6 +1,6 @@
 <?php
 define('host',['ClaimLite','claimlite.club','']);
-define('version','1.0.0');
+define('version','1.0.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -21,9 +21,11 @@ Function balance(){
 }
 Function suc($reward,$nub){
     $r=balance(); $b =$r["b"]; $c=$r["c"];
-    print " ".w3."[".p.cpm[1].w3."]".p." Number ".panah.p.$nub.k." / ".p.$reward.n;
-    print " ".w3."[".p.cpm[2].w3."]".p." Balance".panah.p.$b.k." / ".p.$c.n;
-    print " ".line();
+    print n;
+    print line_at();
+    print line_tg().p." Number ".panah.p.$nub.k." / ".p.$reward.n;
+    print line_tg().p." Balance".panah.p.$b.k." / ".p.$c.n;
+    print line_bw();
 }
 Awal:
 SaveCokUa();
@@ -36,10 +38,11 @@ if(preg_match("/logout/",$r)){
 }
 $r=null;
 $r = balance(); $b=$r["b"]; $c=$r["c"]; $l=$r["l"];
-
-print " ".w3."[".p.cpm[1].w3."]".p." Login   ".panah.p.$l.n.
-      " ".w3."[".p.cpm[1].w3."]".p." Balance ".panah.p.$b.k." / ".p.$c.n.
-      " ".p.line();
+echo n;
+echo line_at();
+echo line_tg().p." Login   ".panah.p.$l.n;
+echo line_tg().p." Balance ".panah.p.$b.k." / ".p.$c.n;
+echo line_bw();
 Faucet:
 while(true){
     $r = get(web);
