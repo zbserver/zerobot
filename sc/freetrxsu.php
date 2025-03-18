@@ -1,6 +1,6 @@
 <?php
 define('host',['Freetrx','freetrx.su','']);
-define('version','1.0.1');
+define('version','1.0.2');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -32,6 +32,7 @@ while(true){
     $p  = post(web."/?r=TALrypwEaPW5JhDwg6b54KY3PFJrZkagaa",$data);
     $hasil = Ambil($p,'<i class="fas fa-money-bill-wave"></i> ',' <',1);
     if($hasil){
+        if(preg_match("/Capcha was invalid/",$p)){echo msg(4,"Capcha was invalid!");echo rr;goto en;}
         echo n;
         echo line_at();
         echo line_tg().msg(1,"Reward").w3." : ".p.$hasil." Faucetpay.io".n;
@@ -41,6 +42,8 @@ while(true){
         $limit = Ambil($p,'<i class="fas fa-exclamation-triangle"></i> ',' Please come back in tomorrow.',1);
         echo msg(4,$limit).n;die;
     }
+    en:
     time:
     tim(120);
+    
 }
