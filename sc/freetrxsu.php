@@ -1,6 +1,6 @@
 <?php
 define('host',['Freetrx','freetrx.su','']);
-define('version','1.0.4');
+define('version','1.0.5');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -32,14 +32,13 @@ while(true){
     $p  = post(web."/?r=TALrypwEaPW5JhDwg6b54KY3PFJrZkagaa",$data);
     $hasil = Ambil($p,'<i class="fas fa-money-bill-wave"></i> ',' <',1);
     if($p){
+        if(preg_match("/Your daily claim limit/",$p)){echo msg(4,"Daily claim limit").n;die;}
         if(preg_match("/Capcha was invalid/",$p)){echo msg(4,"Capcha was invalid!");echo rr;goto en;}
         echo n;
         echo line_at();
         echo line_tg().msg(1,"Reward").w3." : ".p.$hasil." Faucetpay.io".n;
         echo line_tg().msg(3,"Apikey").w3." : ".p.Api_Bal().n;
         echo line_bw();
-    }else{
-        if(preg_match("/Your daily claim limit/",$p)){echo msg(4,"Daily claim limit").n;die;}
     }
     en:
     time:
