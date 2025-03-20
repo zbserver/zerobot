@@ -1,6 +1,6 @@
 <?php
 define('host',['TronWatch','tron.watch','']);
-define('version','1.0.2');
+define('version','1.0.3');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -64,6 +64,13 @@ while(true){
             echo line_tg().msg(1,"Claim Today").panah.p.$r["c"].o." | ".p."Apikey ".panah.p.Api_Bal().n;
             echo line_bw();
         tim(5);
+    }elseif($r['status'] == 500){
+        $m =strip_tags($r['message']);
+        $rd= Ambil($m,"Error: FaucetPay failed to send reward - "," for this",1);
+        echo line_at();
+        echo line_tg().msg(4,$rd).n;
+        echo line_bw();
+        die;
     }
 }
 Ads:
