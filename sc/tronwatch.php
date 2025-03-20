@@ -1,6 +1,6 @@
 <?php
 define('host',['TronWatch','tron.watch','']);
-define('version','1.0.0');
+define('version','1.0.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -116,7 +116,6 @@ while(true){
         $csrf = Ambil($r,'name="csrf_token" value="','">',1);
         $data = "claim=1&video_id=$video_id&csrf_token=$csrf&captchaToken=$cap&cf-turnstile-response=$cap";
         $r= json_decode(post(web."/claim?=claimForm",$data),1);
-        print_r($r);echo n;
         if($r['status'] == 200){
             $m = strip_tags($r['message']);
             $rd= Ambil($m,"You successfully claimed your reward of ","!",1);
@@ -125,6 +124,5 @@ while(true){
             echo line_tg().msg(3,"Apikey").panah.p.Api_Bal().n;
             echo line_bw();
         }
-        die;
     }
 }
