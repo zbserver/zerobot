@@ -57,7 +57,7 @@ while(true){
     $r = json_decode(post(web."/faucet",$data),1);
     if($r['status'] == 200){
             $m = strip_tags($r['message']);
-            $rd= Ambil($m,"Success: Claimed"," successfully!",1);
+            $rd= Ambil($m,"Success: Claimed "," successfully!",1);
             $r = Faucet();
             echo line_at();
             echo line_tg().msg(1,"Reward     ").panah.p.$rd.n;
