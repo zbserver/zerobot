@@ -1,6 +1,6 @@
 <?php
 define('host',['TronWatch','tron.watch','']);
-define('version','1.0.1');
+define('version','1.0.2');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -57,7 +57,7 @@ while(true){
     $r = json_decode(post(web."/faucet",$data),1);
     if($r['status'] == 200){
             $m = strip_tags($r['message']);
-            $rd= Ambil($m,"Success: Claimed","successfully!",1);
+            $rd= Ambil($m,"Success: Claimed"," successfully!",1);
             $r = Faucet();
             echo line_at();
             echo line_tg().msg(1,"Reward     ").panah.p.$rd.n;
@@ -72,6 +72,13 @@ while(true){
     $ptc_id    = Ambil($r,'data-ptc-id="','"',1);
     $data_timer= Ambil($r,'data-timer="','"',1);
     $data_url  = Ambil($r,'data-url="','"',1);
+    $data_reward = Ambil($r,'data-reward="','"',1);
+    if($data_reward < "0.00010000"){
+        echo line_at();
+        echo line_tg().msg(4,"Other ptc rewards small direct faucet").n;
+        echo line_bw();
+        goto Faucet;
+    }
     get($data_url);
     tim($data_timer);
     $cap = Turnstile($r,web."/ptc");
