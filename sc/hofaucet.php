@@ -23,7 +23,7 @@ $r = get(web.host[2]);
 $cp = ["banana","cherry","grape","'orange","chair","table","bulb","book","car"];
 $c = $cp[rand(0,7)];
 $t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
-$d = "wallet=$Email&csrf_token_name=$t&captcha_response=$c";
+$d = "wallet=$Email&csrf_token_name=$t";
 post(web."/auth/login",$d);
 echo msg(1,"Apikey").w3." : ".p.Api_Bal().n;
 echo " ".line();
