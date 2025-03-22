@@ -317,9 +317,9 @@ Function MenuX(){
     echo a." │".NoLi(6,"Litecoinline")."       ".a."│".p." Yes ".a."│".p." bit.ly/3Ffweol".a."         │".n;
     echo a." │".NoLi(7,"Freetrxsu")."          ".a."│".p." Yes ".a."│".p."               ".a."         │".n;
     echo a." │".NoLi(8,"Allcoinfaucet")."      ".a."│".p." Yes ".a."│".p."               ".a."         │".n;
-    echo a." │".NoLi(9,"Ourcoincash")."       ".a."│".w3." No  ".a."│".p." bit.ly/3DtRDtj".a."         │".n;
+    echo a." │".NoLi(9,"Ourcoincash")."        ".a."│".w3." No  ".a."│".p." bit.ly/3DtRDtj".a."         │".n;
     echo a." │".NoLi(10,"Tronwatch")."         ".a."│".p." Yes ".a."│".p." bit.ly/4iDixOn".a."         │".n;
-    echo a." │".NoLi(11,"Earncryptowrs")."     ".a."│".p." No  ".a."│".p." bit.ly/4iDixOn".a."         │".n;
+    echo a." │".NoLi(11,"Earncryptowrs")."     ".a."│".p." No  ".a."│".p." bit.ly/4hAjgz0".a."         │".n;
     echo a." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(w3." Input".panah.p);
