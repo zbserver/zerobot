@@ -1,40 +1,26 @@
 <?php
 define('host',['Earncryptowrs','earncryptowrs.in','']);
-define('version','1.0.0');
+define('version','1.0.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
 Del_Cok();
-Function h(){
+Function h($data = 0){
     $h[] = "Host: ".host[1];
-    $h[] = "x-requested-with: XMLHttpRequest";
-    $h[] = "accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7";
-    $h[] = "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7";
-    $h[] = "cookie: ".file_get_contents(Data.cok);
-    $h[] = 'sec-ch-ua: "Not A(Brand";v="8", "Chromium";v="132"';
-    $h[] = 'sec-ch-ua-arch: ""';
-    $h[] = 'sec-ch-ua-bitness: ""';
-    $h[] = 'sec-ch-ua-full-version: "132.0.6961.0"';
-    $h[] = 'sec-ch-ua-full-version-list: "Not A(Brand";v="8.0.0.0", "Chromium";v="132.0.6961.0"';
-    $h[] = 'sec-ch-ua-mobile: ?1';
-    $h[] = 'sec-ch-ua-model: "SM-A057F"';
-    $h[] = 'sec-ch-ua-platform: "Android"';
-    $h[] = 'sec-fetch-site: same-origin';
-    $h[] = 'upgrade-insecure-requests: 1';
-    $h[] = "user-agent: ".file_get_contents(Data.uag);
-    $h[] = "x-requested-with: XMLHttpRequest";
+    if($data)$h[] = "Content-Length: ".strlen($data);
+    $h[] = "Cookie: ".file_get_contents(Data.cok);
+    $h[] = "User-Agent: ".file_get_contents(Data.uag);
     return $h;
 }
 
 Function dashboard(){
-    $r=get(web."/app/dashboard");
-    if(preg_match("/Dashboard | Earncryptowrs.in/",$r)){
-        echo "  login success";sleep(1);echo rr;
-    }else{
-        echo msg(4,"login failed");die;
+    $r=get(web."/app/referrals");
+    $ref = Ambil($r,'?r=','"',1);
+    if(!$ref){
+        Del_Cok();Del();SaveCokUa();
     }  
 }
-savecokua();
+SaveCokUa();
 cl();
 ban();
 dashboard();
@@ -126,6 +112,7 @@ if($pilih == 1){
 }
 Function Claim($coin){
     a:
+    dashboard();
     $r = get(web."/app/faucet?currency=$coin");
     if(preg_match('/Shortlink in order to claim from the faucet!/',$r)){
         $err = Ambil($r,"html: '","'",1);
@@ -160,6 +147,9 @@ Function Claim($coin){
 	if(preg_match("/1 Shortlink must be/",$r)){
 	    echo msg(4,"1 Shortlink must be completed to continue again!").n;die;
 	}
+    if(preg_match("/sufficient found/",$r)){
+        Echo msg(4,"Sufficient Found").n;die;
+    }
 }
 while(true){
     claim($coin);
