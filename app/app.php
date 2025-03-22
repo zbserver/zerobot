@@ -319,7 +319,8 @@ Function MenuX(){
     echo a." │".NoLi(8,"Allcoinfaucet")."      ".a."│".p." Yes ".a."│".p."               ".a."         │".n;
     echo a." │".NoLi(9,"Ourcoincash")."        ".a."│".w3." No  ".a."│".p." bit.ly/3DtRDtj".a."         │".n;
     echo a." │".NoLi(10,"Tronwatch")."         ".a."│".p." Yes ".a."│".p." bit.ly/4iDixOn".a."         │".n;
-    echo a." │".NoLi(11,"Earncryptowrs")."     ".a."│".p." No  ".a."│".p." bit.ly/4hAjgz0".a."         │".n;
+    echo a." │".NoLi(11,"Earncryptowrs")."     ".a."│".w3." No  ".a."│".p." bit.ly/4hAjgz0".a."         │".n;
+    echo a." │".NoLi(12,"Autofaucet")."        ".a."│".w3." No  ".a."│".p." bit.ly/4iwKEzg".a."         │".n;
     echo a." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(w3." Input".panah.p);
@@ -344,9 +345,11 @@ Function MenuX(){
     }elseif($pilih == 9){
         eval(OpenSC("sc/ourcoincashnoapi.php"));
     }elseif($pilih == 10){
-        eval(OpenSC("sc/ourcoincashnoapi.php"));
+        eval(OpenSC("sc/tronwatch.php"));
     }elseif($pilih == 11){
         eval(OpenSC("sc/earncryptowrs.php"));
+    }elseif($pilih == 12){
+        eval(OpenSC("sc/autofaucettop.php"));
     }else{
         print k." Bad Number".n;sleep(3);goto Menu;
     }
