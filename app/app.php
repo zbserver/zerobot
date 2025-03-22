@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.1.2",
+app_version = "1.1.3",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -320,7 +320,7 @@ Function MenuX(){
     echo a." │".NoLi(9,"Allcoinfaucet")."      ".a."│".p." Yes ".a."│".p."               ".a."         │".n;
     echo a." │".NoLi(10,"Ourcoincash")."       ".a."│".w3." No  ".a."│".p." bit.ly/3DtRDtj".a."         │".n;
     echo a." │".NoLi(11,"Tronwatch")."         ".a."│".p." Yes ".a."│".p." bit.ly/4iDixOn".a."         │".n;
-    echo a." │".NoLi(11,"Earncryptowrs")."     ".a."│".p." Yes ".a."│".p." bit.ly/4iDixOn".a."         │".n;
+    echo a." │".NoLi(12,"Earncryptowrs")."     ".a."│".p." No  ".a."│".p." bit.ly/4iDixOn".a."         │".n;
     echo a." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(w3." Input".panah.p);
