@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 define('host',['Autofaucet','autofaucet.top','']);
-define('version','1.0.2');
+define('version','1.0.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -51,6 +51,7 @@ if($pilih == 1){
 }
 Function Claim($coin){
     a:
+    dashboard();
     $r = get(web."/app/faucet?currency=$coin");
     if(preg_match('/Shortlink in order to claim from the faucet!/',$r)){
         $err = Ambil($r,"html: '","'",1);
