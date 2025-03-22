@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 define('host',['Autofaucet','autofaucet.top','']);
-define('version','1.0.1');
+define('version','1.0.2');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -17,7 +17,7 @@ Function dashboard(){
     $r=get(web."/app/referrals");
     $ref = Ambil($r,'?r=','"',1);
     if(!$ref){
-        Del_Cok();Del();SaveCokUa();
+        Del_Cok();Del();cl();ban();SaveCokUa();
     }  
 }
 SaveCokUa();
