@@ -16,14 +16,11 @@ Function h($data = 0){
 Function dashboard(){
     $r=get(web."/app/referrals");
     $ref = Ambil($r,'?r=','"',1);
-    
     if(!$ref){
-        echo msg(4,"login failed");Del_Cok();Del();die;
-    }else{
-        echo p." Login success";sleep(1);echo rr;
-    }     
+        Del_Cok();Del();SaveCokUa();
+    }  
 }
-savecokua();
+SaveCokUa();
 cl();
 ban();
 dashboard();
