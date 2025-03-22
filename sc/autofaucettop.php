@@ -1,26 +1,27 @@
 <?php
 error_reporting(0);
 define('host',['Autofaucet','autofaucet.top','']);
-define('version','1.0.0');
+define('version','1.0.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
 Del_Cok();
-Function h(){
+Function h($data = 0){
     $h[] = "Host: ".host[1];
-    $h[] = "accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7";
-    $h[] = "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7";
+    if($data)$h[] ="Content-Length: ".strlen($data);
     $h[] = "cookie: ".file_get_contents(Data.cok);
     $h[] = "user-agent: ".file_get_contents(Data.uag);
     return $h;
 }
 Function dashboard(){
-    $r=get(web."/app/dashboard");
-    if(preg_match("/Dashboard | Autofaucet/",$r)){
-        echo p."  login success";sleep(1);echo rr;
-    }else{
+    $r=get(web."/app/referrals");
+    $ref = Ambil($r,'?r=','"',1);
+    
+    if(!$ref){
         echo msg(4,"login failed");Del_Cok();Del();die;
-    }  
+    }else{
+        echo p." Login success";sleep(1);echo rr;
+    }     
 }
 savecokua();
 cl();
