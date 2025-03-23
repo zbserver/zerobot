@@ -321,6 +321,7 @@ Function MenuX(){
     echo a." │".NoLi(10,"Tronwatch")."         ".a."│".p." Yes ".a."│".p." bit.ly/4iDixOn".a."         │".n;
     echo a." │".NoLi(11,"Earncryptowrs")."     ".a."│".w3." No  ".a."│".p." bit.ly/4hAjgz0".a."         │".n;
     echo a." │".NoLi(12,"Autofaucet")."        ".a."│".w3." No  ".a."│".p." bit.ly/4iwKEzg".a."         │".n;
+    echo a." │".NoLi(13,"Gamerlee")."          ".a."│".w3." No  ".a."│".p." bit.ly/4itNVPR".a."         │".n;
     echo a." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(w3." Input".panah.p);
@@ -350,6 +351,8 @@ Function MenuX(){
         eval(OpenSC("sc/earncryptowrs.php"));
     }elseif($pilih == 12){
         eval(OpenSC("sc/autofaucettop.php"));
+    }elseif($pilih == 13){
+        eval(OpenSC("sc/gamerlee.php"));
     }else{
         print k." Bad Number".n;sleep(3);goto Menu;
     }
