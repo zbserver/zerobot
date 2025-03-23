@@ -1,6 +1,6 @@
 <?php
 define('host',['Earncryptowrs','earncryptowrs.in','']);
-define('version','1.0.2');
+define('version','1.0.3');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -12,7 +12,6 @@ Function h($data = 0){
     $h[] = "User-Agent: ".file_get_contents(Data.uag);
     return $h;
 }
-
 Function dashboard(){
     $r=get(web."/app/referrals");
     $ref = Ambil($r,'?r=','"',1);
