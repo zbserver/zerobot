@@ -321,7 +321,7 @@ Function MenuX(){
     echo a." │".NoLi(10,"Tronwatch")."         ".a."│".p." Yes ".a."│".p." bit.ly/4iDixOn".a."         │".n;
     echo a." │".NoLi(11,"Earncryptowrs")."     ".a."│".w3." No  ".a."│".p." bit.ly/4hAjgz0".a."         │".n;
     echo a." │".NoLi(12,"Autofaucet")."        ".a."│".w3." No  ".a."│".p." bit.ly/4iwKEzg".a."         │".n;
-    echo a." │".NoLi(13,"Gamerlee")."          ".a."│".w3." No  ".a."│".p." bit.ly/4itNVPR".a."         │".n;
+    echo a." │".NoLi(13,"Gamerlee")."          ".a."│".w3." No  ".a."│".p." gamerlee.com/?r=1599".a."   │".n;
     echo a." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(w3." Input".panah.p);
