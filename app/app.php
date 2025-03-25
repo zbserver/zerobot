@@ -1,4 +1,4 @@
-<?php
+i<?php
 const
 app_version = "1.1.5",
 Telegram    ="t.me/official_zerobot";
@@ -431,7 +431,7 @@ Function MenuX(){
         print k." Bad Number".n;sleep(3);goto Menu;
     }
 }
-//MenuX();
+MenuX();
 Function atb_3($r){
     $a1 = AntiBot($r,1);
     $a2 = AntiBot($r,2);
