@@ -428,7 +428,7 @@ Function MenuX(){
         print k." Bad Number".n;sleep(3);goto Menu;
     }
 }
-//MenuX();
+MenuX();
 Function atb_3($r){
     $a1 = AntiBot($r,1);
     $a2 = AntiBot($r,2);
