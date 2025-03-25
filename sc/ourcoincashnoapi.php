@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 define('host',['OurcoincashFREE','ourcoincash.xyz','']);
-define('version','1.0.1');
+define('version','1.0.2');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -53,12 +53,9 @@ while(true){
     $post = post(web."/faucet/verify",$data);
     if(preg_match("/Just a moment/",$post)){
         echo msg(4,"Cloudflare!").n;sleep(1);del();del_cok();die;
-    }
-    
-    if(preg_match("/Invalid Anti-Bot Links/",$post)){
+    }elseif(preg_match("/Invalid Anti-Bot Links/",$post)){
         echo Error("Invalid Antibot! ").p."[".k.$a = $a + 1 .p."]";sleep(2);echo r;goto en;
-        }
-    if(preg_match("/title: 'Good job!'/",$post)){
+    }elseif(preg_match("/title: 'Good job!'/",$post)){
         $r = balance(); 
         $hasil = Ambil($post,"text: '"," coins has been added to your balance",1);
         echo line_at();
