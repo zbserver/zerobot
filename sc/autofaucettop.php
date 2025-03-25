@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 define('host',['Autofaucet','autofaucet.top','']);
-define('version','1.0.2');
+define('version','1.0.3');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -19,12 +19,14 @@ Function dashboard(){
     if(!$ref){
         Del_Cok();Del();cl();ban();SaveCokUa();
     }  
+
 }
 SaveCokUa();
 cl();
 ban();
 dashboard();
 Menu_Coin:
+
 echo line_at();
 echo line_tg().p.str_pad("Menu Coin", 20, " ", STR_PAD_BOTH).n;
 echo line_bw();
@@ -53,6 +55,9 @@ Function Claim($coin){
     a:
     dashboard();
     $r = get(web."/app/faucet?currency=$coin");
+    $l = Ambil($r,'<h3 class="mb-1">','</h3>',4);
+    $limit=Ambil_1($l,"/80");
+    if($limit == 0){echo msg(4,"Limit claim").h." $coin".n;die;}
     if(preg_match('/Shortlink in order to claim from the faucet!/',$r)){
         $err = Ambil($r,"html: '","'",1);
 		echo msg(4,$err).n;
@@ -61,6 +66,7 @@ Function Claim($coin){
 		
     $ictok = Ambil($r,"name='_iconcaptcha-token' value='","'",1);
     $icon = iconBypass($ictok);
+
     if(!$icon){
         echo rr;
         echo msg(4,"Bypass Failed");
@@ -74,7 +80,6 @@ Function Claim($coin){
 	$data = array_merge($data, $icon);
 	$data = http_build_query($data);
 	$r = postt(web."/app/faucet/verify?currency=".$coin,h(), $data);
-
 	$has = Ambil($r,"title: '","',",1);
 	if($has == "Great!"){
 	    $rd = Ambil($r,"text: '"," account'",1);
@@ -84,12 +89,11 @@ Function Claim($coin){
 	    tim(10);
 	    goto a;
 	}
-	if(preg_match("/1 Shortlink must be/",$r)){
+	if(preg_match("/The faucet does not have sufficient/",$r)){
+        Echo msg(4,"Sufficient Found").h." $coin".n;die;
+    }elseif(preg_match("/Shortlink must be complete/",$r)){
 	    echo msg(4,"1 Shortlink must be completed to continue again!").n;die;
 	}
-    if(preg_match("/sufficient found/",$r)){
-        Echo msg(4,"Sufficient Found").n;die;
-    }
 }
 while(true){
     claim($coin);
