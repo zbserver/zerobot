@@ -1,4 +1,4 @@
-i<?php
+<?php
 const
 app_version = "1.1.5",
 Telegram    ="t.me/official_zerobot";
