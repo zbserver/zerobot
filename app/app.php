@@ -1,7 +1,6 @@
-
 <?php
 const
-app_version = "1.1.4",
+app_version = "1.1.5",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -33,7 +32,7 @@ define("line",p." ".str_repeat("─",50).n);
 define("panah",m." › ");
 define("w",m);
 define("w2",k);
-define("w3",k);
+define("w3",h);
 define("cpm",["","√","+","-","!"]);
 define("senttofp",p."sent to FP");
 define("ApiError","Error | 0 ".n);
@@ -124,7 +123,7 @@ Function iconBypass($token){
             "widgetId"		=> $widgetID,
             "challengeId"	=> $challengeId,
             "action"		=> "SELECTION",
-            "x"				=> 222,
+            "x"				=> 105,
             "y"				=> 28,
             "width"			=> 320,
             "token" 		=> $token,
@@ -432,7 +431,7 @@ Function MenuX(){
         print k." Bad Number".n;sleep(3);goto Menu;
     }
 }
-MenuX();
+//MenuX();
 Function atb_3($r){
     $a1 = AntiBot($r,1);
     $a2 = AntiBot($r,2);
