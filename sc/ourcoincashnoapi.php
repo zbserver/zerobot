@@ -66,8 +66,9 @@ while(true){
         echo line_tg().msg(2,"Balance").panah.p.$r["b"].n;
         echo line_tg().msg(3,"Energy ").panah.p.$r["e"].n;
         echo line_bw();
-        tim(10);
+        tim(13);
         $a = 0;
+        goto en;
     }
     en:
 }
