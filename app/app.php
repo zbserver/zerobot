@@ -1,6 +1,6 @@
 <?php
 const
-app_version = "1.1.3",
+app_version = "1.1.4",
 Telegram    ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -74,7 +74,81 @@ Function anti_bot($source){if(preg_match("/sctg/",api_url)){return antibotXev($s
 Function Api_Bal(){$r = json_decode(file_get_contents(api_url."/res.php?action=userinfo&key=".apikey),1);if(!$r["balance"]){ApiError;}return $r["balance"];}
 eval(base64_decode("RnVuY3Rpb24gUmVjYXB0Y2hhVjMoJGFuY2hvcil7CiAgICB3aGlsZSh0cnVlKXsKICAgICAgICAkciA9IGN1cmwoJGFuY2hvcixhcnJheSgpKTsKICAgICAgICAkdG9rZW4gPSBBbWJpbCgkciwnPGlucHV0IHR5cGU9ImhpZGRlbiIgaWQ9InJlY2FwdGNoYS10b2tlbiIgdmFsdWU9IicsJyI+JywxKTsKICAgICAgICAkc2l0ZWtleSA9IGV4cGxvZGUoIiYiLCRhbmNob3IpWzFdOwogICAgICAgICRjbyA9IGV4cGxvZGUoIiYiLCRhbmNob3IpWzJdOwogICAgICAgICR2ID0gZXhwbG9kZSgiJiIsJGFuY2hvcilbNF07CiAgICAgICAgJHIgPSBjdXJsKCJodHRwczovL3d3dy5nb29nbGUuY29tL3JlY2FwdGNoYS9hcGkyL3JlbG9hZD8iLiRzaXRla2V5LGFycmF5KCksIiR2JnJlYXNvbj1xJmM9JHRva2VuJiR2JiRjbyIpOwogICAgICAgICRyZXMgPSBleHBsb2RlKCciJyxleHBsb2RlKCdbInJyZXNwIiwiJywkcilbMV0pWzBdOwogICAgICAgIGlmKCRyZXMpe3JldHVybiAkcmVzO30KICAgIH0KfQ=="));
 eval(base64_decode("RnVuY3Rpb24gT3BlblNDKCRmaWxlbmFtZSl7CiAgICAkc2VydmVyID0gJF9TRVJWRVJbJ1RNUCddOwogICAgaWYoISRzZXJ2ZXIpeyRzZXJ2ZXIgPSAkX1NFUlZFUlsnVE1QRElSJ107fQogICAgaWYoIWlzX2Rpcigkc2VydmVyLiIvemVyb2JvdCIpKXtzeXN0ZW0oIm1rZGlyICIuJHNlcnZlci4iL3plcm9ib3QiKTt9CiAgICBpZihmaWxlX2V4aXN0cygkc2VydmVyLiIvemVyb2JvdC90bXAudG1wIikpe3VubGluaygkc2VydmVyLiIvemVyb2JvdC90bXAudG1wIik7fQogICAgZmlsZV9wdXRfY29udGVudHMoJHNlcnZlci4iL3plcm9ib3QvdG1wLnRtcCIsZmlsZV9nZXRfY29udGVudHMoYmFzZTY0X2RlY29kZShleGVjdXRlKS4kZmlsZW5hbWUpKTsKICAgIHJlcXVpcmUoJHNlcnZlci4iL3plcm9ib3QvdG1wLnRtcCIpOwogICAgdW5saW5rKCRzZXJ2ZXIuIi96ZXJvYm90L3RtcC50bXAiKTsKfQ=="));
-eval(base64_decode("RnVuY3Rpb24gd2lkZ2V0SWQoKSB7CgkkdXVpZCA9ICcnOwoJZm9yICgkbiA9IDA7ICRuIDwgMzI7ICRuKyspIHsKCQlpZiAoJG4gPT0gOCB8fCAkbiA9PSAxMiB8fCAkbiA9PSAxNiB8fCAkbiA9PSAyMCkgewoJCQkJJHV1aWQgLj0gJy0nOwoJCX0KCQkkZSA9IG10X3JhbmQoMCwgMTUpOwoJCWlmICgkbiA9PSAxMikgewoJCQkkZSA9IDQ7CgkJfSBlbHNlaWYgKCRuID09IDE2KSB7CgkJCSRlID0gKCRlICYgMHgzKSB8IDB4ODsKCQl9CgkJJHV1aWQgLj0gZGVjaGV4KCRlKTsKCX0KCXJldHVybiAkdXVpZDsKfQpGdW5jdGlvbiBpY29uQnlwYXNzKCR0b2tlbil7CiAgICAkaWNvbl9oZWFkZXIgPSBoKCk7CiAgICAkaWNvbl9oZWFkZXJbXSA9ICJvcmlnaW46ICIuaG9zdFsxXTsKICAgICRpY29uX2hlYWRlcltdID0gIngtaWNvbmNhcHRjaGEtdG9rZW46ICIuJHRva2VuOwogICAgJGljb25faGVhZGVyW10gPSAieC1yZXF1ZXN0ZWQtd2l0aDogWE1MSHR0cFJlcXVlc3QiOwogICAgCiAgICAkdGltZXN0YW1wID0gcm91bmQobWljcm90aW1lKHRydWUpICogMTAwMCk7CiAgICAkaW5pdFRpbWVzdGFtcCA9ICR0aW1lc3RhbXAgLSAyMDAwOwogICAgJHdpZGdldElEID0gd2lkZ2V0SWQoKTsKICAgIAogICAgJGRhdGEgPSBbInBheWxvYWQiID0+IAogICAgICAgIGJhc2U2NF9lbmNvZGUoanNvbl9lbmNvZGUoWwogICAgICAgICAgICAid2lkZ2V0SWQiCT0+ICR3aWRnZXRJRCwKICAgICAgICAgICAgImFjdGlvbiIgCT0+ICJMT0FEIiwKICAgICAgICAgICAgInRoZW1lIiAJPT4gImxpZ2h0IiwKICAgICAgICAgICAgInRva2VuIiAJPT4gJHRva2VuLAogICAgICAgICAgICAidGltZXN0YW1wIgk9PiAkdGltZXN0YW1wLAogICAgICAgICAgICAiaW5pdFRpbWVzdGFtcCIJPT4gJGluaXRUaW1lc3RhbXAKICAgICAgICBdKSkKICAgIF07CiAgICBzbGVlcCgxKTsKICAgIGVjaG8gcnI7CiAgICBlY2hvIHczLiIgWyIucC4iMSIudzMuIl0gIi5wLiJCeXBhc3MuLi4gICAiOwogICAgJHIgPSBqc29uX2RlY29kZShiYXNlNjRfZGVjb2RlKHBvc3R0KHdlYi4iL2ljYXB0Y2hhL3JlcSIsJGljb25faGVhZGVyLCRkYXRhKSksMSk7CiAgICAkYmFzZTY0SW1hZ2UgPSAkclsiY2hhbGxlbmdlIl07CiAgICAkY2hhbGxlbmdlSWQgPSAkclsiaWRlbnRpZmllciJdOwogICAgJHRpbWVzdGFtcCA9IHJvdW5kKG1pY3JvdGltZSh0cnVlKSAqIDEwMDApOwogICAgJGluaXRUaW1lc3RhbXAgPSAkdGltZXN0YW1wIC0gMjAwMDsKICAgICRkYXRhID0gWyJwYXlsb2FkIiA9PiAKICAgICAgICBiYXNlNjRfZW5jb2RlKGpzb25fZW5jb2RlKFsKICAgICAgICAgICAgIndpZGdldElkIgkJPT4gJHdpZGdldElELAogICAgICAgICAgICAiY2hhbGxlbmdlSWQiCT0+ICRjaGFsbGVuZ2VJZCwKICAgICAgICAgICAgImFjdGlvbiIJCT0+ICJTRUxFQ1RJT04iLAogICAgICAgICAgICAieCIJCQkJPT4gMjIyLAogICAgICAgICAgICAieSIJCQkJPT4gMjgsCiAgICAgICAgICAgICJ3aWR0aCIJCQk9PiAzMjAsCiAgICAgICAgICAgICJ0b2tlbiIgCQk9PiAkdG9rZW4sCiAgICAgICAgICAgICJ0aW1lc3RhbXAiCQk9PiAkdGltZXN0YW1wLAogICAgICAgICAgICAiaW5pdFRpbWVzdGFtcCIJPT4gJGluaXRUaW1lc3RhbXAKICAgICAgICBdKSkKICAgIF07CiAgICBzbGVlcCgxKTsKICAgIGVjaG8gcnI7CiAgICBlY2hvIHczLiIgWyIucC4iMiIudzMuIl0gIi5wLiJCeXBhc3MuLi4gICAiOwogICAgJHIgPSBqc29uX2RlY29kZShiYXNlNjRfZGVjb2RlKHBvc3R0KHdlYi4iL2ljYXB0Y2hhL3JlcSIsJGljb25faGVhZGVyLCAkZGF0YSkpLDEpOwogICAgaWYoISRyWydjb21wbGV0ZWQnXSlyZXR1cm47CiAgICBzbGVlcCgxKTsKICAgIGVjaG8gcnI7CiAgICBlY2hvIHczLiIgWyIucC4iMyIudzMuIl0gIi5wLiJCeXBhc3MuLi4gICAiOwogICAgZWNobyBycjsKICAgICRkYXRhID0gW107CiAgICAkZGF0YVsnY2FwdGNoYSddID0gImljYXB0Y2hhIjsKICAgICRkYXRhWydfaWNvbmNhcHRjaGEtdG9rZW4nXT0kdG9rZW47CiAgICAkZGF0YVsnaWMtcnEnXT0xOwogICAgJGRhdGFbJ2ljLXdpZCddID0gJHdpZGdldElEOwogICAgJGRhdGFbJ2ljLWNpZCddID0gJGNoYWxsZW5nZUlkOwogICAgJGRhdGFbJ2ljLWhwJ10gPSAnJzsKICAgIHJldHVybiAkZGF0YTsKfQ=="));
+Function widgetId() {
+	$uuid = '';
+	for ($n = 0; $n < 32; $n++) {
+		if ($n == 8 || $n == 12 || $n == 16 || $n == 20) {
+				$uuid .= '-';
+		}
+		$e = mt_rand(0, 15);
+		if ($n == 12) {
+			$e = 4;
+		} elseif ($n == 16) {
+			$e = ($e & 0x3) | 0x8;
+		}
+		$uuid .= dechex($e);
+	}
+	return $uuid;
+}
+Function iconBypass($token){
+    $icon_header = h();
+    $icon_header[] = "origin: ".host[1];
+    $icon_header[] = "x-iconcaptcha-token: ".$token;
+    $icon_header[] = "x-requested-with: XMLHttpRequest";
+    
+    $timestamp = round(microtime(true) * 1000);
+    $initTimestamp = $timestamp - 2000;
+    $widgetID = widgetId();
+    
+    $data = ["payload" => 
+        base64_encode(json_encode([
+            "widgetId"	=> $widgetID,
+            "action" 	=> "LOAD",
+            "theme" 	=> "light",
+            "token" 	=> $token,
+            "timestamp"	=> $timestamp,
+            "initTimestamp"	=> $initTimestamp
+        ]))
+    ];
+    sleep(1);
+    echo rr;
+    echo w3." [".p."1".w3."] ".p."Bypass...   ";
+    $r = json_decode(base64_decode(postt(web."/icaptcha/req",$icon_header,$data)),1);
+    $base64Image = $r["challenge"];
+    $challengeId = $r["identifier"];
+    $timestamp = round(microtime(true) * 1000);
+    $initTimestamp = $timestamp - 2000;
+    $data = ["payload" => 
+        base64_encode(json_encode([
+            "widgetId"		=> $widgetID,
+            "challengeId"	=> $challengeId,
+            "action"		=> "SELECTION",
+            "x"				=> 222,
+            "y"				=> 28,
+            "width"			=> 320,
+            "token" 		=> $token,
+            "timestamp"		=> $timestamp,
+            "initTimestamp"	=> $initTimestamp
+        ]))
+    ];
+    sleep(1);
+    echo rr;
+    echo w3." [".p."2".w3."] ".p."Bypass...   ";
+    $r = json_decode(base64_decode(postt(web."/icaptcha/req",$icon_header, $data)),1);
+    if(!$r['completed'])return;
+    sleep(1);
+    echo rr;
+    echo w3." [".p."3".w3."] ".p."Bypass...   ";
+    sleep(1);
+    echo rr;
+    $data['captcha'] = "icaptcha";
+    $data['_iconcaptcha-token']=$token;
+    $data['ic-rq']=1;
+    $data['ic-wid'] = $widgetID;
+    $data['ic-cid'] = $challengeId;
+    $data['ic-hp'] = '';
+    return $data;
+}
 Function Captcha($source,$pageurl){
     if(preg_match('/data-sitekey="/',$source)){
         $sitekey= Ambil($source,'data-sitekey="','"',1);
@@ -133,7 +207,7 @@ Function ban($menu=null){
     cl();
     if($api){
         echo line_at();
-        echo line_tg().p.str_pad($api->city.', '.$api->regionName.', '.$api->country, 57, " ", STR_PAD_BOTH).n;
+        echo line_tg().p.str_pad($api->city.', '.$api->regionName.', '.$api->country, 54, " ", STR_PAD_BOTH).n;
         echo line_bw();
         echo line_at();
     }
@@ -321,7 +395,6 @@ Function MenuX(){
     echo a." │".NoLi(10,"Tronwatch")."         ".a."│".p." Yes ".a."│".p." bit.ly/4iDixOn".a."         │".n;
     echo a." │".NoLi(11,"Earncryptowrs")."     ".a."│".w3." No  ".a."│".p." bit.ly/4hAjgz0".a."         │".n;
     echo a." │".NoLi(12,"Autofaucet")."        ".a."│".w3." No  ".a."│".p." bit.ly/4iwKEzg".a."         │".n;
-    echo a." │".NoLi(13,"Gamerlee")."          ".a."│".w3." No  ".a."│".p." gamerlee.com/?r=1599".a."   │".n;
     echo a." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(w3." Input".panah.p);
@@ -351,13 +424,11 @@ Function MenuX(){
         eval(OpenSC("sc/earncryptowrs.php"));
     }elseif($pilih == 12){
         eval(OpenSC("sc/autofaucettop.php"));
-    }elseif($pilih == 13){
-        eval(OpenSC("sc/gamerlee.php"));
     }else{
         print k." Bad Number".n;sleep(3);goto Menu;
     }
 }
-MenuX();
+//MenuX();
 Function atb_3($r){
     $a1 = AntiBot($r,1);
     $a2 = AntiBot($r,2);
