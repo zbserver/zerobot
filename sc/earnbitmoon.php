@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 define('host',['Earnbitmoon','earnbitmoon.club','']);
 define('version','1.0.0');
 define('cok','cookie.'.host[0]);
