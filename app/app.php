@@ -159,6 +159,8 @@ Function MenuX(){
         eval(OpenSC("sc/litecoinline.php"));
     }elseif($pilih == 999){
         eval(OpenSC("sc/whoopyrewards.php"));
+    }elseif($pilih == 888){
+        eval(OpenSC("sc/earnbitmoon.php"));
     }elseif($pilih == 7){
         eval(OpenSC("sc/freetrxsu.php"));
     }elseif($pilih == 8){
