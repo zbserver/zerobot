@@ -16,9 +16,8 @@ Function atb_3($r){
     return "antibotlinks=+$a3+$a1+$a2";
 }
 Function ban($menu=null){
-
+    cl();
     echo line_at();
-    
     if($menu == null){
         echo line_tg().p." Script   : ".p.host[0].p." [".w3."Ver: ".version.p."]".n;
     }elseif($menu == 1){}
@@ -69,15 +68,13 @@ Function load(){
 }
 Function bps_cap(){
     print rr;
-    $delay =1;
     echo p."   Bypass Captcha ".w3."√";
-    sleep($delay);
+    sleep(2);
     print rr;}
 Function bps_anbot(){
     print rr;
-    $delay =1; 
     echo p."   Bypass Antibot ".w3."√";
-    sleep($delay);
+    sleep(2);
     print rr;
 }
 Function cl(){if( PHP_OS_FAMILY == "Linux" ){system('clear');}else{pclose(popen('cls','w'));}}
