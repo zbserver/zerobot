@@ -175,7 +175,9 @@ Function MenuX(){
         eval(OpenSC("sc/linksfly.php"));
     }elseif($pilih == 14){
         eval(OpenSC("sc/autofaucettop.php"));
-    }else{
+    }elseif($pilih == 888){
+        eval(OpenSC("sc/earnbitmoon.php"));
+	}else{
         print k." Bad Number".n;sleep(3);goto Menu;
     }
 }
