@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 define('host',['Linksfly','linksfly.link','']);
 define('version','1.0.0');
 define('cok','cookie.'.host[0]);
@@ -121,7 +120,7 @@ Function Claim($coin){
 		}
 		
     $ictok = Ambil($r,"name='_iconcaptcha-token' value='","'",1);
-    $icon = iconBypass($ictok);
+    $icon = _cIconX($ictok);
     if(!$icon){
         echo rr;
         echo msg(4,"Bypass Failed");
