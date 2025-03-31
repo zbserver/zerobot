@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 define('host',['Autofaucet','autofaucet.top','']);
-define('version','1.0.4');
+define('version','1.0.5');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -9,8 +9,8 @@ Del_Cok();
 Function h($data = 0){
     $h[] = "Host: ".host[1];
     if($data)$h[] ="Content-Length: ".strlen($data);
-    $h[] = "cookie: ".file_get_contents(Data.cok);
-    $h[] = "user-agent: ".file_get_contents(Data.uag);
+	$h[] = "User-Agent: ".file_get_contents(Data.uag);
+    $h[] = "Cookie: ".file_get_contents(Data.cok);
     return $h;
 }
 Function dashboard(){
