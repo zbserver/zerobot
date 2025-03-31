@@ -9,8 +9,8 @@ Del_Cok();
 Function h($data = 0){
     $h[] = "Host: ".host[1];
     if($data)$h[] = "Content-Length: ".strlen($data);
-    $h[] = "Cookie: ".file_get_contents(Data.cok);
     $h[] = "User-Agent: ".file_get_contents(Data.uag);
+	$h[] = "Cookie: ".file_get_contents(Data.cok);
     return $h;
 }
 Function dashboard(){
