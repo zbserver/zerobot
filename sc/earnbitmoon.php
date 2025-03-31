@@ -5,9 +5,6 @@ define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
 Del_Cok();
-function x(){return rand(80,200);}
-function y(){return rand(26,35);}
-function w(){return "314.678";}
 Function h($data = 0){
     $h[] = "Host: ".host[1];
     $h[] = "X-Requested-With: XMLHttpRequest";
