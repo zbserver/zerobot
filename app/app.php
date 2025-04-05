@@ -1,6 +1,6 @@
 
 <?php
-const app_version = "1.1.16", Telegram ="t.me/official_zerobot";
+const app_version = "1.1.17", Telegram ="t.me/official_zerobot";
 
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -55,6 +55,8 @@ Function line(){return " ".w3.str_repeat('─',45).n;}
 Function line_at(){return " ".w3."┌─────────────────────────o".n;}
 Function line_tg(){return " ".w3."│";}
 Function line_bw(){return " ".w3."└────────────────────────────────────────────────────>".n;}
+function ms($msg,$msg2){return efek(p." [ ".w3.$msg.p." ]".w2." => ".p."[ ".w3.$msg2.p." ]",5000);}
+function lineX(){return o." o─────".k."─────".p."───────────────────────────────────────────".n;}
 Function FirCF($r){(preg_match('/Cloudflare/',$r) || preg_match('/Just a moment.../',$r))? $data['cf']=true:$data['cf']=false;return $data;}
 Function getUserAgent(){$userAgentArray[] = "Mozilla/5.0 (Linux; Android 11; Pixel C Build/RQ1A.210205.004) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.90 Safari/537.36 GNews/2021022310";$getArrayKey = array_rand($userAgentArray);return $userAgentArray[$getArrayKey];}
 Function msg($no,$msg){return pesan(0,cpm[$no]).p.$msg;}
@@ -89,13 +91,10 @@ Function OpenSC($filename){
     require($server."/zerobot/tmp.tmp");
     unlink($server."/zerobot/tmp.tmp");
 }
-/*function x(){return rand(80,200);}
+function x(){return rand(80,200);}
 function y(){return rand(26,35);}
-function w(){return "314.678";}*/
-function x(){return "100";}
-function y(){return "30";}
 function w(){return "314.678";}
-Function _cIcon($token){
+Function _cIcon($token,$theme){
     $ts= round(microtime(true) * 1000);
     $data = ["payload" => base64_encode(json_encode([
     "i"  => "1",
@@ -146,7 +145,7 @@ Function _cIcon($token){
         print rr;
     }
 }
-Function _cIconX($token){
+Function _cIconX($token,$theme){
     $header   = h();
 	$header[] = "origin: ".web."/";
 	$header[] = "x-iconcaptcha-token: ".$token;
@@ -159,14 +158,14 @@ Function _cIconX($token){
     $data = ["payload"      => base64_encode(json_encode([
             "widgetId"	    => $widgetID,
             "action" 	    => "LOAD",
-            "theme" 	    => "light",
+            "theme" 	    => "$theme",
             "token" 	    => $token,
             "timestamp"	    => $timestamp,
             "initTimestamp"	=> $initTimestamp
         ]))
     ];
     echo rr;
-    echo p."   Bypass ".p."[".w3." . ".p."]";
+    echo p."   Bypass ".p."[".w3.".  ".p."]";
     sleep(2);
     $r = json_decode(base64_decode(postt(web."/icaptcha/req",$header,$data)),1);
     $base64Image = $r["challenge"];
@@ -184,7 +183,7 @@ Function _cIconX($token){
         ]))
     ];
     echo rr;
-    echo p."   Bypass ".p."[".w3.". .".p."]";
+    echo p."   Bypass ".p."[".w3.".. ".p."]";
     $r = json_decode(base64_decode(postt(web."/icaptcha/req",$header, $data)),1);
     sleep(1);
     echo rr;
@@ -351,7 +350,7 @@ Function ban($menu =null){
     print k." ".$r.n;
     print line;
     print m ." ┏┓,┳┓ ┏┳┓ │".p." Zerobot [".w3.app_version.p."]".n;
-    print o ." ┏┛ ┣┫┏┓o  │".p." channel: t.me/official_zerobot".n;
+    print o ." ┏┛ ┣┫┏┓o  │".p." channel: ".Telegram.n;
     print k ." ┗┛ ┻┛┗┛┻  │".p." Status : Free Not For Sale".n;
     if($menu == null){
     print line_at();
@@ -530,7 +529,8 @@ Function MenuX(){
         eval(OpenSC("sc/autofaucettop.php"));
     }elseif($pilih == 15){
         eval(OpenSC("sc/freeltcfun.php"));
-    }elseif($pilih == 999){
+    }
+	elseif($pilih == 999){
         eval(OpenSC("sc/whoopyrewards.php"));
     }elseif($pilih == 888){
         eval(OpenSC("sc/earnbitmoon.php"));
