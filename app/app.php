@@ -1,5 +1,6 @@
+
 <?php
-const app_version = "1.1.15", Telegram    ="t.me/official_zerobot";
+const app_version = "1.1.16", Telegram ="t.me/official_zerobot";
 
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -88,8 +89,11 @@ Function OpenSC($filename){
     require($server."/zerobot/tmp.tmp");
     unlink($server."/zerobot/tmp.tmp");
 }
-function x(){return rand(80,200);}
+/*function x(){return rand(80,200);}
 function y(){return rand(26,35);}
+function w(){return "314.678";}*/
+function x(){return "100";}
+function y(){return "30";}
 function w(){return "314.678";}
 Function _cIcon($token){
     $ts= round(microtime(true) * 1000);
@@ -526,8 +530,7 @@ Function MenuX(){
         eval(OpenSC("sc/autofaucettop.php"));
     }elseif($pilih == 15){
         eval(OpenSC("sc/freeltcfun.php"));
-    }
-	elseif($pilih == 999){
+    }elseif($pilih == 999){
         eval(OpenSC("sc/whoopyrewards.php"));
     }elseif($pilih == 888){
         eval(OpenSC("sc/earnbitmoon.php"));
