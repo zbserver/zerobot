@@ -86,15 +86,10 @@ if($pilih == 1){
 $a = null;
 Function Claim($coin){
     a:
-    //dashboard();
     $r = get(web."/faucet/currency/$coin");
-    if(preg_match('/Shortlink in order to claim from the faucet!/',$r)){
-        $err = Ambil($r,"html: '","'",1);
-		print msg(4,$err).n;
-		exit;
-		}
-		
+    if(preg_match("/Daily claim limit/",$r)){print msg(4,"Daily Claim Limit").n;die;}
     $ictok = Ambil($r,"name='_iconcaptcha-token' value='","'",1);
+    
     $icon = _cIconX($ictok);
     if(!$icon){
         print rr;
