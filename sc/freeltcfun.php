@@ -17,7 +17,7 @@ Function dashboard(){
     if(preg_match("/logout/",$r)){
 
     }else{
-        print " Cookie Experied".n;
+        print " Cookie Experied".n;del();die();
     }
 }
 SaveCokUa();
