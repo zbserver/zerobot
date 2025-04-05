@@ -1,13 +1,10 @@
 <?php
-error_reporting(0);
 define('host',['FreeLTCFun','freeltc.fun','']);
 define('version','1.0.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
 Del_Cok();
-function ms($msg,$msg2){return efek(p." [ ".w3.$msg.p." ]".w2." => ".p."[ ".w3.$msg2.p." ]",5000);}
-function lineX(){return o." o─────".k."─────".p."───────────────────────────────────────────".n;}
 Function h($data = 0){
     $h[] = "Host: ".host[1];
     if($data)$h[] = "Content-Length: ".strlen($data);
@@ -87,13 +84,15 @@ $a = null;
 Function Claim($coin){
     a:
     $r = get(web."/faucet/currency/$coin");
-    if(preg_match("/Daily claim limit/",$r)){print msg(4,"Daily Claim Limit").n;die;}
+    if(preg_match("/Daily claim limit/",$r)){
+        print msg(4,"Daily Claim Limit").n;die;
+    }
     $ictok = Ambil($r,"name='_iconcaptcha-token' value='","'",1);
     
-    $icon = _cIconX($ictok);
+    $icon = _cIconX($ictok,"light");
     if(!$icon){
         print rr;
-        print msg(4,"Bypass failed");
+        print msg(4,"Bypass Failed");
         sleep(1);
 		print rr;
 		goto a;
@@ -109,8 +108,8 @@ Function Claim($coin){
 	$r = post(web."/faucet/verify/".$coin, $data);
 	$has = Ambil($r,"title: '","',",1);
 	if($has == "Success!"){
-	    $rd = Ambil($r,"html: '"," has been sent to your FaucetPay",1);
-	    print msg(1,$rd).p." [".k.($a=$a+1).p."]".n;
+	    $rd = Ambil($r,"html: '"," account",1);
+	    print msg(1,$rd).n;
 	    print lineX();
 	    tim(10);
 	    goto a;
@@ -120,7 +119,4 @@ Function Claim($coin){
     }elseif(preg_match("/Shortlink must be complete/",$r)){
 	    echo msg(4,"1 Shortlink must be completed to continue again!").n;die;
 	}
-}
-while(true){
-    claim($coin);
 }
