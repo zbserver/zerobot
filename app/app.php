@@ -1,5 +1,5 @@
 <?php
-const app_version = "1.1.14", Telegram    ="t.me/official_zerobot";
+const app_version = "1.1.15", Telegram    ="t.me/official_zerobot";
 
 define("a","\033[1;30m");
 define("d","\033[0m");
@@ -24,14 +24,14 @@ define("pk","\033[107m\033[1;33m");
 define("pb","\033[107m\033[1;34m");
 define("pu","\033[107m\033[1;35m");
 define("pc","\033[107m\033[1;36m");
-define("rr","\r                                         \r");
+define("rr","\r                                        \r");
 define("r","\r");
 define("n","\n");
-define("line",p." ".str_repeat("─",50).n);
+define("line",a." ".str_repeat("─",53).n);
 define("panah",m." › ");
 define("w",m);
 define("w2",k);
-define("w3",h);
+define("w3",w2);
 define("cpm",["","√","+","-","!"]);
 define("senttofp",p."sent to FP");
 define("ApiError","Error | 0 ".n);
@@ -50,10 +50,10 @@ Function multi($wallet){$tambah = readline(" ".p."Input ".$wallet." :".p);$save 
 Function get($url){return curl($url,h());}
 Function post($url,$data){return curl($url,h(),$data);}
 Function postt($url,$head=0, $data){return curl($url, $head, $data);}
-Function line(){return a.str_repeat('─',55).n;}
+Function line(){return " ".w3.str_repeat('─',45).n;}
 Function line_at(){return " ".w3."┌─────────────────────────o".n;}
 Function line_tg(){return " ".w3."│";}
-Function line_bw(){return " ".w3."└────────────────────────────────────────────────────────>".n;}
+Function line_bw(){return " ".w3."└────────────────────────────────────────────────────>".n;}
 Function FirCF($r){(preg_match('/Cloudflare/',$r) || preg_match('/Just a moment.../',$r))? $data['cf']=true:$data['cf']=false;return $data;}
 Function getUserAgent(){$userAgentArray[] = "Mozilla/5.0 (Linux; Android 11; Pixel C Build/RQ1A.210205.004) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.90 Safari/537.36 GNews/2021022310";$getArrayKey = array_rand($userAgentArray);return $userAgentArray[$getArrayKey];}
 Function msg($no,$msg){return pesan(0,cpm[$no]).p.$msg;}
@@ -63,7 +63,7 @@ Function cekapi(){return pesan(0,cpm[3])."Apikey ".panah.p.Api_Bal();}
 Function Error($hasil){return pesan(0,cpm[4]).$hasil;}
 Function reward($hasil,$left,$coin){return pesan(0,cpm[1]).c.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).n;}
 Function rewardX($hasil,$left,$coin){return pesan(0,cpm[1]).c.$hasil.o." │ ".p.$left.o." │ ".p.strtoupper($coin).o." │ ".p."Apikey: ".h.Api_Bal().n;}
-Function ipApi(){$r = json_decode(file_get_contents("http://ip-api.com/json"));if($r->status == "success")return $r;}
+Function ip(){$r = json_decode(file_get_contents("http://ip-api.com/json"));return $r;}
 Function res_api($id){$delay=7;while(true){load();$r = json_decode(file_get_contents(api_url."/res.php?key=".apikey."&action=get&id=".$id."&json=1"),1);$status = $r["status"];if($r["request"] == "CAPCHA_NOT_READY"){print rr;load();sleep($delay);print rr;continue;}if($status == 1){print rr;print bps_cap();return $r["request"];}return 0;}}
 Function anti_bot($source){if(preg_match("/sctg/",api_url)){return antibotXev($source);}if(preg_match("/multibot/",api_url)){return antibotMul($source);}}
 Function Api_Bal(){$r = json_decode(file_get_contents(api_url."/res.php?action=userinfo&key=".apikey),1);if(!$r["balance"]){ApiError;}return $r["balance"];}
@@ -162,7 +162,7 @@ Function _cIconX($token){
         ]))
     ];
     echo rr;
-    echo p."   Bypass ".p."[".w3.".  ".p."]";
+    echo p."   Bypass ".p."[".w3." . ".p."]";
     sleep(2);
     $r = json_decode(base64_decode(postt(web."/icaptcha/req",$header,$data)),1);
     $base64Image = $r["challenge"];
@@ -180,7 +180,7 @@ Function _cIconX($token){
         ]))
     ];
     echo rr;
-    echo p."   Bypass ".p."[".w3.".. ".p."]";
+    echo p."   Bypass ".p."[".w3.". .".p."]";
     $r = json_decode(base64_decode(postt(web."/icaptcha/req",$header, $data)),1);
     sleep(1);
     echo rr;
@@ -334,38 +334,68 @@ Function atb_3($r){
     $a3 = AntiBot($r,3);
     return "antibotlinks=+$a3+$a1+$a2";
 }
-Function ban($menu=null){
-    cl();
-    echo line_at();
-    
+Function ban($menu =null){
+    cl();     
+    $r = ip();
+    $cou = $r->country;
+    $cit = $r->city;
+    $que = $r->query;
+    $isp = $r->isp;
+
+    $r = p."$cou │ ".w2."IP:".p."$que │ $isp";
+    print line;
+    print k." ".$r.n;
+    print line;
+    print m ." ┏┓,┳┓ ┏┳┓ │".p." Zerobot [".w3.app_version.p."]".n;
+    print o ." ┏┛ ┣┫┏┓o  │".p." channel: t.me/official_zerobot".n;
+    print k ." ┗┛ ┻┛┗┛┻  │".p." Status : Free Not For Sale".n;
     if($menu == null){
-        echo line_tg().p." Script   : ".p.host[0].p." [".w3."Ver: ".version.p."]".n;
+    print line_at();
+    print line_tg().p." Script : ".host[0].p." [".w3."Ver: ".version.p."]".n;
     }elseif($menu == 1){}
-    echo line_tg().p." App Name : Zerobot [".w3.app_version.p."]".n;
-    echo line_tg().p." Telegram : https://t.me/official_zerobot".n;
-    echo line_tg().p." Status   : Free Not For Sale".n;
-    echo line_bw();   
+    print line_bw();
+    //print p." App Name : Zerobot [".w3.app_version.p."]".n;
+    //print p." Telegram : https://t.me/official_zerobot".n;
+    //print p." Status   : Free Not For Sale".n;   
+}
+Function bane($menu=null){
+    cl();
+    $r = ip();
+    $cou = $r->country;
+    $cit = $r->city;
+    $que = $r->query;
+    $isp = $r->isp;
+    $r = p."$cou │ ".w2."IP:".p."$que │ $isp";
+    print line_at();
+    print line_tg().$r.n;
+    print line_bw();
+    print line_at();
+    if($menu == null){
+        print line_tg().p." Script   : ".p.host[0].p." [".w3."Ver: ".version.p."]".n;
+    }elseif($menu == 1){}
+    print line_tg().p." App Name : Zerobot [".w3.app_version.p."]".n;
+    print line_tg().p." Telegram : https://t.me/official_zerobot".n;
+    print line_tg().p." Status   : Free Not For Sale".n;
+    print line_bw();   
 }
 Function Menu_Api(){
     apikey:
-    ban();
-    echo w3." ┌──────────────────────────────┐".n;
-    echo w3." │  ".p."Menu Apikey                 ".w3."│".n;
-    echo w3." ├──────────────────────────────┤".n;
-    echo w3." │".NoLi(1,"Xevil").w3."                    │".n;
-    echo w3." │".NoLi(2,"Multibot").w3."                 │".n;
-    echo w3." └──────────────────────────────┘".n;
-    $pilih = readline(w3." Input".panah.p);
-    if($pilih == 1){
+    cl();
+    print n;
+    print k.str_pad("Menu Apikey", 53, " ", STR_PAD_BOTH).n.n;
+    print NoLi(1,"Multibot").n;
+    print NoLi(2,"Xevil").n;
+    $pilih =readline(p."Input".panah.w3);
+    if($pilih == 2){
         define("api_url","http://api.sctg.xyz");
         Save("Apikey");
         define("apikey",file_get_contents(Data."/Apikey"));
-    }elseif($pilih == 2){
+    }elseif($pilih == 1){
         define("api_url","http://api.multibot.in");
         Save("Apikey");
         define("apikey",file_get_contents(Data."/Apikey"));
     }else{
-        print k." Bad Number".n;sleep(3);goto apikey;
+        print m.str_pad("Bad Number", 55, " ", STR_PAD_BOTH);sleep(3);goto apikey;
     }
     if(!file_exists(Data."Apikey")){
     goto apikey;
@@ -437,7 +467,7 @@ Function Pesan($data=null,$isi){
         return w3." [".p.$isi.str_repeat(" ",$lenstr).w3."]".panah.p;
     }
 }
-MenuX();
+
 Function MenuX(){
     cl();
     $server = $_SERVER["TMP"];
@@ -462,6 +492,7 @@ Function MenuX(){
     echo w3." │".NoLi(12,"Gamerlee")."          ".w3."│".w3." No  ".w3."│".p." gamerlee.com/?r=1599".w3."   │".n;
     echo w3." │".NoLi(13,"Linksfly")."          ".w3."│".w3." No  ".w3."│".p." linksfly.link/?r=9397".w3."  │".n;
     echo w3." │".NoLi(14,"Autofaucet")."        ".w3."│".w3." No  ".w3."│".p." bit.ly/4iwKEzg".w3."         │".n;
+	echo w3." │".NoLi(15,"FreeLtc")."           ".w3."│".w3." No  ".w3."│".p." cutt.ly/ArsXvh0o".w3."       │".n;
     echo w3." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(p." Input number".panah.w3);
@@ -493,7 +524,10 @@ Function MenuX(){
         eval(OpenSC("sc/linksfly.php"));
     }elseif($pilih == 14){
         eval(OpenSC("sc/autofaucettop.php"));
-    }elseif($pilih == 999){
+    }elseif($pilih == 15){
+        eval(OpenSC("sc/freeltcfun.php"));
+    }
+	elseif($pilih == 999){
         eval(OpenSC("sc/whoopyrewards.php"));
     }elseif($pilih == 888){
         eval(OpenSC("sc/earnbitmoon.php"));
@@ -501,3 +535,4 @@ Function MenuX(){
         print k." Bad Number".n;sleep(3);goto Menu;
     }
 }
+MenuX();
