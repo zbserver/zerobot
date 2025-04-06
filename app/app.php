@@ -56,7 +56,7 @@ Function line_at(){return " ".w3."┌──────────────�
 Function line_tg(){return " ".w3."│";}
 Function line_bw(){return " ".w3."└────────────────────────────────────────────────────>".n;}
 function ms($msg,$msg2){return efek(p." [ ".w3.$msg.p." ]".w2." => ".p."[ ".w3.$msg2.p." ]",5000);}
-function lineX(){return o." o─────".k."─────".p."───────────────────────────────────────────".n;}
+function lineX(){return o." ─────".k."─────".p."─────────────────────────────────────────".n;}
 Function FirCF($r){(preg_match('/Cloudflare/',$r) || preg_match('/Just a moment.../',$r))? $data['cf']=true:$data['cf']=false;return $data;}
 Function getUserAgent(){$userAgentArray[] = "Mozilla/5.0 (Linux; Android 11; Pixel C Build/RQ1A.210205.004) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.90 Safari/537.36 GNews/2021022310";$getArrayKey = array_rand($userAgentArray);return $userAgentArray[$getArrayKey];}
 Function msg($no,$msg){return pesan(0,cpm[$no]).p.$msg;}
@@ -349,37 +349,16 @@ Function ban($menu =null){
     print line;
     print k." ".$r.n;
     print line;
-    print m ." ┏┓,┳┓ ┏┳┓ │".p." Zerobot [".w3.app_version.p."]".n;
-    print o ." ┏┛ ┣┫┏┓o  │".p." channel: ".Telegram.n;
-    print k ." ┗┛ ┻┛┗┛┻  │".p." Status : Free Not For Sale".n;
+    
+    print p." ┌─┐┌─┐┬─┐┌>┐┌┐ ┌<┐┌┬┐  Zerobot  [".w3.app_version.p."]".n;
+    print p." ┌─┘├> ├<┘│o│├┴┐│o│ │   channel: ".Telegram.n;
+    print p." └─┘└─┘┴└─└<┘└─┘└>┘ ┴   Status : Free Not For Sale".n;
     if($menu == null){
-    print line_at();
-    print line_tg().p." Script : ".host[0].p." [".w3."Ver: ".version.p."]".n;
+    print a ." ┌─────────┬────────────────────────────────────────".n;
+    print a ." │".p." Script  ".a."│ ".p.host[0].p." [".w3."Ver: ".version.p."]".n;
+    print a. " └─────────┴────────────────────────────────────────".n; 
     }elseif($menu == 1){}
-    print line_bw();
-    //print p." App Name : Zerobot [".w3.app_version.p."]".n;
-    //print p." Telegram : https://t.me/official_zerobot".n;
-    //print p." Status   : Free Not For Sale".n;   
-}
-Function bane($menu=null){
-    cl();
-    $r = ip();
-    $cou = $r->country;
-    $cit = $r->city;
-    $que = $r->query;
-    $isp = $r->isp;
-    $r = p."$cou │ ".w2."IP:".p."$que │ $isp";
-    print line_at();
-    print line_tg().$r.n;
-    print line_bw();
-    print line_at();
-    if($menu == null){
-        print line_tg().p." Script   : ".p.host[0].p." [".w3."Ver: ".version.p."]".n;
-    }elseif($menu == 1){}
-    print line_tg().p." App Name : Zerobot [".w3.app_version.p."]".n;
-    print line_tg().p." Telegram : https://t.me/official_zerobot".n;
-    print line_tg().p." Status   : Free Not For Sale".n;
-    print line_bw();   
+    
 }
 Function Menu_Api(){
     apikey:
@@ -492,10 +471,11 @@ Function MenuX(){
     echo w3." │".NoLi(9,"Ourcoincash")."        ".w3."│".w3." No  ".w3."│".p." bit.ly/3DtRDtj".w3."         │".n;
     echo w3." │".NoLi(10,"Tronwatch")."         ".w3."│".p." Yes ".w3."│".p." bit.ly/4iDixOn".w3."         │".n;
     echo w3." │".NoLi(11,"Earncryptowrs")."     ".w3."│".w3." No  ".w3."│".p." bit.ly/4hAjgz0".w3."         │".n;
-    echo w3." │".NoLi(12,"Gamerlee")."          ".w3."│".w3." No  ".w3."│".p." gamerlee.com/?r=1599".w3."   │".n;
-    echo w3." │".NoLi(13,"Linksfly")."          ".w3."│".w3." No  ".w3."│".p." linksfly.link/?r=9397".w3."  │".n;
+    echo w3." │".NoLi(12,"Gamerlee")."          ".w3."│".w3." No  ".w3."│".p." cutt.ly/HrsBrRgG".w3."       │".n;
+    echo w3." │".NoLi(13,"Linksfly")."          ".w3."│".w3." No  ".w3."│".p." cutt.ly/FrsV7AMh".w3."       │".n;
     echo w3." │".NoLi(14,"Autofaucet")."        ".w3."│".w3." No  ".w3."│".p." bit.ly/4iwKEzg".w3."         │".n;
 	echo w3." │".NoLi(15,"FreeLtc")."           ".w3."│".w3." No  ".w3."│".p." cutt.ly/ArsXvh0o".w3."       │".n;
+    echo w3." │".NoLi(16,"Earnsolana")."        ".w3."│".w3." No  ".w3."│".p." cutt.ly/SrsXNQdK".w3."       │".n;
     echo w3." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(p." Input number".panah.w3);
@@ -529,6 +509,8 @@ Function MenuX(){
         eval(OpenSC("sc/autofaucettop.php"));
     }elseif($pilih == 15){
         eval(OpenSC("sc/freeltcfun.php"));
+    }elseif($pilih == 16){
+        eval(OpenSC("sc/earnsolanaxyz.php"));
     }
 	elseif($pilih == 999){
         eval(OpenSC("sc/whoopyrewards.php"));
