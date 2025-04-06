@@ -121,7 +121,7 @@ Function Claim($coin){
 		}
 		
     $ictok = Ambil($r,"name='_iconcaptcha-token' value='","'",1);
-    $icon = _cIconX($ictok);
+    $icon = _cIconX($ictok,"light");
     if(!$icon){
         echo rr;
         echo msg(4,"Bypass failed");
