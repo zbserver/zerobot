@@ -15,7 +15,6 @@ Function h($data = 0){
 Function dashboard(){
     $r=get(web);
     if(preg_match("/logout/",$r)){
-
     }else{
         print " Cookie Experied".n;del();die();
     }
