@@ -60,6 +60,9 @@ while(true){
             print lineX();
             tim(10);
         }
+        if(preg_match("/rate-limited/",$r)){
+            print msg(4,"You have been rate-limited.");sleep(3);print rr;tim(8);continue;
+        }
         if(preg_match("/The faucet does not have sufficient/",$r)){
             Echo msg(4,"Sufficient Found").p." [".o.$coin.p."]".n;
             print lineX();
@@ -71,5 +74,6 @@ while(true){
     if(!$c){
         print msg(4,"All coins have been claimed").n;
         return;
-	}
+    }
+
 }
