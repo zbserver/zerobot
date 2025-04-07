@@ -26,15 +26,14 @@ SaveCokUa();
 cl();
 ban();
 dashboard();
-
 $c = ["sol","ltc","doge","trx","bnb","bch","dash","dgb","usdt","eth","fey","zec","pepe","ton","xrp","ada","xlm","tara"];
-
 while(true){
     foreach($c as $a => $coins){
         $coin = explode('"',$coins)[0];
         $r = get(web."/faucet/currency/$coin");
         if(preg_match("/Daily claim limit/",$r)){
             print msg(4,"Daily Claim Limit")." [".o.$coin.p."]".n;
+            print lineX();
             unset($c[$a]);
             continue;
         }
@@ -65,7 +64,8 @@ while(true){
             tim(10);
         }
         if(preg_match("/The faucet does not have sufficient/",$r)){
-            Echo msg(4,"Sufficient Found").n;
+            Echo msg(4,"Sufficient Found").p." [".o.$coin.p."]".n;
+            print lineX();
             unset($c[$a]);
         }elseif(preg_match("/Shortlink must be complete/",$r)){
             echo msg(4,"1 Shortlink must be completed to continue again!").n;die;
@@ -76,43 +76,3 @@ while(true){
         return;
     }
 }
-
-/*Function Claimx($coin){
-    a:
-    $r = get(web."/faucet/currency/$coin");
-    if(preg_match("/Daily claim limit/",$r)){
-        print msg(4,"Daily Claim Limit").n;die;
-    }
-    $ictok = Ambil($r,"name='_iconcaptcha-token' value='","'",1);
-    
-    $icon = _cIconX($ictok,"light");
-    if(!$icon){
-        print rr;
-        print msg(4,"Bypass Failed");
-        sleep(1);
-		print rr;
-		goto a;
-	}
-	print bps_cap();sleep(1);
-	print rr;
-	$data = [];
-    $data['csrf_token_name'] = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
-    $data['token'] = Ambil($r,'name="token" value="','">',1);
-    $data['wallet'] = Ambil($r,'name="wallet" class="form-control" value="','" readonly>',1);
-    $data = array_merge($data, $icon);
-	$data = http_build_query($data);
-	$r = post(web."/faucet/verify/".$coin, $data);
-	$has = Ambil($r,"title: '","',",1);
-	if($has == "Success!"){
-	    $rd = Ambil($r,"html: '"," account",1);
-	    print msg(1,$rd).n;
-	    print lineX();
-	    tim(10);
-	    goto a;
-	}
-	if(preg_match("/The faucet does not have sufficient/",$r)){
-        Echo msg(4,"Sufficient Found").n;die;
-    }elseif(preg_match("/Shortlink must be complete/",$r)){
-	    echo msg(4,"1 Shortlink must be completed to continue again!").n;die;
-	}
-}*/
