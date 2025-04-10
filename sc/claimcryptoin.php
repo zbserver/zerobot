@@ -1,7 +1,6 @@
 <?php
-
 define('host',['ClaimCrypto','www.claimcrypto.in','']);
-define('version','1.0.0');
+define('version','1.0.1');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -40,9 +39,9 @@ while(true){
             continue;
         }
         $time= Ambil($r,'<b id="minute">','</b>',1);
-        $minu= Ambil($r,'<b id="minute">0</b>:<b id="second">','</b>',1);
-        if($time|| $minu){
-            tim($time + $minu);
+        $seco= Ambil($r,'<b id="second">','</b>',1);
+        if($time){
+            tim(($time*60)+$seco);
             continue;
         }
         
@@ -75,11 +74,11 @@ while(true){
             print msg(4,"You have been rate-limited.");sleep(3);print rr;tim(8);continue;
         }
         if(preg_match("/The faucet does not have sufficient/",$r)){
-            Echo msg(4,"Sufficient Found").p." [".o.$coin.p."]".n;
+            print msg(4,"Sufficient Found").p." [".o.$coin.p."]".n;
             print lineX();
             unset($c[$a]);
         }elseif(preg_match("/Shortlink must be complete/",$r)){
-            echo msg(4,"1 Shortlink must be completed to continue again!").n;die;
+            print msg(4,"1 Shortlink must be completed to continue again!").n;die;
         }    
     }
     if(!$c){
