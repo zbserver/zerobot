@@ -1,22 +1,23 @@
 <?php
 define('host',['FreeLTCFun','freeltc.fun','']);
-define('version','1.0.1');
+define('version','1.0.2');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
 Del_Cok();
-Function h($data = 0){
+Function h(){
     $h[] = "Host: ".host[1];
-    if($data)$h[] = "Content-Length: ".strlen($data);
     $h[] = "cookie: ".file_get_contents(Data.cok);
+    $h[] = "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7";
+    $h[] = "accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7";
     $h[] = "user-agent: ".file_get_contents(Data.uag);
     return $h;
 }
 Function dashboard(){
     $r=get(web);
-    if(preg_match("/logout/",$r)){
+    if(preg_match("/<title>Dashboard/",$r)){
     }else{
-        print " Cookie Experied".n;del();die();
+       print " Cookie Experied".n;del();die();
     }
 }
 SaveCokUa();
@@ -25,6 +26,7 @@ ban();
 dashboard();
 $c = ["ltc","doge","zec","bnb","bch","eth","sol","trx","dash","dgb","fey","usdt","pepe"];
 while(true){
+    dashboard();
     foreach($c as $a => $coins){
         $coin = explode('"',$coins)[0];
         $r = get(web."/faucet/currency/$coin");
@@ -32,6 +34,15 @@ while(true){
             print msg(4,"Daily Claim Limit")." [".o.$coin.p."]".n;
             print lineX();
             unset($c[$a]);
+            continue;
+        }
+        if(preg_match("/Just a moment/",$r)){
+            print msg(4,"Cloudflare").n;die;
+        }
+        $time= Ambil($r,'<b id="minute">','</b>',1);
+        $seco= Ambil($r,'<b id="second">','</b>',1);
+        if($time){
+            tim(($time*60)+$seco);
             continue;
         }
         $ictok = Ambil($r,"name='_iconcaptcha-token' value='","'",1);
@@ -58,10 +69,9 @@ while(true){
             $rd = Ambil($r,"html: '"," account",1);
             print msg(1,$rd).n;
             print lineX();
-            tim(10);
         }
         if(preg_match("/rate-limited/",$r)){
-            print msg(4,"You have been rate-limited.");sleep(3);print rr;tim(8);continue;
+            print msg(4,"You have been rate-limited.");sleep(3);print rr;continue;
         }
         if(preg_match("/The faucet does not have sufficient/",$r)){
             Echo msg(4,"Sufficient Found").p." [".o.$coin.p."]".n;
@@ -75,5 +85,4 @@ while(true){
         print msg(4,"All coins have been claimed").n;
         return;
     }
-
 }
