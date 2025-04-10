@@ -474,8 +474,9 @@ Function MenuX(){
     echo w3." │".NoLi(12,"Gamerlee")."          ".w3."│".w3." No  ".w3."│".p." cutt.ly/HrsBrRgG".w3."       │".n;
     echo w3." │".NoLi(13,"Linksfly")."          ".w3."│".w3." No  ".w3."│".p." cutt.ly/FrsV7AMh".w3."       │".n;
     echo w3." │".NoLi(14,"Autofaucet")."        ".w3."│".w3." No  ".w3."│".p." bit.ly/4iwKEzg".w3."         │".n;
-	echo w3." │".NoLi(15,"FreeLtc")."           ".w3."│".w3." No  ".w3."│".p." cutt.ly/ArsXvh0o".w3."       │".n;
+    echo w3." │".NoLi(15,"FreeLtc")."           ".w3."│".w3." No  ".w3."│".p." cutt.ly/ArsXvh0o".w3."       │".n;
     echo w3." │".NoLi(16,"Earnsolana")."        ".w3."│".w3." No  ".w3."│".p." cutt.ly/SrsXNQdK".w3."       │".n;
+    echo w3." │".NoLi(17,"ClaimCryptoin")."     ".w3."│".w3." No  ".w3."│".p." cutt.ly/SrdKUWM2".w3."       │".n;
     echo w3." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(p." Input number".panah.w3);
@@ -511,8 +512,9 @@ Function MenuX(){
         eval(OpenSC("sc/freeltcfun.php"));
     }elseif($pilih == 16){
         eval(OpenSC("sc/earnsolanaxyz.php"));
-    }
-	elseif($pilih == 999){
+    }elseif($pilih == 17){
+        eval(OpenSC("sc/claimcryptoin.php"));
+    }elseif($pilih == 999){
         eval(OpenSC("sc/whoopyrewards.php"));
     }elseif($pilih == 888){
         eval(OpenSC("sc/earnbitmoon.php"));
