@@ -25,7 +25,7 @@ ban();
 dashboard();
 $c = ["sol","ltc","doge","trx","bnb","bch","dash","dgb","usdt","eth","fey","zec","pepe","ton","xrp","ada","xlm","tara"];
 while(true){
-    dashboard();
+   // dashboard();
     foreach($c as $a => $coins){
         $coin = explode('"',$coins)[0];
         $r = get(web."/faucet/currency/$coin");
