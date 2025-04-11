@@ -476,7 +476,8 @@ Function MenuX(){
     echo w3." │".NoLi(16,"Earnsolana")."        ".w3."│".w3." No  ".w3."│".p." cutt.ly/SrsXNQdK".w3."       │".n;
     echo w3." │".NoLi(17,"ClaimCryptoin")."     ".w3."│".w3." No  ".w3."│".p." cutt.ly/SrdKUWM2".w3."       │".n;
     echo w3." │".NoLi(18,"CryptoFuture")."      ".w3."│".w3." No  ".w3."│".p." cutt.ly/Vrd7yDZa".w3."       │".n;
-    echo w3." └────────────────────────┴─────┴────────────────────────┘".p.n;
+    echo w3." │".NoLi(19,"Helpdeep")."          ".w3."│".w3." No  ".w3."│".p." cutt.ly/Brd7kWal".w3."       │".n;
+	echo w3." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(p." Input number".panah.w3);
     if($pilih == 1){
@@ -515,6 +516,8 @@ Function MenuX(){
         eval(OpenSC("sc/claimcryptoin.php"));
     }elseif($pilih == 18){
         eval(OpenSC("sc/cryptofuture.php"));
+    }elseif($pilih == 19){
+        eval(OpenSC("sc/helpdeep.php"));
 	}elseif($pilih == 999){
         eval(OpenSC("sc/whoopyrewards.php"));
     }elseif($pilih == 888){
