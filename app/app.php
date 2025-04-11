@@ -1,7 +1,5 @@
-
 <?php
 const app_version = "1.1.17", Telegram ="t.me/official_zerobot";
-
 define("a","\033[1;30m");
 define("d","\033[0m");
 define("m","\033[1;31m");
@@ -477,6 +475,7 @@ Function MenuX(){
     echo w3." │".NoLi(15,"FreeLtc")."           ".w3."│".w3." No  ".w3."│".p." cutt.ly/ArsXvh0o".w3."       │".n;
     echo w3." │".NoLi(16,"Earnsolana")."        ".w3."│".w3." No  ".w3."│".p." cutt.ly/SrsXNQdK".w3."       │".n;
     echo w3." │".NoLi(17,"ClaimCryptoin")."     ".w3."│".w3." No  ".w3."│".p." cutt.ly/SrdKUWM2".w3."       │".n;
+    echo w3." │".NoLi(18,"CryptoFuture")."      ".w3."│".w3." No  ".w3."│".p." cutt.ly/Vrd7yDZa".w3."       │".n;
     echo w3." └────────────────────────┴─────┴────────────────────────┘".p.n;
 
     $pilih = readline(p." Input number".panah.w3);
@@ -514,7 +513,9 @@ Function MenuX(){
         eval(OpenSC("sc/earnsolanaxyz.php"));
     }elseif($pilih == 17){
         eval(OpenSC("sc/claimcryptoin.php"));
-    }elseif($pilih == 999){
+    }elseif($pilih == 18){
+        eval(OpenSC("sc/cryptofuture.php"));
+	}elseif($pilih == 999){
         eval(OpenSC("sc/whoopyrewards.php"));
     }elseif($pilih == 888){
         eval(OpenSC("sc/earnbitmoon.php"));
