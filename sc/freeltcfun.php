@@ -1,6 +1,6 @@
 <?php
 define('host',['FreeLTCFun','freeltc.fun','']);
-define('version','1.0.2');
+define('version','1.0.3');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -55,8 +55,6 @@ while(true){
             print rr;
             continue;
         }
-        print bps_cap();sleep(1);
-        print rr;
         $data = [];
         $data['csrf_token_name'] = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
         $data['token'] = Ambil($r,'name="token" value="','">',1);
