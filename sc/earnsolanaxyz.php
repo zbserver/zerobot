@@ -1,15 +1,15 @@
 <?php
 define('host',['Earnsolana','earnsolana.xyz','']);
-define('version','1.0.2');
+define('version','1.0.3');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
 Del_Cok();
 Function h($data = 0){
     $h[] = "Host: ".host[1];
-    $h[] = "cookie: ".file_get_contents(Data.cok);
     $h[] = "accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7";
     $h[] = "accept-language: id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7";
+    $h[] = "cookie: ".file_get_contents(Data.cok);
     $h[] = "user-agent: ".file_get_contents(Data.uag);
     return $h;
 }
@@ -29,6 +29,7 @@ while(true){
     dashboard();
     foreach($c as $a => $coins){
         $coin = explode('"',$coins)[0];
+        a:
         $r = get(web."/faucet/currency/$coin");
         if(preg_match("/Daily claim limit/",$r)){
             print msg(4,"Daily Claim Limit")." [".o.$coin.p."]".n;
@@ -54,8 +55,7 @@ while(true){
             print rr;
             continue;
         }
-        print bps_cap();sleep(1);
-        print rr;
+       
         $data = [];
         $data['csrf_token_name'] = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
         $data['token'] = Ambil($r,'name="token" value="','">',1);
@@ -68,6 +68,7 @@ while(true){
             $rd = Ambil($r,"html: '"," account",1);
             print msg(1,$rd).n;
             print lineX();
+            goto a;
         }
         if(preg_match("/rate-limited/",$r)){
             print msg(4,"You have been rate-limited.");sleep(3);print rr;tim(8);continue;
