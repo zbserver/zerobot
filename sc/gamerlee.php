@@ -128,8 +128,6 @@ Function Claim($coin){
 		echo rr;
 		goto a;
 	}
-	echo bps_cap();sleep(1);
-	echo rr;
 	$data = [];
 	$data = array_merge($data, $icon);
 	$data = http_build_query($data);
