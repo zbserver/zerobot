@@ -128,8 +128,6 @@ Function Claim($coin){
 		echo rr;
 		goto a;
 	}
-	echo bps_cap();sleep(1);
-	echo rr;
 	$data = [];
 	$data = array_merge($data, $icon);
 	$data = http_build_query($data);
@@ -138,9 +136,8 @@ Function Claim($coin){
 	$has = Ambil($r,"title: '","',",1);
 	if($has == "Great!"){
 	    $rd = Ambil($r,"text: '"," account'",1);
-	    echo line_at();
-	    echo line_tg().msg(1,$rd).n;
-	    echo line_bw();
+	    print msg(1,$rd).n;
+	    print lineX();
 	    tim(10);
 	    goto a;
 	}
