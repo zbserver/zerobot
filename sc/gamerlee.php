@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 define('host',['Gamerlee','gamerlee.com','']);
 define('version','1.0.0');
 define('cok','cookie.'.host[0]);
@@ -139,9 +138,8 @@ Function Claim($coin){
 	$has = Ambil($r,"title: '","',",1);
 	if($has == "Great!"){
 	    $rd = Ambil($r,"text: '"," account'",1);
-	    echo line_at();
-	    echo line_tg().msg(1,$rd).n;
-	    echo line_bw();
+	    print msg(1,$rd).n;
+		print lineX();
 	    tim(10);
 	    goto a;
 	}
