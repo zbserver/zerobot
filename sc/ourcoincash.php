@@ -38,12 +38,10 @@ $lg = Ambil($r,'<span>','</span>',2);
 if(!$lg){print Error("Cookie Experied").n;Del();die;}
 else{print " ".p."Login success.";sleep(2);print rr;}
 $r = Balance();
-echo n;
-echo line_at();
-echo line_tg().msg(1,"Balance").panah.p.$r["b"].n;
-echo line_tg().msg(1,"Energy ").panah.p.$r["e"].n;
-echo line_tg().msg(1,"Apikey ").panah.p.Api_Bal().n;
-echo line_bw();
+print msg(1,"Balance").panah.p.$r["b"].n;
+print msg(1,"Energy ").panah.p.$r["e"].n;
+print msg(1,"Apikey ").panah.p.Api_Bal().n;
+print lineX();
 Faucet:
 while(true){
     $r = get(web."/faucet");
@@ -76,14 +74,10 @@ while(true){
         if(preg_match("/title: 'Good job!'/",$post)){
             $r = balance(); 
             $hasil = Ambil($post,"text: '","has been added to your balance",1);
-            echo n;
-            echo line_at();
-            echo line_tg().msg(1,"Reward ").panah.p.$hasil.n;
-            echo line_tg().msg(2,"Balance").panah.p.$r["b"].n;
-            echo line_tg().msg(3,"Energy ").panah.p.$r["e"].n;
-            echo line_tg().msg(3,"Apikey ").panah.p.Api_Bal().n;
-            echo line_bw();
-            tim(20);
+            print msg(1,"Reward ").h."[".p.$hasil.h."]".o." / ".p."Balance ".h."[".p.$r["b"].h."]".n;
+            print msg(3,"Energy ").h."[".p.$r["e"].h."]".o." / ".p."Apikey ".h."[".p.Api_Bal().h."]".n;
+            print lineX();
+            tim(10);
         }
     }
 }
