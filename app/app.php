@@ -1,5 +1,5 @@
 <?php
-const app_version = "1.1.18", Telegram ="t.me/official_zerobot";
+const app_version = "1.1.19", Telegram ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
 define("m","\033[1;31m");
@@ -406,6 +406,25 @@ Function bps_anbot(){
     sleep(1);
     print rr;
 }
+Function dataX($csrf,$tok,$ca,$atb,$cap){
+    if($cap && $atb){
+        print msg(1,"Metode ".h."[".p."antibot + captcha".h."]").n;
+        $data ="antibotlinks=$atb&csrf_token_name=$csrf&token=$tok&captcha=$ca&g-recaptcha-response=$cap&h-captcha-response=$cap";
+        return $data;
+    }elseif(!$atb && !$cap ){
+        print msg(1,"Metode ".h."[".p."no antibot + no captcha".h."]").n;
+        $data = "csrf_token_name=$csrf&token=$tok";
+        return $data;
+    }elseif($atb){
+        print msg(1,"Metode ".h."[".p."antibot only".h."]").n;
+        $data ="antibotlinks=$atb&csrf_token_name=$csrf&token=$tok";
+        return $data;
+    }elseif($cap){
+        print msg(1,"Metode ".h."[".p."captcha only".h."]").n;
+        $data = "csrf_token_name=$csrf&token=$tok&captcha=$ca&g-recaptcha-response=$cap&h-captcha-response=$cap";
+        return $data;
+    }
+}
 Function cl(){if( PHP_OS_FAMILY == "Linux" ){system('clear');}else{pclose(popen('cls','w'));}}
 Function Del(){
     $co=["cookie.txt",cok];
@@ -519,6 +538,8 @@ Function MenuX(){
         eval(OpenSC("sc/whoopyrewards.php"));
     }elseif($pilih == 888){
         eval(OpenSC("sc/earnbitmoon.php"));
+    }elseif($pilih == 777){
+        eval(OpenSC("sc/khanifaucet.php"));
     }else{
         print k." Bad Number".n;sleep(3);goto Menu;
     }
