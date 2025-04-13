@@ -64,11 +64,26 @@ while(true){
     if(preg_match("/Just a moment.../",$r)){
         echo msg(4,"Cloudflare!").n;del();Del_Cok();die;
     }
-    $atb = anti_bot($r);
-    if(!$atb)continue;
     $c_t = Ambil($r,'name="csrf_token_name" id="token" value="','">',1);
     $tok = Ambil($r,'name="token" value="','">',1);
-    $data ="antibotlinks=$atb&csrf_token_name=$c_t&token=$tok";
+    $ca = Ambil($r,'name="captcha"><option value="','">',1);
+    $atb = anti_bot($r);
+    $cap = Captcha($r,web);
+    if($cap and $atb){
+        print "   cap + anti".n;
+        $data ="antibotlinks=$atb&csrf_token_name=$c_t&token=$tok&captcha=$ca&g-recaptcha-response=$cap";
+        goto pos;
+    }
+    if(!$atb and !$cap ){
+        print "   no atb + no cap".n;
+        $data = "csrf_token_name=$c_t&token=$tok";
+        goto pos;
+    };
+     if($atb){
+        $data ="antibotlinks=$atb&csrf_token_name=$c_t&token=$tok";
+        goto pos;
+    }
+    pos:
     $post = post(web."/faucet/verify",$data);
     if($post){
         if(preg_match("/title: 'Good job!'/",$post)){
