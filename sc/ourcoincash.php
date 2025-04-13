@@ -1,6 +1,6 @@
 <?php
 define('host',['Ourcoincash','ourcoincash.xyz','']);
-define('version','1.0.2');
+define('version','1.0.3');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -69,18 +69,24 @@ while(true){
     $ca = Ambil($r,'name="captcha"><option value="','">',1);
     $atb = anti_bot($r);
     $cap = Captcha($r,web);
-    if($cap and $atb){
-        print "   cap + anti".n;
+    if($cap && $atb){
+        print msg(1,"antibot + captcha").n;
         $data ="antibotlinks=$atb&csrf_token_name=$c_t&token=$tok&captcha=$ca&g-recaptcha-response=$cap";
         goto pos;
     }
-    if(!$atb and !$cap ){
-        print "   no atb + no cap".n;
+    if(!$atb && !$cap ){
+        print msg(1,"no antibot + no captcha").n;
         $data = "csrf_token_name=$c_t&token=$tok";
         goto pos;
     };
-     if($atb){
+    if($atb){
+        print msg(1,"antibot only").n;
         $data ="antibotlinks=$atb&csrf_token_name=$c_t&token=$tok";
+        goto pos;
+    }
+    if($cap){
+        print msg(1,"captcha only").n;
+        $data = "csrf_token_name=$c_t&token=$tok&captcha=$ca&g-recaptcha-response=$cap";
         goto pos;
     }
     pos:
