@@ -1,4 +1,5 @@
 <?php
+print " 404  Scrypt Maintenis".n;die; 
 error_reporting(0);
 define('host',['OurcoincashFREE','ourcoincash.xyz','']);
 define('version','1.0.2');
