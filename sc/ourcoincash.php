@@ -1,6 +1,6 @@
 <?php
 define('host',['Ourcoincash','ourcoincash.xyz','']);
-define('version','1.0.3');
+define('version','1.0.4');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -70,22 +70,19 @@ while(true){
     $atb = anti_bot($r);
     $cap = Captcha($r,web);
     if($cap && $atb){
-        print msg(1,"antibot + captcha").n;
+        print msg(1,"Metode ".h."[".p."antibot + captcha".h."]").n;
         $data ="antibotlinks=$atb&csrf_token_name=$c_t&token=$tok&captcha=$ca&g-recaptcha-response=$cap";
         goto pos;
-    }
-    if(!$atb && !$cap ){
-        print msg(1,"no antibot + no captcha").n;
+    }elseif(!$atb && !$cap ){
+        print msg(1,"Metode ".h."[".p."no antibot + no captcha".h."]").n;
         $data = "csrf_token_name=$c_t&token=$tok";
         goto pos;
-    };
-    if($atb){
-        print msg(1,"antibot only").n;
+    }elseif($atb){
+        print msg(1,"Metode ".h."[".p."antibot only".h."]").n;
         $data ="antibotlinks=$atb&csrf_token_name=$c_t&token=$tok";
         goto pos;
-    }
-    if($cap){
-        print msg(1,"captcha only").n;
+    }elseif($cap){
+        print msg(1,"Metode ".h."[".p."captcha only".h."]").n;
         $data = "csrf_token_name=$c_t&token=$tok&captcha=$ca&g-recaptcha-response=$cap";
         goto pos;
     }
