@@ -1,6 +1,6 @@
 <?php
 define('host',['Ourcoincash','ourcoincash.xyz','']);
-define('version','1.0.1');
+define('version','1.0.2');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
