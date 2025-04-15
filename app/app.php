@@ -1,5 +1,5 @@
 <?php
-const app_version = "1.1.19", Telegram ="t.me/official_zerobot";
+const app_version = "1.1.20", Telegram ="t.me/official_zerobot";
 define("a","\033[1;30m");
 define("d","\033[0m");
 define("m","\033[1;31m");
@@ -297,13 +297,13 @@ Function antibotXev($source){
     $delay = 4;
     a:
     $bot1=explode('\"',explode('rel=\"',$source)[1])[0];
+    if(!$bot1){goto en;}
     $bot2=explode('\"',explode('rel=\"',$source)[2])[0];
     $bot3=explode('\"',explode('rel=\"',$source)[3])[0];
     $main = explode('"',explode('data:image/png;base64,', $source)[1])[0];
     $img1 = explode('"',explode('data:image/png;base64,', $source)[2])[0];
     $img2 = explode('"',explode('data:image/png;base64,', $source)[3])[0];
     $img3 = explode('"',explode('data:image/png;base64,', $source)[4])[0];
-    if(!$bot1){ goto a;}
     $ua = "Content-type: application/x-www-form-urlencoded";
     $data = array('key' => apikey,'method' => 'antibot','main' => $main,$bot1 => $img1,$bot2 => $img2,$bot3 => $img3);
     $opts = array('http' => array('header'  => $ua,'method' => 'POST','content' => http_build_query($data)));
@@ -321,6 +321,7 @@ Function antibotXev($source){
             }else if($r2 == "CAPCHA_NOT_READY"){print rr;load();sleep($delay);print rr;continue;}else{return 0;}
         }
     }else{goto a;}
+    en:
 }
 
 Function Menu($no,$menu){return print w3." [".p.$no.w3."] ".p.$menu.n;}
