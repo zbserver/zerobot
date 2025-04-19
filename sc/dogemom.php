@@ -5,7 +5,6 @@ define('version','1.0.0');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','http://'.host[1]);
-include("App.php");
 Del_Cok();
 Function h(){
     $h[] = "Host: ".host[1];
@@ -72,6 +71,21 @@ ban();
 dashboard();
 $c = ["trx","doge","bnb","sol","ltc"];
 while(true){
+    $r = get(web."/firewall");
+    if(preg_match("/Firewall/",$r)){
+        a :
+        print msg(4,"firewall detected").n;
+        $x = get(web."/firewall");
+        $ca   = Ambil($r,'name="captchaType" value="','">',1);
+        $csrf = Ambil($r,'name="csrf_token_name" value="','">',1);
+        $atb  = Anti_Bot($r);
+        $cap  =  Captcha($r,web);
+        $data ="g-recaptcha-response=$cap&captchaType=$ca&csrf_token_name=$csrf";
+        $x = post(web."/firewall/verify",$data);
+        if(preg_match('/Unlock/',$x)){
+            goto a;
+        }
+    }
     foreach($c as $a => $coins){
         $coin = explode('"',$coins)[0];
         $r = get(web."/faucet/currency/$coin");
@@ -105,20 +119,6 @@ while(true){
             print msg(1,"Reward ").h."[".p.$rd.h."]".n;
             print msg(2,"Apikey ").h."[".p.Api_Bal().h."]".n;
             print lineX();
-        }
-        if(preg_match("/Firewall/",$r)){
-            a :
-            print msg(4,"firewall detected").n;
-            $x = get(web."/firewall");
-            $ca   = Ambil($r,'name="captchaType" value="','">',1);
-            $csrf = Ambil($r,'name="csrf_token_name" value="','">',1);
-            $atb  = Anti_Bot($r);
-            $cap  =  Captcha($r,web);
-            $data ="g-recaptcha-response=$cap&captchaType=recaptchav2&csrf_token_name=$csrf";
-            $x = post(web."/firewall/verify",$data);
-            if(preg_match('/unlock/',$x)){
-                goto a;
-            }
         }
         if(preg_match("/rate-limited/",$r)){
             print msg(4,"You have been rate-limited.");sleep(3);print rr;tim(8);continue;
