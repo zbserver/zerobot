@@ -48,6 +48,11 @@ while(true){
     if(preg_match("/Daily limit reached/",$r)){
         echo Error("Daily limit reached").n;die;
     }
+    $time = Ambil($r,"let wait = "," - 1;",1);
+    if($time){
+        tim($time);
+        continue;
+    }
     if(preg_match("/firewall/",$r)){
         $s = get(web."/firewall");
         $sitekey= Ambil($r,'data-sitekey="','">',1);
@@ -95,7 +100,6 @@ while(true){
             print msg(1,"Reward ").h."[".p.$hasil.h."]".o." / ".p."Balance ".h."[".p.$r["b"].h."]".n;
             print msg(3,"Energy ").h."[".p.$r["e"].h."]".o." / ".p."Apikey ".h."[".p.Api_Bal().h."]".n;
             print lineX();
-            tim(10);
         }
     }
 }
