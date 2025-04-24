@@ -8,8 +8,8 @@ Del_Cok();
 Function h($data = 0){
     $h[] = "Host: ".host[1];
 	$h[] = "x-requested-with: XMLHttpRequest";
-    $h[] = "User-Agent: ".file_get_contents(Data.uag);
-    $h[] = "Cookie: ".file_get_contents(Data.cok);
+	$h[] = "cookie: ".file_get_contents(Data.cok);
+    $h[] = "user-agent: ".file_get_contents(Data.uag);
     return $h;
 }
 Function dashboard(){
