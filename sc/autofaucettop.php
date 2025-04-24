@@ -1,14 +1,13 @@
 <?php
 define('host',['Autofaucet','autofaucet.top','']);
-define('version','1.0.7');
+define('version','1.0.8');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
 Del_Cok();
 Function h($data = 0){
     $h[] = "Host: ".host[1];
-	$h[] = "x-requested-with: XMLHttpRequest";
-	$h[] = "cookie: ".file_get_contents(Data.cok);
+    $h[] = "cookie: ".file_get_contents(Data.cok);
     $h[] = "user-agent: ".file_get_contents(Data.uag);
     return $h;
 }
