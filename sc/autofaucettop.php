@@ -23,7 +23,6 @@ SaveCokUa();
 cl();
 ban();
 dashboard();
-
 $c = ["LTC","DOGE","DGB","USDT"];
 while(true){
 	dashboard();
