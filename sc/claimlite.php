@@ -1,6 +1,6 @@
 <?php
 define('host',['ClaimLite','claimlite.club','']);
-define('version','1.0.2');
+define('version','1.0.3');
 define('cok','cookie.'.host[0]);
 define('uag','user_agent');
 define('web','https://'.host[1]);
@@ -49,6 +49,18 @@ while(true){
         if(strpos($time,"hour") !== false){
             $cektime=explode(' hour',$time)[0];
             tim(($cektime) * (3600+1800));goto Faucet;}
+        if(strpos($time,"minute") !== false){
+            $cektime=explode(' minutes',$time)[0];
+            tim(($cektime +1) * 60);goto Faucet;
+        }else{
+        $cektime=explode(' seconds',$time)[0];
+        tim($cektime);
+        }
+    }
+    /*if($time){
+        if(strpos($time,"hour") !== false){
+            $cektime=explode(' hour',$time)[0];
+            tim(($cektime) * (3600+1800));goto Faucet;}
         if(strpos($time,"minutes") !== false){
             $cektime=explode(' minutes',$time)[0];
             tim(($cektime +1) * 60);goto Faucet;
@@ -57,7 +69,7 @@ while(true){
         tim($cektime);
         }
     }
-    
+    */
     $token = Ambil($r,"var token = '","';",1);
     $data  = "a=getFaucet&token=$token&challenge=false&response=false";
     $r = json_decode(post(web.'/system/ajax.php',$data),1);
